@@ -5,4 +5,4 @@
 (in-package lila)
 
 (define-symbol-macro lila-version
-    `(slot-value (asdf:find-system 'lila) 'asdf:version))
+    (slot-value (asdf:find-system 'lila) 'asdf:version))
