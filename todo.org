@@ -1,0 +1,11 @@
+* bench/pair.al
+** add compile to lisp forms
+** add push op
+** add let op
+** add splat op
+** add clock op
+* add defun op
+** use (class-name lisp-class) as arg type in defmethod
+* ---
+* add env op
+** push compile time env
