@@ -7,5 +7,9 @@
 * add defun op
 ** use lisp-class as arg type in defmethod
 * ---
+* add lila-thread
+** plugin.lisp/(link)
+** use sbcl threads
+** add thread/chan types
 * add env op
 ** push compile time env

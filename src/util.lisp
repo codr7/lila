@@ -1,11 +1,7 @@
 (in-package lila)
 
-(defun symf (spec &rest args)
-  (intern (string-upcase (apply #'format nil spec args))))
-
-(defun caps! (in)
-  (setf (char in 0) (char-upcase (char in 0)))
-  in)
+(defmacro bind (args vals &body body)
+  `(destructuring-bind ,args ,vals ,@body))
 
 (defmacro dohash ((key val tbl) &body body)
   (let ((^i (gensym)) (^ok? (gensym)))
@@ -16,5 +12,14 @@
            (unless ,^ok? (return))
            ,@body)))))
 
-(defmacro bind (args vals &body body)
-  `(destructuring-bind ,args ,vals ,@body))
+(defun caps! (in)
+  (setf (char in 0) (char-upcase (char in 0)))
+  in)
+
+(defun symf (spec &rest args)
+  (intern (string-upcase (apply #'format nil spec args))))
+
+(defun find-function (id &optional (pkg *package*))
+  (let ((s (find-symbol id pkg)))
+    (when s
+      (symbol-function s))))

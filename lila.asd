@@ -14,11 +14,13 @@
                (:file "src/stack")
                (:file "src/env")
                (:file "src/type")
+               (:file "src/plugin")
 
                (:file "src/libs/abc")
 
                (:file "src/bool")
                (:file "src/int")
                (:file "src/list")
+               
                (:file "src/test")))
 
