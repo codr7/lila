@@ -6,19 +6,19 @@
   :licence "MIT"
   :description "Lisp language devkit"
   :serial t
-  :components ((:file "lila")
-               (:file "util")
-               (:file "pos")
-               (:file "error")
-               (:file "sym")
-               (:file "stack")
-               (:file "env")
-               (:file "type")
+  :components ((:file "src/lila")
+               (:file "src/util")
+               (:file "src/pos")
+               (:file "src/error")
+               (:file "src/sym")
+               (:file "src/stack")
+               (:file "src/env")
+               (:file "src/type")
 
-               (:file "libs/abc")
+               (:file "src/libs/abc")
 
-               (:file "bool")
-               (:file "int")
-               (:file "list")
-               (:file "test")))
+               (:file "src/bool")
+               (:file "src/int")
+               (:file "src/list")
+               (:file "src/test")))
 
