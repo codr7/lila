@@ -1,4 +1,7 @@
 * bench/pair.lila
+** add id/num reader
+** add macro support for const/var
+** add fun support for clock/dump
 ** compile to lisp forms
 ** push op
 ** let op
