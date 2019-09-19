@@ -1,12 +1,12 @@
 (in-package lila)
 
 (defmacro dohash ((key val tbl) &body body)
-  (let ((^i (gensym)) (^ok? (gensym)))
-    `(with-hash-table-iterator (,^i ,tbl)
+  (let ((i (gensym)) (ok? (gensym)))
+    `(with-hash-table-iterator (,i ,tbl)
        (do () (nil)
-         (multiple-value-bind (,^ok? ,key ,val) (,^i)
+         (multiple-value-bind (,ok? ,key ,val) (,i)
            (declare (ignorable ,key ,val))
-           (unless ,^ok? (return))
+           (unless ,ok? (return))
            ,@body)))))
 
 (defun caps! (in)
