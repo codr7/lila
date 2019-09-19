@@ -1,8 +1,5 @@
 (in-package lila)
 
-(defmacro bind (args vals &body body)
-  `(destructuring-bind ,args ,vals ,@body))
-
 (defmacro dohash ((key val tbl) &body body)
   (let ((^i (gensym)) (^ok? (gensym)))
     `(with-hash-table-iterator (,^i ,tbl)
