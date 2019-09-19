@@ -1,15 +1,15 @@
-* bench/pair.al
-** add compile to lisp forms
-** add push op
-** add let op
-** add splat op
-** add clock op
-* add defun op
+* bench/pair.lila
+** compile to lisp forms
+** push op
+** let op
+** splat op
+** clock op
+* defun op
 ** use lisp-class as arg type in defmethod
 * ---
 * add lila-thread
 ** plugin.lisp/(link)
 ** use sbcl threads
 ** add thread/chan types
-* add env op
+* env op
 ** push compile time env
