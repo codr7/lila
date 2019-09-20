@@ -1,5 +1,11 @@
 * bench/pair.lila
-** add id/num reader
+* add _ reader support
+** add _ type
+** add lisp read-macro
+*** add read macros
+**** trigger in read-id
+*** single form
+**** lisp (+ 1 2)
 ** add macro support for const/var
 ** add fun support for clock/dump
 ** compile to lisp forms

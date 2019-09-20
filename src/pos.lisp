@@ -1,9 +1,9 @@
 (in-package lila)
 
 (defclass pos ()
-  ((source :initarg :source :reader source)
-   (row :initarg :row :reader row)
-   (col :initarg :col :reader col)))
+  ((file :initarg :file :reader file)
+   (row :initarg :row :initform 1 :accessor row)
+   (col :initarg :col :initform 0 :accessor col)))
 
 (defvar *pos* nil)
 
@@ -11,5 +11,16 @@
   `(let ((*pos* (or ,pos (new-pos))))
      ,@body))
 
-(defun new-pos (source)
-  (make-pos :source source :row 1 :col 0))
+(defun new-pos (&optional file)
+  (make-instance 'pos :file file))
+
+(defmethod clone ((p pos))
+  (with-slots (file row col) p
+    (make-instance 'pos :file file :row row :col col)))
+
+(defmethod print-object ((p pos) out)
+  (with-slots (file row col) p
+    (format out "~a.~a:~a:~a"
+            (pathname-name file)
+            (pathname-type file)
+            row col)))

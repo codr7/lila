@@ -19,8 +19,11 @@
                (:file "src/libs/abc")
 
                (:file "src/bool")
+               (:file "src/expr")
                (:file "src/int")
                (:file "src/list")
-               
+
+               (:file "src/read")
+               (:file "src/io")
                (:file "src/test")))
 

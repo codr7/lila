@@ -9,14 +9,21 @@
            (unless ,ok? (return))
            ,@body)))))
 
-(defun caps! (in)
-  (setf (char in 0) (char-upcase (char in 0)))
-  in)
+(defun caps! (s)
+  (setf (char s 0) (char-upcase (char s 0)))
+  s)
 
-(defun symf (spec &rest args)
-  (intern (string-upcase (apply #'format nil spec args))))
-
+(defun char-digit (c)
+  (- (char-code c) (char-code #\0)))
+  
 (defun find-function (id &optional (pkg *package*))
   (let ((s (find-symbol id pkg)))
     (when s
       (symbol-function s))))
+
+(defun symf (spec &rest args)
+  (intern (string-upcase (apply #'format nil spec args))))
+
+(defun whitespace-char-p (c)
+  (when (or (char= c #\space) (char= c #\tab) (char= c #\newline))
+    c))

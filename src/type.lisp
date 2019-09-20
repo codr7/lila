@@ -16,7 +16,7 @@
   (write-string (symbol-name (id v)) out))
 
 (defmethod make-type ((id string) lisp-class &rest parents)
-  (apply #'make-type (make-sym id) lisp-class parents))
+  (apply #'make-type (make-id id) lisp-class parents))
 
 (defmethod make-type ((id symbol) lisp-class &rest parents)
   (let ((type (make-instance 'lila-type :id id :lisp-class lisp-class)))
