@@ -1,20 +1,18 @@
-* bench/pair.lila
-* add _ reader support
-** add _ type
-** add lisp read-macro
-*** add read macros
-**** trigger in read-id
-*** single form
-**** lisp (+ 1 2)
-** add macro support for const/var
-** add fun support for clock/dump
-** compile to lisp forms
+* add macro support for const/var
+** add cx
+* add fun support for clock/dump
+* compile to lisp forms
 ** push op
 ** let op
 ** splat op
 ** clock op
 * defun op
 ** use lisp-class as arg type in defmethod
+** add lisp read-macro
+*** add read macros
+**** trigger in read-id
+*** single form
+**** lisp (+ 1 2)
 * ---
 * add lila-thread
 ** plugin.lisp/(link)

@@ -21,6 +21,7 @@
                (:file "src/bool")
                (:file "src/expr")
                (:file "src/int")
+               (:file "src/none")
                (:file "src/list")
 
                (:file "src/read")

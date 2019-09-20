@@ -51,6 +51,9 @@
          (c (peek-char nil in nil))
          (v (case c
               ((nil))
+              (#\_
+               (read-char in nil)
+               _)
               (#\$
                (read-char in nil)
                $)
