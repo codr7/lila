@@ -6,14 +6,13 @@
 * add var macro
 ** bind to undef on compile
 *** add undef type
+**** wrap type
+**** add lila-type.undef
 *** remove default & check for undef in get compile
 * return measure/return ms in clock imp
 * --
-* add dump fun
-* compile to lisp forms
-** let op
-** splat op
-** clock op
+* add var compile destruct support
+** add splat op
 * add do-lila reader macro
 ** read vals until next char is #\)
 * add lisp read-macro
