@@ -2,6 +2,8 @@
         (sb-mop:generic-function-methods (symbol-function 'COMPILE-OP)))
 
 * return measure/return ms in clock imp
+* add call op
+** change Sym compile to output call-op if Fun
 * add var macro
 * add dump fun
 * compile to lisp forms
