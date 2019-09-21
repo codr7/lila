@@ -2,12 +2,12 @@
 
 (defvar *val-pos*)
 
-(defun skip-whitespace (in)
+(defun skip-wspace (in)
   (tagbody
    skip
      (let ((c (read-char in nil)))
        (when c
-         (when (whitespace-char-p c)
+         (when (wspace-char-p c)
            (case c
              (#\newline
               (incf (row *pos*))
@@ -45,7 +45,7 @@
     out))
 
 (defun read-val (in)
-  (skip-whitespace in)
+  (skip-wspace in)
   
   (let* ((*val-pos* (clone *pos*))
          (c (peek-char nil in nil))
@@ -61,22 +61,20 @@
               (otherwise
                (if (digit-char-p c) (read-num in) (read-id in))))))
     (when v
-      (setf v (cons v *val-pos*))
-      
       (let ((c (read-char in nil)))
         (when c
           (if (char= c #\:)
               (progn
                 (let ((rv (read-val in)))
                   (unless rv
-                    (with-pos (*val-pos*) (esys "Invalid pair")))
+                    (esys *val-pos* "Invalid pair"))
                   (setf v (cons v rv))))
               (unread-char c in))))
-      v)))
+      (values v *val-pos*))))
 
 (defun read-expr (in)
   (unless (char= (read-char in nil) #\{)
-    (esys "Invalid expr start"))
+    (esys *pos* "Invalid expr start"))
   
   (let ((out (make-expr)))
     (with-slots (body) out
@@ -86,17 +84,17 @@
            (when v
              (push v body)
              (go next)))))
-    (skip-whitespace in)
+    (skip-wspace in)
     (unless (char= (read-char in nil) #\})
-      (esys "Invalid expr end"))
+      (esys *pos* "Invalid expr end"))
     out))
     
-(defun read-vals (in)
-  (let (out)
-    (tagbody
-     next
-       (let ((v (read-val in)))
-         (when v
-           (push v out)
-           (go next))))
-    (nreverse out)))
+(defun read-vals (in &key out)
+  (setf out (reverse out))
+  (tagbody
+   next
+     (multiple-value-bind (v vp) (read-val in)
+       (when v
+         (push (cons v vp) out)
+         (go next))))
+  (nreverse out))

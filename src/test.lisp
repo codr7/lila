@@ -7,19 +7,19 @@
 
 (defun test-list ()
   (with-env ()
-    (add-type list-type)
-    (add-type pair-type)
+    (let-id list-type)
+    (let-id pair-type)
     (assert (eq (get-type '(1 . 2)) pair-type))
     (assert (eq (get-type '(1 2 3)) list-type))))
 
+(defun test-load ()
+  (with-env ()
+    (init-abc)
+    (lila-load "~/Dev/Lisp/lila/bench/pair.lila")))
+
 (defun test-all ()
   (with-env ()
-    (add-type bool-type)
-    (add-type false-type)
-    (add-type int-type)
-    (add-type list-type)
-    (add-type pair-type)
-    (add-type true-type))
+    (init-abc))
 
   (test-stack)
   (test-list))

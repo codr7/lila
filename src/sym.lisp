@@ -1,11 +1,12 @@
 (in-package lila)
 
-(defmacro lisp-id (id)
-  `(get ,id :lisp-id))
+(define-type sym (find-class 'symbol) (any-type))
 
-(defun make-id (id)
-  (multiple-value-bind (s found?) (intern id)
-    (unless found?
-      (setf (lisp-id s) (gensym)))
-    s))
+(defmethod compile-val ((id symbol) in out &key (pos *pos*))
+  (let ((v (get-val id :pos pos)))
+    (if (eq (get-type v) macro-type)
+        (expand v in out :pos pos)
+        (values in (cons (make-push-op pos v) out)))))
+
+(defmethod get-type ((-- symbol)) sym-type)
   

@@ -11,9 +11,9 @@
 
 (define-type true (find-class 'true) (bool-type))
 
-(defmethod get-type ((val true)) true-type)
+(defmethod get-type ((-- true)) true-type)
 
-(defmethod to-bool ((val true)) t)
+(defmethod to-bool (--) t)
 
 
 (defclass false (bool) ())
@@ -22,6 +22,6 @@
 
 (define-type false (find-class 'false) (bool-type))
 
-(defmethod get-type ((val false)) false-type)
+(defmethod get-type ((-- false)) false-type)
 
-(defmethod to-bool ((val false)) nil)
+(defmethod to-bool ((-- false)) nil)

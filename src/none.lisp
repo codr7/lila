@@ -6,7 +6,7 @@
 
 (define-type _ (find-class '_) ())
 
-(defmethod get-type ((_ _)) _-type)
+(defmethod get-type ((-- _)) _-type)
 
-(defmethod print-object ((_ _) out)
+(defmethod print-object ((-- _) out)
   (write-char #\_ out))

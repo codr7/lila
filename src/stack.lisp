@@ -30,8 +30,8 @@
 
 (define-type $ (find-class '$) ())
 
-(defmethod get-type ((val $)) $-type)
+(defmethod get-type ((-- $)) $-type)
 
-(defmethod print-object ((_ $) out)
+(defmethod print-object ((-- $) out)
   (write-char #\$ out))
               

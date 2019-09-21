@@ -1,18 +1,20 @@
-* add macro support for const/var
-** add cx
-* add fun support for clock/dump
+* add fun support for clock
+* add var macro
+* add dump fun
 * compile to lisp forms
-** push op
 ** let op
 ** splat op
 ** clock op
+* add do-lila reader macro
+** read vals until next char is #\)
+* add lisp read-macro
+** add do-lisp op
+** add read macros
+** trigger in read-id
+** single form
+** do-lisp (+ 1 2)
 * defun op
 ** use lisp-class as arg type in defmethod
-** add lisp read-macro
-*** add read macros
-**** trigger in read-id
-*** single form
-**** lisp (+ 1 2)
 * ---
 * add lila-thread
 ** plugin.lisp/(link)

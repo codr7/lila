@@ -24,6 +24,12 @@
 (defun symf (spec &rest args)
   (intern (string-upcase (apply #'format nil spec args))))
 
-(defun whitespace-char-p (c)
+(defun wspace-char-p (c)
   (when (or (char= c #\space) (char= c #\tab) (char= c #\newline))
     c))
+
+(defun split (in i)
+  (let* ((prev (nthcdr (1- i) in))
+         (tail (rest prev)))
+    (rplacd prev nil)
+    (values in tail)))

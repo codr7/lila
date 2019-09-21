@@ -12,8 +12,15 @@
 (defun make-env ()
   (make-instance 'env))
 
-(defun let-val (id val)
+(defun let-val (id val &key (pos *pos*))
   (with-slots (items) *env*
     (when (gethash id items)
-      (esys "Dup binding: ~a" id))
+      (esys pos "Dup binding: ~a" id))
     (setf (gethash id items) val)))
+
+(defun get-val (id &key (pos *pos*))
+  (with-slots (items) *env*
+    (let ((v (gethash id items)))
+      (when (null v)
+        (esys pos "Unknown id: ~a" (symbol-name id)))
+      v)))

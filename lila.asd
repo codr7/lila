@@ -10,13 +10,19 @@
                (:file "src/util")
                (:file "src/pos")
                (:file "src/error")
+               (:file "src/id")
+               (:file "src/type")
+               (:file "src/macro")
+               (:file "src/libs/abc")
+               
+               (:file "src/op")
+               (:file "src/ops/const")
+               (:file "src/ops/push")
+
                (:file "src/sym")
                (:file "src/stack")
                (:file "src/env")
-               (:file "src/type")
                (:file "src/plugin")
-
-               (:file "src/libs/abc")
 
                (:file "src/bool")
                (:file "src/expr")
@@ -25,6 +31,7 @@
                (:file "src/list")
 
                (:file "src/read")
+               (:file "src/compile")
                (:file "src/io")
                (:file "src/test")))
 
