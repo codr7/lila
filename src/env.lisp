@@ -3,7 +3,7 @@
 (defvar *env*)
 
 (defclass env ()
-  ((items :initform (make-hash-table))))
+  ((items :initform (make-hash-table) :reader items)))
 
 (defmacro with-env ((&optional env) &body body)
   `(let ((*env* (or ,env (make-env))))
@@ -11,6 +11,12 @@
 
 (defun make-env ()
   (make-instance 'env))
+
+(defmethod clone ((src env))
+  (let* ((dst-env (make-env))
+         (dst-items (items dst-env)))
+    (dohash (k v (items src))
+      (setf (gethash k dst-items) v))))
 
 (defun let-val (id val &key (pos *pos*))
   (with-slots (items) *env*

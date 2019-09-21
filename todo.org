@@ -1,13 +1,15 @@
 (mapcar #'sb-mop:method-lambda-list 
         (sb-mop:generic-function-methods (symbol-function 'COMPILE-OP)))
 
-* change expr to push result from compile-ops on compile
-** remove body-ops/source slots
-* return measure/return ms in clock imp
 * add call op
 ** change Sym compile to output call-op if Fun
 *** split args and compile before pushing call
 * add var macro
+** bind to undef on compile
+*** add undef type
+*** remove default & check for undef in get compile
+* return measure/return ms in clock imp
+* --
 * add dump fun
 * compile to lisp forms
 ** let op

@@ -18,6 +18,7 @@
                
                (:file "src/op")
                (:file "src/ops/const")
+               (:file "src/ops/do")
                (:file "src/ops/get")
                (:file "src/ops/push")
 
