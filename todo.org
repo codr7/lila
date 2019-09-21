@@ -1,9 +1,8 @@
 (mapcar #'sb-mop:method-lambda-list 
         (sb-mop:generic-function-methods (symbol-function 'COMPILE-OP)))
 
-* add call op
-** change Sym compile to output call-op if Fun
-*** split args and compile before pushing call
+* add dump fun
+** call dump-val
 * add var macro
 ** bind to undef on compile
 *** add undef type

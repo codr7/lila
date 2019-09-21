@@ -30,6 +30,10 @@
 
 (define-type $ (find-class '$))
 
+(defmethod compile-val ((_ $) in out &key (pos *pos*))
+  (declare (ignore pos))
+  (values in out))
+
 (defmethod get-type ((-- $)) $-type)
 
 (defmethod print-object ((-- $) out)

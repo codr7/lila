@@ -2,7 +2,7 @@
 
 (defclass fun ()
   ((id :initarg :id :reader id)
-   (nargs :initarg :nargs)
+   (nargs :initarg :nargs :reader nargs)
    (imp :initarg :imp)))
 
 (defmacro let-fun (id (&rest args) &body body)
@@ -14,7 +14,7 @@
        
        (let-id (make-instance 'fun
                               :id ',id 
-                              :nargs ,(- (length args) 2)
+                              :nargs ,(1- (length args))
                               :imp (symbol-function ',lid))))))
 
 (define-type fun (find-class 'standard-generic-function))

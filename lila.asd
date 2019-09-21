@@ -17,6 +17,7 @@
                (:file "src/libs/abc")
                
                (:file "src/op")
+               (:file "src/ops/call")
                (:file "src/ops/const")
                (:file "src/ops/do")
                (:file "src/ops/get")
