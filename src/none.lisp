@@ -4,7 +4,7 @@
 
 (defvar _ (make-instance '_))
 
-(define-type _ (find-class '_) ())
+(define-type _ (find-class '_))
 
 (defmethod get-type ((-- _)) _-type)
 

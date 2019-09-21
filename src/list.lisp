@@ -1,7 +1,7 @@
 (in-package lila)
 
-(define-type pair (find-class 'list) (any-type))
-(define-type list (find-class 'list) (any-type))
+(define-type pair (find-class 'list))
+(define-type list (find-class 'list))
 
 (defun pair? (v)
   (cond ((null v) nil)

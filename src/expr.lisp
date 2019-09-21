@@ -4,7 +4,7 @@
   ((body :initform nil :initarg :body :reader body)
    (body-ops :initform nil :initarg :body-ops)))
 
-(define-type expr (find-class 'expr) (any-type))
+(define-type expr (find-class 'expr))
 
 (defun make-expr (&rest args)
   (apply #'make-instance 'expr args))

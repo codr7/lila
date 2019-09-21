@@ -28,7 +28,7 @@
 
 (defvar $ (make-instance '$))
 
-(define-type $ (find-class '$) ())
+(define-type $ (find-class '$))
 
 (defmethod get-type ((-- $)) $-type)
 

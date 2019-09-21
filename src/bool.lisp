@@ -2,14 +2,14 @@
 
 (defclass bool () ())
 
-(define-type bool (find-class 'bool) (any-type))
+(define-type bool (find-class 'bool))
 
 
 (defclass true (bool) ())
 
 (defvar true (make-instance 'true))
 
-(define-type true (find-class 'true) (bool-type))
+(define-type true (find-class 'true))
 
 (defmethod get-type ((-- true)) true-type)
 
@@ -20,7 +20,7 @@
 
 (defvar false (make-instance 'false))
 
-(define-type false (find-class 'false) (bool-type))
+(define-type false (find-class 'false))
 
 (defmethod get-type ((-- false)) false-type)
 

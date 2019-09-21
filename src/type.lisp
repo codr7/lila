@@ -2,36 +2,22 @@
 
 (defclass lila-type ()
   ((id :initarg :id :reader id)
-   (lisp-class :initarg :lisp-class :reader lisp-class)
-   (parents :initform (make-hash-table) :reader parents)
-   (children :initform (make-hash-table) :reader children)))
+   (lisp-class :initarg :lisp-class :reader lisp-class)))
 
-(defmacro define-type (id lisp-id (&rest parents))
+(defmacro define-type (id lisp-id)
   (let ((ids (string-downcase (symbol-name id))))
     `(defvar
          ,(symf "~a-type" ids)
-         (make-type ,(caps! ids) ',lisp-id ,@parents))))
+         (make-type ,(caps! ids) ',lisp-id))))
 
 (defmethod print-object ((v lila-type) out)
   (write-string (symbol-name (id v)) out))
 
-(defmethod make-type ((id symbol) lisp-class &rest parents)
-  (let ((type (make-instance 'lila-type :id id :lisp-class lisp-class)))
-    (dolist (p parents)
-      (derive p type))
-    type))
+(defmethod make-type ((id symbol) lisp-class)
+  (make-instance 'lila-type :id id :lisp-class lisp-class))
 
-(defmethod make-type ((id string) lisp-class &rest parents)
-  (apply #'make-type (make-id id) lisp-class parents))
+(defmethod make-type ((id string) lisp-class)
+  (make-type (make-id id) lisp-class))
 
-(defun derive (parent child &optional (root parent))
-  (setf (gethash parent (parents child)) root)
-  (dohash (p _ (parents parent))
-    (derive p child root))
-
-  (setf (gethash child (children parent)) root)
-  (dohash (c _ (children child))
-    (derive parent c root)))
-
-(define-type any t ())
-(define-type meta (find-class 'lila-type) (any-type))
+(define-type any t)
+(define-type meta (find-class 'lila-type))
