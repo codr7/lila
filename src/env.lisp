@@ -18,9 +18,9 @@
       (esys pos "Dup binding: ~a" id))
     (setf (gethash id items) val)))
 
-(defun get-val (id &key (pos *pos*))
+(defun get-val (id &key default (pos *pos*))
   (with-slots (items) *env*
     (let ((v (gethash id items)))
-      (when (null v)
+      (unless (or v default)
         (esys pos "Unknown id: ~a" (symbol-name id)))
-      v)))
+      (or v default))))

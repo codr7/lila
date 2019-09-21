@@ -7,6 +7,7 @@
 (defun make-const-op (pos id val &rest args)
   (apply #'make-instance 'const-op :pos (clone pos) :id id :val val args))
 
-(defmethod compile-op (op out)
-  (with-slots (id val pos) op
-    (cons `(let-val ',id ,val :pos ,pos) out)))
+(defmethod compile-op ((op const-op) in out)
+  (with-slots (pos id val) op
+    (let-val id val :pos pos)
+    (values in (cons op out))))

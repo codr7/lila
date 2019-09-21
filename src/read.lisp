@@ -29,7 +29,7 @@
                       (go next))
                     (unread-char c in)))))))
     (unless (zerop (length s))
-      (intern s :keyword))))
+      (make-id s))))
 
 (defun read-num (in)
   (let ((out 0))
@@ -64,11 +64,10 @@
       (let ((c (read-char in nil)))
         (when c
           (if (char= c #\:)
-              (progn
-                (let ((rv (read-val in)))
-                  (unless rv
-                    (esys *val-pos* "Invalid pair"))
-                  (setf v (cons v rv))))
+              (let ((rv (read-val in)))
+                (unless rv
+                  (esys *val-pos* "Invalid pair"))
+                (setf v (cons v rv)))
               (unread-char c in))))
       (values v *val-pos*))))
 
@@ -80,9 +79,9 @@
     (with-slots (body) out
       (tagbody
        next
-         (let ((v (read-val in)))
+         (multiple-value-bind (v p) (read-val in)
            (when v
-             (push v body)
+             (push (cons v p) body)
              (go next)))))
     (skip-wspace in)
     (unless (char= (read-char in nil) #\})

@@ -13,10 +13,12 @@
                (:file "src/id")
                (:file "src/type")
                (:file "src/macro")
+               (:file "src/fun")
                (:file "src/libs/abc")
                
                (:file "src/op")
                (:file "src/ops/const")
+               (:file "src/ops/get")
                (:file "src/ops/push")
 
                (:file "src/sym")

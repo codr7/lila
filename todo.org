@@ -1,4 +1,7 @@
-* add fun support for clock
+(mapcar #'sb-mop:method-lambda-list 
+        (sb-mop:generic-function-methods (symbol-function 'COMPILE-OP)))
+
+* return measure/return ms in clock imp
 * add var macro
 * add dump fun
 * compile to lisp forms
@@ -13,7 +16,7 @@
 ** trigger in read-id
 ** single form
 ** do-lisp (+ 1 2)
-* defun op
+* fun op
 ** use lisp-class as arg type in defmethod
 * ---
 * add lila-thread

@@ -22,7 +22,10 @@
 
   (let-macro do (pos out expr)
     (format t "do: ~a~%" expr)
-    (let ((compile-body expr nil nil :pos pos)))
+    (compile-body expr)
     (let (body)
-      (compile-ops (body expr) :out body))
-    (cons `(progn ,@body) out)))
+      (compile-ops (body expr) :out body)
+      (cons `(progn ,@body) out)))
+
+  (let-fun clock (pos reps expr)
+    (format t "clock: ~a ~a~%" reps expr)))
