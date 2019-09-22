@@ -5,7 +5,13 @@
 
 * extract clock macro to util.lisp
 * var a:b:c:d:e:f:g 1:2:3:4:5:6:7
-* commit pair bench
+* add main fn
+** load files from argv
+* add build script for executable
+* add repl
+** launch from main if no files
+* add -out switch
+** create executable
 * --
 * add do-lila reader macro
 ** read vals until next char is #\)
