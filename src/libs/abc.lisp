@@ -19,12 +19,9 @@
   (let-id true-type)
 
   (let-lisp-macro clock (pos reps expr)
-    `(let ((start (get-internal-run-time)))
-       (dotimes (-- ,(emit-val reps :pos pos))
-         ,@(emit-vals (body expr)))
-       (push-val (floor (- (get-internal-run-time) start)
-                        (floor internal-time-units-per-second 1000)))))
-            
+    `(push-val (clock ,(emit-val reps :pos pos)
+                 ,@(emit-vals (body expr)))))
+              
   (let-macro const (pos out id val)
     (cons (make-const-op pos id val) out))
 
