@@ -8,8 +8,8 @@
 
 (defmethod compile-op ((op get-op) in out)
   (with-slots (pos id) op
-    (let ((v (get-val id :default _)))
-      (values in (cons (if (eq v _)
+    (let ((v (get-val id)))
+      (values in (cons (if (undef? v)
                            op
                            (make-push-op pos v))
                        out)))))

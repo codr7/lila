@@ -11,3 +11,7 @@
   (with-slots (pos id val) op
     (let-val id val :pos pos)
     (values in (cons op out))))
+
+(defmethod print-object ((op const-op) out)
+  (with-slots (id val) op
+    (format out "CONST(~a ~a)" id val)))

@@ -82,7 +82,8 @@
          (multiple-value-bind (v p) (read-val in)
            (when v
              (push (cons v p) body)
-             (go next)))))
+             (go next))))
+      (setf body (nreverse body)))
     (skip-wspace in)
     (unless (char= (read-char in nil) #\})
       (esys *pos* "Invalid expr end"))

@@ -33,4 +33,7 @@
     (cons (make-const-op pos id val) out))
 
   (let-fun dump (pos val)
-    (dump-val val *stdout*)))
+    (dump-val val *stdout*))
+
+  (let-macro var (pos out id val)
+    (cons (make-var-op pos id :val val) out)))

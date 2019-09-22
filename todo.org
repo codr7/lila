@@ -1,15 +1,9 @@
 (mapcar #'sb-mop:method-lambda-list 
         (sb-mop:generic-function-methods (symbol-function 'COMPILE-OP)))
 
-* add var macro
-** bind to undef on compile
-*** add undef type
-**** wrap type
-**** add lila-type.undef
-*** remove default & check for undef in get compile
-* --
 * add var compile destruct support
 ** add splat op
+** var a:b:c:d:e:f:g 1:2:3:4:5:6:7
 * add do-lila reader macro
 ** read vals until next char is #\)
 * add lisp read-macro

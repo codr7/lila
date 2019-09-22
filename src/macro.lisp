@@ -24,6 +24,7 @@
 (defmethod expand ((m macro) in out &key (pos *pos*))
   (with-slots (nargs imp) m
     (when (< (length in) nargs)
+      (format t "~a ~a~%" nargs in)
       (esys pos "Not enough arguments: ~a" m))
     (multiple-value-bind (args in) (split in nargs)
       (values in (apply imp pos out (mapcar #'first args))))))

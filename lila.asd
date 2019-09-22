@@ -11,12 +11,14 @@
                (:file "src/pos")
                (:file "src/error")
                (:file "src/id")
+
                (:file "src/type")
                
                (:file "src/macro")
                (:file "src/lisp-macro")
 
                (:file "src/fun")
+               (:file "src/undef")
                (:file "src/libs/abc")
                
                (:file "src/op")
@@ -26,6 +28,7 @@
                (:file "src/ops/emit")
                (:file "src/ops/get")
                (:file "src/ops/push")
+               (:file "src/ops/var")
 
                (:file "src/sym")
                (:file "src/stack")
