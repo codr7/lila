@@ -40,4 +40,7 @@
 
 (defmethod print-object ((-- $) out)
   (write-char #\$ out))
-              
+
+(defmethod splat-val ((-- $))
+  (splat-val (pop-val)))
+

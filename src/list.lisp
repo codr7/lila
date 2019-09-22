@@ -3,12 +3,6 @@
 (define-type pair (find-class 'list))
 (define-type list (find-class 'list))
 
-(defun pair? (v)
-  (cond ((null v) nil)
-        ((atom v) nil)
-        (t (let ((tail (rest v)))
-             (and tail (atom tail))))))
-
 (defmethod emit-val ((lst list) &key (pos *pos*))
   (declare (ignore pos))
   (if (pair? lst)

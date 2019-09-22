@@ -3,7 +3,6 @@
 
 (with-env () (with-stack () (funcall (test-load))))
 
-* var a:b:c:d:e:f:g 1:2:3:4:5:6:7
 * add main fn
 ** load files from argv
 * add build script for executable
@@ -11,9 +10,10 @@
 ** launch from main if no files
 * add -out switch
 ** create executable
+* add check macro
+** check {= foo 42}
 * add -compile switch
 ** dump lisp code
-* --
 * add do-lila reader macro
 ** read vals until next char is #\)
 * add lisp read-macro

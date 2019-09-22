@@ -59,15 +59,19 @@
                $)
               (#\{ (read-expr in))
               (otherwise
-               (if (digit-char-p c) (read-num in) (read-id in))))))
+               (if (digit-char-p c)
+                   (read-num in)
+                   (read-id in))))))
     (when v
       (let ((c (read-char in nil)))
         (when c
           (if (char= c #\:)
-              (let ((rv (read-val in)))
-                (unless rv
-                  (esys *val-pos* "Invalid pair"))
-                (setf v (cons v rv)))
+              (progn
+                (incf (col *pos*))
+                (let ((rv (read-val in)))
+                  (unless rv
+                    (esys *val-pos* "Invalid pair"))
+                  (setf v (cons v rv))))
               (unread-char c in))))
       (values v *val-pos*))))
 

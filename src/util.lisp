@@ -29,6 +29,15 @@
     (when s
       (symbol-function s))))
 
+(defun pair? (v)
+  (labels ((rec (v)
+             (cond ((null v) nil)
+                   ((atom v) t)
+                   (t (rec (rest v))))))
+    (cond ((null v) nil)
+          ((atom v) nil)
+          (t (rec (rest v))))))
+
 (defun symf (spec &rest args)
   (intern (string-upcase (apply #'format nil spec args))))
 

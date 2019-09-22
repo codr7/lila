@@ -20,8 +20,7 @@
                    (push (make-var-op pos id) out)))))
     (with-slots (pos id val) op
       (if (pair? id)
-          (progn
-            (let-vals pos id (if (slot-boundp op 'val) val $)))
+          (let-vals pos id (if (slot-boundp op 'val) val $))
           (progn
             (let-val id (make-undef) :pos pos)
             (push op out)))
