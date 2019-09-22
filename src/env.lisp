@@ -16,7 +16,8 @@
   (let* ((dst-env (make-env))
          (dst-items (items dst-env)))
     (dohash (k v (items src))
-      (setf (gethash k dst-items) v))))
+      (setf (gethash k dst-items) v))
+    dst-env))
 
 (defun let-val (id val &key (pos *pos*))
   (with-slots (items) *env*

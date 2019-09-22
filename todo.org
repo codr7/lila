@@ -1,9 +1,12 @@
 (mapcar #'sb-mop:method-lambda-list 
         (sb-mop:generic-function-methods (symbol-function 'COMPILE-OP)))
 
-* add var compile destruct support
-** add splat op
-** var a:b:c:d:e:f:g 1:2:3:4:5:6:7
+(with-env () (with-stack () (funcall (test-load))))
+
+* extract clock macro to util.lisp
+* var a:b:c:d:e:f:g 1:2:3:4:5:6:7
+* commit pair bench
+* --
 * add do-lila reader macro
 ** read vals until next char is #\)
 * add lisp read-macro
@@ -12,12 +15,15 @@
 ** trigger in read-id
 ** single form
 ** do-lisp (+ 1 2)
-* fun op
-** use lisp-class as arg type in defmethod
+* add fun op
+** add support for fun arg types
+*** use lisp-class as arg type in defmethod
+* add recall op
+** optional fun arg
+*** call self is arg is _
+** (return ((lisp-id f) pos ...))
 * ---
-* add lila-thread
+* add lila-thread plugin
 ** plugin.lisp/(link)
 ** use sbcl threads
 ** add thread/chan types
-* env op
-** push compile time env

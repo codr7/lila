@@ -28,5 +28,9 @@
       (t
        (values in (cons (make-push-op pos v) out))))))
 
+(defmethod emit-val ((id symbol) &key (pos *pos*))
+  (let ((v (get-val id :pos pos :default _)))
+    (if (eq v _) `(get-val ',id :pos ,pos) (emit-val v :pos pos))))
+
 (defmethod get-type ((-- symbol)) sym-type)
   

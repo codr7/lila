@@ -23,14 +23,14 @@
 
 (defmethod call ((f fun) &key (pos *pos*))
   (with-slots (nargs imp) f
-    (when (< (length *stack*) nargs)
+    (when (< (length (items *stack*)) nargs)
       (esys pos "Not enough arguments: ~a" f))
     
     (let (args)
       (dotimes (i nargs)
         (push (pop-val) args))
-      
-      (apply imp pos (mapcar #'first args)))))
+
+      (apply imp pos args))))
 
 (defmethod print-object ((f fun) out)
   (format out "~a:Fun" (symbol-name (id f))))

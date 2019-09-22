@@ -13,10 +13,12 @@
                  (if reverse? (nreverse out) out))))
     (rec in (if reverse? (reverse out) out))))
 
-(defun emit-val (val &key (pos *pos*))
-  (multiple-value-bind (in out) (compile-val val nil nil :pos pos)
-    (declare (ignore in))
-    (emit-ops (compile-ops out))))
+(defmethod emit-val (val &key (pos *pos*))
+  (declare (ignore pos))
+  val)
 
 (defun emit-vals (in &key out)
   (emit-ops (compile-ops (compile-vals in)) :out out))
+
+(defmethod splat-val (val)
+  (push-val val))

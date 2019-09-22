@@ -28,6 +28,7 @@
                (:file "src/ops/emit")
                (:file "src/ops/get")
                (:file "src/ops/push")
+               (:file "src/ops/splat")
                (:file "src/ops/var")
 
                (:file "src/sym")
@@ -42,7 +43,7 @@
                (:file "src/list")
 
                (:file "src/read")
-               (:file "src/compile")
+               (:file "src/val")
                (:file "src/io")
                (:file "src/test")))
 
