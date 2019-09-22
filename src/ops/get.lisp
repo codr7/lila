@@ -16,7 +16,7 @@
 
 (defmethod emit-op ((op get-op) out)
   (with-slots (pos id) op
-    (cons `(get-val ',id :pos ,pos) out)))
+    (cons `(get-val ,id :pos ,pos) out)))
 
 (defmethod print-object ((op get-op) out)
   (format out "GET(~a)" (id op)))

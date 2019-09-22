@@ -29,7 +29,9 @@
     c))
 
 (defun split (in i)
-  (let* ((prev (nthcdr (1- i) in))
-         (tail (rest prev)))
-    (rplacd prev nil)
-    (values in tail)))
+  (if (zerop i)
+      (values nil in)
+      (let* ((prev (nthcdr (1- i) in))
+             (tail (rest prev)))
+        (rplacd prev nil)
+        (values in tail))))

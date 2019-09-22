@@ -11,21 +11,26 @@
   (let-id expr-type)
   (let-id false-type)
   (let-id int-type)
+  (let-id lisp-macro-type)
   (let-id list-type)
+  (let-id macro-type)
   (let-id pair-type)
   (let-id sym-type)
   (let-id true-type)
-  
+
+  (let-lisp-macro clock (pos reps expr)
+    (format t "clock: ~a ~a~%" reps expr)
+
+    `(let ((start (get-internal-run-time)))
+       ,@(emit-val reps :pos pos)
+       (dotimes (-- (pop-val))
+         ,@(emit-vals (body expr)))
+       (push-val (floor (- (get-internal-run-time) start)
+                        (floor internal-time-units-per-second 1000)))))
+            
   (let-macro const (pos out id val)
     (format t "const: ~a ~a~%" id val)
     (cons (make-const-op pos id val) out))
 
-  (let-macro do (pos out expr)
-    (format t "do: ~a~%" expr)
-    (compile-body expr)
-    (let (body)
-      (compile-ops (body expr) :out body)
-      (cons `(progn ,@body) out)))
-
-  (let-fun clock (pos reps expr)
-    (format t "clock: ~a ~a~%" reps expr)))
+  (let-fun dump (pos val)
+    (dump-val val *stdout*)))

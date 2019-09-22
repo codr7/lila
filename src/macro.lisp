@@ -3,7 +3,7 @@
 (defclass macro ()
   ((id :initarg :id :reader id)
    (nargs :initarg :nargs)
-   (imp :initarg :imp)))
+   (imp :initarg :imp :reader imp)))
 
 (defmacro let-macro (id (&rest args) &body body)
   (setf id (make-id (string-downcase (symbol-name id))))

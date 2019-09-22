@@ -16,8 +16,10 @@
   (with-slots (items) *stack*
     (vector-push-extend val items)))
 
-(defun pop-val ()
+(defun pop-val (&key (pos *pos*))
   (with-slots (items) *stack*
+    (when (zerop (fill-pointer items))
+      (esys pos "Stack is empty"))
     (vector-pop items)))
 
 (defmethod print-object ((s stack) out)

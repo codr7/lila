@@ -1,5 +1,7 @@
 (in-package lila)
 
+(defvar *stdout* *standard-output*)
+
 (defun lila-load (filename &key)
   (with-open-file (in filename)
     (let ((*pos* (new-pos filename)))

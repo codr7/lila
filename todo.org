@@ -1,15 +1,12 @@
 (mapcar #'sb-mop:method-lambda-list 
         (sb-mop:generic-function-methods (symbol-function 'COMPILE-OP)))
 
-* add dump fun
-** call dump-val
 * add var macro
 ** bind to undef on compile
 *** add undef type
 **** wrap type
 **** add lila-type.undef
 *** remove default & check for undef in get compile
-* return measure/return ms in clock imp
 * --
 * add var compile destruct support
 ** add splat op

@@ -12,7 +12,10 @@
                (:file "src/error")
                (:file "src/id")
                (:file "src/type")
+               
                (:file "src/macro")
+               (:file "src/lisp-macro")
+
                (:file "src/fun")
                (:file "src/libs/abc")
                
@@ -20,6 +23,7 @@
                (:file "src/ops/call")
                (:file "src/ops/const")
                (:file "src/ops/do")
+               (:file "src/ops/emit")
                (:file "src/ops/get")
                (:file "src/ops/push")
 
