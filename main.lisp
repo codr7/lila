@@ -8,9 +8,7 @@
                             :purify t
                             :executable t))
 
-(defun main ()
-  (init-abc)
-  
+(defun main ()  
   (let ((mode :default)
         files output-filename)
     (labels ((parse-args (in)
@@ -47,4 +45,5 @@
         (:run
          (run-files))))))
 
+(init-abc)
 (save (make-pathname :directory '(:relative "dist") :name "lila") #'main)
