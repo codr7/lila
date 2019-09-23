@@ -2,23 +2,23 @@
 
 (defclass do-op (op)
   ((body :initform nil :initarg :body :reader body)
-   (body-ops :initform nil :initarg :body-ops :reader body-ops)
-   (body-src :initform nil :initarg :body-src :reader body-src)))
+   (ops :initform nil :initarg :ops :reader ops)
+   (code :initform nil :initarg :code :reader code)))
 
 (defun make-do-op (pos &rest args)
   (apply #'make-instance 'do-op :pos (clone pos) args))
 
 (defmethod compile-op ((op do-op) in out)
-  (with-slots (body body-ops) op
+  (with-slots (body ops) op
     (when body
-      (setf body-ops
+      (setf ops
             (with-env ((clone *env*))
               (compile-ops (compile-vals body))))))
   (values in (cons op out)))
 
 (defmethod emit-op ((op do-op) out)
-  (with-slots (body-ops body-src) op
-    (cons (or body-src `(progn ,@(emit-ops body-ops))) out)))
+  (with-slots (ops code) op
+    (cons (or code `(progn ,@(emit-ops ops))) out)))
 
 (defmethod print-object ((op do-op) out)
   (format out "DO(~a)" (body op)))

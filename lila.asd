@@ -21,6 +21,11 @@
                (:file "src/undef")
                (:file "src/libs/abc")
                
+               (:file "src/sym")
+               (:file "src/stack")
+               (:file "src/env")
+               (:file "src/plugin")
+
                (:file "src/op")
                (:file "src/ops/call")
                (:file "src/ops/const")
@@ -30,11 +35,6 @@
                (:file "src/ops/push")
                (:file "src/ops/splat")
                (:file "src/ops/var")
-
-               (:file "src/sym")
-               (:file "src/stack")
-               (:file "src/env")
-               (:file "src/plugin")
 
                (:file "src/bool")
                (:file "src/expr")

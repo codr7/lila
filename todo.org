@@ -7,22 +7,30 @@
 ** launch from main if no files
 * add check macro
 ** check {= foo 42}
+* add test/suite.lila
+* bench/fib_rec.lila
+** add fun op
+*** add support for fun arg types
+*** let as foo[X Y] & add to list foo
+**** use lisp-class as arg type in defmethod
+** add if macro
+*** add if op
+** add < fun
+** add + fun
+** add - fun
 * add lisp read-macro
 ** add do-lisp op
 ** add read macros
 ** trigger in read-id
 ** single form
 ** do-lisp (+ 1 2)
-* add fun op
-** add support for fun arg types
-*** use lisp-class as arg type in defmethod
 * add recall op
 ** optional fun arg
 *** call self is arg is _
 ** (return ((lisp-id f) pos ...))
 * add -compile switch
 ** dump lisp code
-* add do-lila reader macro
++* add do-lila reader macro
 ** read vals until next char is #\)
 * ---
 * add lila-thread plugin
