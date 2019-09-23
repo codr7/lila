@@ -34,8 +34,7 @@
 
 (defmethod initialize-instance :after ((obj lila-type) &key)
   (with-slots (id opt-type) obj
-    (unless (or (eq id (make-id "None"))
-                (subtypep (type-of obj) (find-class 'none-type)))
+    (unless (subtypep (type-of obj) (find-class 'none-type))
       (let ((opt-ids (format nil "~a?" (string-downcase (symbol-name (id obj)))))
             (opt-id (symf "~a-opt-type" (string-downcase (symbol-name (id obj))))))
         (setf opt-type (make-instance opt-id :id (make-id (caps! opt-ids))))))))
