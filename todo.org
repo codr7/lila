@@ -4,14 +4,11 @@
 * opt dispatch
 ** add hidden dispatch args for types in fun defmethod
 *** pass (get-type) when called
-* --
 * add dot call support
 ** 35.+ 7
 ** pass lhs as first arg
 * add drop macro/op
 ** use in fib_rec
-* rename Any type to A
-** a-type
 * --
 * add math lib with neg/abs(number) funs
 ** map to (- ...) and (abs ...)
