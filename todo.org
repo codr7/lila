@@ -7,10 +7,6 @@
 ** launch from main if no files
 * add check macro
 ** check {= foo 42}
-* add -compile switch
-** dump lisp code
-* add do-lila reader macro
-** read vals until next char is #\)
 * add lisp read-macro
 ** add do-lisp op
 ** add read macros
@@ -24,6 +20,10 @@
 ** optional fun arg
 *** call self is arg is _
 ** (return ((lisp-id f) pos ...))
+* add -compile switch
+** dump lisp code
+* add do-lila reader macro
+** read vals until next char is #\)
 * ---
 * add lila-thread plugin
 ** plugin.lisp/(link)
