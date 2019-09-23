@@ -1,17 +1,14 @@
 (mapcar #'sb-mop:method-lambda-list 
         (sb-mop:generic-function-methods (symbol-function 'COMPILE-OP)))
 
-* add +/- funs
-** add math lib
-** dist/test1.lila
-* add ; to break exprs
-** {+ * 3 2 1}
-
-* add drop macro/op
-** use in fib_rec
+* add print-object for stack
+** dump items without parens
+** use in repl
 * add dot call support
 ** 35.+ 7
 ** pass lhs as first arg
+* add drop macro/op
+** use in fib_rec
 * rename Any type to A
 ** a-type
 * --
@@ -40,7 +37,7 @@
 ** do-lisp (+ 1 2)
 * add recall op
 ** optional fun arg
-*** call self is arg is _
+*** call self if arg is _
 ** (return ((lisp-id f) pos ...))
 * add -compile switch
 ** dump lisp code

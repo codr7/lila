@@ -43,5 +43,22 @@ $ dist/pair
 912
 ```
 
+### syntax
+Forms are evaluated left to right. Curlies may be used to alter evaluation order by transforming expressions into forms.
+
+```
+  {* 6 {+ 3 4}}
+  
+#(42)
+```
+
+Expressions may be split using `;`, remaining forms are parsed as a separate expression.
+
+```
+  {* 6; + 3 4}
+  
+#(42)
+```
+
 ### license
 [MIT](https://github.com/codr7/lila/blob/master/LICENSE.txt)

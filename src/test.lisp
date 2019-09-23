@@ -11,5 +11,6 @@
 
 (defun test-all ()
   (init-abc)
+  (init-math)
   (test-stack)
   (test-list))

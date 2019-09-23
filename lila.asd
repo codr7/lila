@@ -1,6 +1,6 @@
 (defsystem lila
   :name "lila"
-  :version "1"
+  :version "2"
   :maintainer "codr7"
   :author "codr7"
   :licence "MIT"
@@ -19,7 +19,9 @@
 
                (:file "src/fun")
                (:file "src/undef")
+               
                (:file "src/libs/abc")
+               (:file "src/libs/math")
                
                (:file "src/sym")
                (:file "src/stack")
