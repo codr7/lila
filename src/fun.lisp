@@ -17,9 +17,10 @@
                               :nargs ,(1- (length args))
                               :imp (symbol-function ',lid))))))
 
-(define-type fun (find-class 'standard-generic-function))
+(define-type fun (any))
 
-(defmethod get-type ((-- fun)) fun-type)
+(defmethod get-type ((-- fun))
+  fun-type)
 
 (defmethod call ((f fun) &key (pos *pos*))
   (with-slots (nargs imp) f

@@ -4,8 +4,8 @@
   (let-id any-type)
   (let-id meta-type)
 
-  (let-id _-type)
-  (let-id $-type)
+  (let-id none-type)
+  (let-id pop-type)
   
   (let-id bool-type)
   (let-id expr-type)

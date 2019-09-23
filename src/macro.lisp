@@ -17,7 +17,7 @@
                               :nargs ,(- (length args) 2)
                               :imp (symbol-function ',lid))))))
 
-(define-type macro (find-class 'macro))
+(define-type macro (any))
 
 (defmethod get-type ((-- macro)) macro-type)
 

@@ -6,7 +6,7 @@
 (defun make-undef (&rest args)
   (apply #'make-instance 'undef args))
             
-(define-type undef (find-class 'undef))
+(define-type undef ())
           
 (defmethod get-type ((-- undef)) undef-type)
 

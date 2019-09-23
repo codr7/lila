@@ -1,7 +1,7 @@
 (in-package lila)
 
-(define-type pair (find-class 'list))
-(define-type list (find-class 'list))
+(define-type pair (any))
+(define-type list (any))
 
 (defmethod emit-val ((lst list) &key (pos *pos*))
   (declare (ignore pos))

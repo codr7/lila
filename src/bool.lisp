@@ -1,27 +1,33 @@
 (in-package lila)
 
-(defclass bool () ())
+(defclass bool ()
+  ())
 
-(define-type bool (find-class 'bool))
+(define-type bool (any))
 
 
 (defclass true (bool) ())
 
 (defvar true (make-instance 'true))
 
-(define-type true (find-class 'true))
+(define-type true (bool))
 
-(defmethod get-type ((-- true)) true-type)
+(defmethod get-type ((-- true))
+  true-type)
 
-(defmethod to-bool (--) t)
+(defmethod to-bool (--)
+  t)
 
 
-(defclass false (bool) ())
+(defclass false (bool)
+  ())
 
 (defvar false (make-instance 'false))
 
-(define-type false (find-class 'false))
+(define-type false (bool))
 
-(defmethod get-type ((-- false)) false-type)
+(defmethod get-type ((-- false))
+  false-type)
 
-(defmethod to-bool ((-- false)) nil)
+(defmethod to-bool ((-- false))
+  nil)

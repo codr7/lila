@@ -1,8 +1,10 @@
 (in-package lila)
 
-(define-type num (find-class 'number))
-(define-type int (find-class 'integer))
+(define-type num (any))
+(define-type int (num))
           
-(defmethod get-type ((val integer)) int-type)
+(defmethod get-type ((val integer))
+  int-type)
 
-(defmethod to-bool ((val integer)) (> val 0))
+(defmethod to-bool ((val integer))
+  (> val 0))

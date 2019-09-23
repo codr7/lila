@@ -35,17 +35,18 @@
           (setf sep t))
       (print-object v out))))
 
-(defclass $ () ())
+(defclass $ ()
+  ())
 
 (defvar $ (make-instance '$))
 
-(define-type $ (find-class '$))
+(define-type pop ())
 
 (defmethod compile-val ((_ $) in out &key (pos *pos*))
   (declare (ignore pos))
   (values in out))
 
-(defmethod get-type ((-- $)) $-type)
+(defmethod get-type ((-- $)) pop-type)
 
 (defmethod print-object ((-- $) out)
   (write-char #\$ out))

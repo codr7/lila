@@ -1,12 +1,14 @@
 (in-package lila)
 
-(defclass _ () ())
+(defclass _ ()
+  ())
 
 (defvar _ (make-instance '_))
 
-(define-type _ (find-class '_))
+(define-type none ())
 
-(defmethod get-type ((-- _)) _-type)
+(defmethod get-type ((-- _))
+  none-type)
 
 (defmethod print-object ((-- _) out)
   (write-char #\_ out))

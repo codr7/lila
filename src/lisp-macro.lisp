@@ -17,7 +17,7 @@
                               :nargs ,(- (length args) 1)
                               :imp (symbol-function ',lid))))))
 
-(define-type lisp-macro (find-class 'lisp-macro))
+(define-type lisp-macro (any))
 
 (defmethod get-type ((-- lisp-macro)) lisp-macro-type)
 

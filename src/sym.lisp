@@ -1,6 +1,6 @@
 (in-package lila)
 
-(define-type sym (find-class 'symbol))
+(define-type sym (any))
 
 (defmethod compile-val ((id symbol) in out &key (pos *pos*))
   (let* ((v (get-val id :pos pos :default _))
