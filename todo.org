@@ -3,13 +3,12 @@
 
 (with-env () (with-stack () (funcall (test-load))))
 
-* add main fn
-** load files from argv
-* add build script for executable
+* load files from argv in main
+* add -build switch
+** lila -build pair bench/pair.lila
+** create executable
 * add repl
 ** launch from main if no files
-* add -out switch
-** create executable
 * add check macro
 ** check {= foo 42}
 * add -compile switch
