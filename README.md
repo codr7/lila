@@ -30,7 +30,7 @@ empty input clears stack.
   1
   2 3
 
-#(1 2 3)
+1 2 3
 ```
 
 ### status
@@ -49,7 +49,7 @@ Forms are evaluated left to right. Curlies may be used to alter evaluation order
 ```
   {* 6 {+ 3 4}}
   
-#(42)
+... 42
 ```
 
 Expressions may be split using `;`, remaining forms are parsed as a separate expression.
@@ -57,7 +57,7 @@ Expressions may be split using `;`, remaining forms are parsed as a separate exp
 ```
   {* 6; + 3 4}
   
-#(42)
+... 42
 ```
 
 ### license

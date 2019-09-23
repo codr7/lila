@@ -1,9 +1,6 @@
 (mapcar #'sb-mop:method-lambda-list 
         (sb-mop:generic-function-methods (symbol-function 'COMPILE-OP)))
 
-* add print-object for stack
-** dump items without parens
-** use in repl
 * add dot call support
 ** 35.+ 7
 ** pass lhs as first arg

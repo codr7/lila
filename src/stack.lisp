@@ -12,6 +12,11 @@
 
 (defvar *stack* (make-stack))
 
+(defmacro do-stack ((var in) &body body)
+  `(do ((i 0 (1+ i))) ((= i (length ,in)))
+     (let ((,var (aref ,in i)))
+       ,@body)))
+
 (defun push-val (val)
   (with-slots (items) *stack*
     (vector-push-extend val items)))
@@ -23,8 +28,12 @@
     (vector-pop items)))
 
 (defmethod print-object ((s stack) out)
-  (print-object (items s) out))
-
+  (let (sep)
+    (do-stack (v (items s))
+      (if sep
+          (write-char #\Space out)
+          (setf sep t))
+      (print-object v out))))
 
 (defclass $ () ())
 
