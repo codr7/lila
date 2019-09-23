@@ -24,7 +24,7 @@ empty input clears stack.
 ```
 
 ### status
-The paint is still wet, but what is there works and supports compiling [this](https://github.com/codr7/lila/blob/master/bench/pair.lila) and generating standalone executables.
+The paint is still wet, but what is there works well enough to compile [these](https://github.com/codr7/lila/blob/master/bench/) and generate standalone executables.
 
 ```
 $ dist/lila -build dist/pair bench/pair.lila
