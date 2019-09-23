@@ -2,9 +2,6 @@
         (sb-mop:generic-function-methods (symbol-function 'COMPILE-OP)))
 
 * opt dispatch
-** add lila-type.opt-type field
-*** default nil
-*** init in define-type unless (= id "none")
 ** add hidden dispatch args for types in fun defmethod
 *** pass (get-type) when called
 * --
