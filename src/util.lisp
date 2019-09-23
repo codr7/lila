@@ -38,13 +38,6 @@
           ((atom v) nil)
           (t (rec (rest v))))))
 
-(defun symf (spec &rest args)
-  (intern (string-upcase (apply #'format nil spec args))))
-
-(defun wspace-char-p (c)
-  (when (or (char= c #\space) (char= c #\tab) (char= c #\newline))
-    c))
-
 (defun split (in i)
   (if (zerop i)
       (values nil in)
@@ -52,3 +45,10 @@
              (tail (rest prev)))
         (rplacd prev nil)
         (values in tail))))
+
+(defun symf (spec &rest args)
+  (intern (string-upcase (apply #'format nil spec args))))
+
+(defun wspace-char-p (c)
+  (when (or (char= c #\space) (char= c #\tab) (char= c #\newline))
+    c))

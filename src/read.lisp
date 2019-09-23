@@ -23,13 +23,17 @@
               next
                 (let ((c (read-char in nil)))
                   (when c
-                    (when (alpha-char-p c)
+                    (unless (or (wspace-char-p c)
+                                (char= c #\{)
+                                (char= c #\}))
                       (incf (col *pos*))
                       (write-char c out)
                       (go next))
                     (unread-char c in)))))))
-    (unless (zerop (length s))
-      (make-id s))))
+    (when (zerop (length s))
+      (esys *val-pos* "Invalid input"))
+
+    (make-id s)))
 
 (defun read-num (in)
   (let ((out 0))
@@ -72,8 +76,8 @@
                   (unless rv
                     (esys *val-pos* "Invalid pair"))
                   (setf v (cons v rv))))
-              (unread-char c in))))
-      (values v *val-pos*))))
+              (unread-char c in)))))
+    (values v *val-pos*)))
 
 (defun read-expr (in)
   (unless (char= (read-char in nil) #\{)
@@ -83,14 +87,21 @@
     (with-slots (body) out
       (tagbody
        next
+         (skip-wspace in)
+         
+         (let ((c (read-char in nil)))
+           (when (char= c #\})
+             (go done))
+           (unread-char c in))
+         
          (multiple-value-bind (v p) (read-val in)
-           (when v
-             (push (cons v p) body)
-             (go next))))
+           (unless v
+             (esys p "Missing expr end"))
+           (push (cons v p) body)
+           (go next))
+       done)
+      
       (setf body (nreverse body)))
-    (skip-wspace in)
-    (unless (char= (read-char in nil) #\})
-      (esys *pos* "Invalid expr end"))
     out))
     
 (defun read-vals (in &key out)
