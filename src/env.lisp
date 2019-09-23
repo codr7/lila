@@ -1,7 +1,5 @@
 (in-package lila)
 
-(defvar *env*)
-
 (defclass env ()
   ((items :initform (make-hash-table) :reader items)))
 
@@ -11,6 +9,8 @@
 
 (defun make-env ()
   (make-instance 'env))
+
+(defvar *env* (make-env))
 
 (defmethod clone ((src env))
   (let* ((dst-env (make-env))

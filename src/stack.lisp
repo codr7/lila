@@ -1,7 +1,5 @@
 (in-package lila)
 
-(defvar *stack*)
-
 (defclass stack ()
   ((items :initform (make-array 1 :fill-pointer 0) :reader items)))
 
@@ -11,6 +9,8 @@
 
 (defun make-stack ()
   (make-instance 'stack))
+
+(defvar *stack* (make-stack))
 
 (defun push-val (val)
   (with-slots (items) *stack*

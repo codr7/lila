@@ -1,8 +1,6 @@
 (mapcar #'sb-mop:method-lambda-list 
         (sb-mop:generic-function-methods (symbol-function 'COMPILE-OP)))
 
-(with-env () (with-stack () (funcall (test-load))))
-
 * add check macro
 ** check {= foo 42}
 * add test/suite.lila
