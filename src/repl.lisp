@@ -10,8 +10,7 @@
     (let ((buf (make-string-output-stream)))
       (tagbody
        next
-         (write-string "   " *stdout*)
-         (finish-output *stdout*)
+         (fmt "   ")
          (let ((in (read-line *stdin* nil)))
            (when in
              (if (string= in "")
