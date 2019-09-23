@@ -14,15 +14,18 @@
          (let ((in (read-line *stdin* nil)))
            (when in
              (if (string= in "")
-                 (restart-case
-                     (let* ((*pos* (new-pos))
-                            (code (get-output-stream-string buf))
-                            (vals (read-vals (make-string-input-stream code)))
-                            (imp (lila-compile (compile-vals vals))))
-                       (funcall imp)
-                       (fmt "~a~%" *stack*))
-                   (ignore ()
-                      :report "Ignore condition."))
+                 (progn
+                   (setf in (get-output-stream-string buf))
+                   (if (string= in "")
+                       (setf (fill-pointer (items *stack*)) 0)
+                       (restart-case
+                           (let* ((*pos* (new-pos))
+                                  (vals (read-vals (make-string-input-stream in)))
+                                  (imp (lila-compile (compile-vals vals))))
+                             (funcall imp))
+                         (ignore ()
+                           :report "Ignore condition.")))
+                   (fmt "~a~%" *stack*))
                  (write-string in buf))
              (go next)))))))
 
