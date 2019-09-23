@@ -7,7 +7,9 @@
 ** use in fib_rec
 * add dot call support
 ** 35.+ 7
-** pass as first arg
+** pass lhs as first arg
+* add math lib with neg/abs(number) funs
+** map to (- ...) and (abs ...)
 * --
 * fib_rec
 ** add fun op
