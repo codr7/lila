@@ -3,9 +3,6 @@
 (defun repl ()
   (flet ((fmt (spec &rest args)
            (apply #'format *stdout* spec args)
-           (finish-output *stdout*))
-         (indent ()
-           (write-string "   " *stdout*)
            (finish-output *stdout*)))
     (fmt "lila v~a~%~%" lila-version)
     (fmt "Press Return on empty row to evaluate,~%")
@@ -13,7 +10,8 @@
     (let ((buf (make-string-output-stream)))
       (tagbody
        next
-         (indent)
+         (write-string "   " *stdout*)
+         (finish-output *stdout*)
          (let ((in (read-line *stdin* nil)))
            (when in
              (if (string= in "")
