@@ -1,7 +1,7 @@
 ![Logo](logo.png)
 
 ### intro
-[lila](https://github.com/codr7/lila) is a devkit for building programming languages on top of Common Lisp, and a language implemented using provided tools.
+[lila](https://github.com/codr7/lila) is a toolkit for building programming languages on top of Common Lisp, and a language implemented using it.
 
 ### setup
 The following shell spell should get you started. The project currently requires [SBCL](http://www.sbcl.org/) and [Quicklisp](https://www.quicklisp.org/beta/) to build.
