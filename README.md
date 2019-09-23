@@ -9,9 +9,16 @@ $ git clone https://github.com/codr7/lila.git
 $ cd lila
 $ mkdir dist
 $ ./makedist
-...
-$ dist/lila bench/pair.lila
-916
+$ dist/lila
+lila
+
+Press Return on empty row to evaluate,
+empty input clears stack.
+
+  1
+  2 3
+
+#(1 2 3)
 ```
 
 ### status

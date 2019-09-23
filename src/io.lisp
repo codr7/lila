@@ -1,5 +1,8 @@
 (in-package lila)
 
+(defvar *stdin* *standard-input*)
+(defvar *stdout* *standard-output*)
+
 (define-symbol-macro *argv*
     (or 
      #+CLISP *args*
@@ -7,8 +10,6 @@
      #+LISPWORKS system:*line-arguments-list*
      #+CMU extensions:*command-line-words*
      nil))
-
-(defvar *stdout* *standard-output*)
 
 (defun lila-load (filename)
   (with-open-file (in filename)

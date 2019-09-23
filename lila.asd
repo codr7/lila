@@ -45,5 +45,6 @@
                (:file "src/read")
                (:file "src/val")
                (:file "src/io")
+               (:file "src/repl")
                (:file "src/test")))
 

@@ -3,8 +3,6 @@
 
 (with-env () (with-stack () (funcall (test-load))))
 
-* add repl
-** launch from main if no files
 * add check macro
 ** check {= foo 42}
 * add test/suite.lila

@@ -30,3 +30,9 @@
 
   (let-macro var (pos out id val)
     (cons (make-var-op pos id :val val) out)))
+
+(defmacro with-lila (&body body)
+  `(with-env ()
+     (init-abc)
+     (with-stack ()
+       ,@body)))
