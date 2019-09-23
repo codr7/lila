@@ -6,6 +6,8 @@
 * add dot call support
 ** 35.+ 7
 ** pass lhs as first arg
+* rename Any type to A
+** a-type
 * --
 * add math lib with neg/abs(number) funs
 ** map to (- ...) and (abs ...)
