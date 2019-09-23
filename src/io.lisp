@@ -1,8 +1,16 @@
 (in-package lila)
 
+(define-symbol-macro *argv*
+    (or 
+     #+CLISP *args*
+     #+SBCL sb-ext:*posix-argv*  
+     #+LISPWORKS system:*line-arguments-list*
+     #+CMU extensions:*command-line-words*
+     nil))
+
 (defvar *stdout* *standard-output*)
 
-(defun lila-load (filename &key)
+(defun lila-load (filename)
   (with-open-file (in filename)
     (let ((*pos* (new-pos filename)))
       (with-env ((clone *env*))
@@ -13,9 +21,9 @@
                 (push (lisp-id id) vars)))
             (when vars
               (setf code `((let (,@vars) ,@code))))
-            (format t "~a~%" code)
             (compile nil `(lambda ()
                             ,@code)))))))
 
 (defmethod dump-val (v out)
-  (print-object v out))
+  (print-object v out)
+  (terpri out))

@@ -1,1 +1,1 @@
-sbcl --load makedist.lisp
+sbcl --load main.lisp
