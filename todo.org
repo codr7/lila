@@ -4,7 +4,12 @@
 * add drop macro/op
 ** n-arg
 *** _ = 1
-* bench/fib_rec.lila
+** use in fib_rec
+* add dot call support
+** 35.+ 7
+** pass as first arg
+* --
+* fib_rec
 ** add fun op
 *** add support for fun arg types
 *** let as foo[X Y] & add to list foo
