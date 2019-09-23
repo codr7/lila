@@ -24,7 +24,7 @@
 
 (defun lila-load (filename)
   (with-open-file (in filename)
-    (let ((*pos* (new-pos filename)))
+    (let ((*pos* (new-pos :file filename)))
       (lila-compile (compile-vals (read-vals in))))))
 
 (defmethod dump-val (v out)
