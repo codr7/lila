@@ -21,6 +21,8 @@
 ** add < fun
 ** add + fun
 ** add - fun
+* add list literals
+** (...)
 * add check macro
 ** check {= foo 42}
 * add test/suite.lila
