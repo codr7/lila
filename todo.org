@@ -6,6 +6,8 @@
 * add dot call support
 ** 35.+ 7
 ** pass lhs as first arg
+* add ; to break exprs
+** {fib; n.+ 1}
 * rename Any type to A
 ** a-type
 * --
