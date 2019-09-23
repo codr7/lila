@@ -9,6 +9,8 @@
                             :executable t))
 
 (defun main ()
+  (init-abc)
+  
   (let ((mode :default)
         files output-filename)
     (labels ((parse-args (in)

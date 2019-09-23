@@ -1,6 +1,9 @@
 (mapcar #'sb-mop:method-lambda-list 
         (sb-mop:generic-function-methods (symbol-function 'COMPILE-OP)))
 
+* add drop macro/op
+** n-arg
+*** _ = 1
 * bench/fib_rec.lila
 ** add fun op
 *** add support for fun arg types
