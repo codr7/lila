@@ -24,6 +24,12 @@
 ** add - fun
 * add list literals
 ** (...)
+* add quote support
+** trigger on ' in reader
+** call (quote val)
+*** stored as (cons 'quote val)
+** add quote type
+** adapt list methods to handle quotes
 * add check macro
 ** check {= foo 42}
 * add test/suite.lila
