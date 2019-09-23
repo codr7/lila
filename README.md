@@ -23,3 +23,6 @@ $ dist/lila -build dist/pair bench/pair.lila
 $ dist/pair
 912
 ```
+
+### license
+[MIT](https://github.com/codr7/lila/blob/master/LICENSE.txt)
