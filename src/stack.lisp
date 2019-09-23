@@ -46,7 +46,8 @@
   (declare (ignore pos))
   (values in out))
 
-(defmethod get-type ((-- $)) pop-type)
+(defmethod get-type ((-- $))
+  pop-type)
 
 (defmethod print-object ((-- $) out)
   (write-char #\$ out))

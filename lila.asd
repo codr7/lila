@@ -19,10 +19,7 @@
 
                (:file "src/fun")
                (:file "src/undef")
-               
-               (:file "src/libs/abc")
-               (:file "src/libs/math")
-               
+                              
                (:file "src/sym")
                (:file "src/stack")
                (:file "src/env")
@@ -41,12 +38,14 @@
                (:file "src/bool")
                (:file "src/expr")
                (:file "src/int")
-               (:file "src/none")
                (:file "src/list")
 
                (:file "src/read")
                (:file "src/val")
                (:file "src/io")
                (:file "src/repl")
-               (:file "src/test")))
+               (:file "src/test")
+
+               (:file "src/libs/abc")
+               (:file "src/libs/math")))
 

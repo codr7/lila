@@ -1,22 +1,22 @@
 (in-package lila)
 
 (defun init-abc ()
-  (let-id any-type)
-  (let-id meta-type)
-
   (let-id none-type)
-  (let-id pop-type)
-  
-  (let-id bool-type)
-  (let-id expr-type)
-  (let-id false-type)
-  (let-id int-type)
-  (let-id lisp-macro-type)
-  (let-id list-type)
-  (let-id macro-type)
-  (let-id pair-type)
-  (let-id sym-type)
-  (let-id true-type)
+  (let-type any-type)
+  (let-type meta-type)
+  (let-type pop-type)
+
+  (let-type macro-type)
+  (let-type lisp-macro-type)
+
+  (let-type bool-type)
+  (let-type expr-type)
+  (let-type false-type)
+  (let-type int-type)
+  (let-type list-type)
+  (let-type pair-type)
+  (let-type sym-type)
+  (let-type true-type)
 
   (let-lisp-macro clock (pos reps expr)
     `(push-val (clock ,(emit-val reps :pos pos)
