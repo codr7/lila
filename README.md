@@ -44,7 +44,7 @@ $ dist/pair
 ```
 
 ### syntax
-Forms are evaluated left to right. Curlies may be used to alter evaluation order by transforming expressions into values.
+Forms are evaluated left to right, curlies may be used to alter evaluation order by transforming expressions into values.
 
 ```
   {* 6 {+ 3 4}}
@@ -60,7 +60,7 @@ Expressions may be split using `;`, remaining forms are parsed as a sub-expressi
 ... 42
 ```
 
-Dot notation may be used to place operations between arguments, the receiver is passedas initial argument to the operation.
+Dot notation may be used to place operations between arguments, the receiver is passed as initial argument to the operation.
 
 ```
   + 35 7
