@@ -28,6 +28,9 @@
   (let-fun dump (pos val)
     (dump-val val *stdout*))
 
+  (let-macro pop (pos out)
+    (cons (make-pop-op pos) out))
+
   (let-macro var (pos out id val)
     (cons (make-var-op pos id :val val) out)))
 

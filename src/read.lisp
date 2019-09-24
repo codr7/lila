@@ -26,6 +26,7 @@
                     (unless (or (wspace-char-p c)
                                 (char= c #\{)
                                 (char= c #\})
+                                (char= c #\:)
                                 (char= c #\.))
                       (incf (col *pos*))
                         (write-char c out)

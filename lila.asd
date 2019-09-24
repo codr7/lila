@@ -1,10 +1,10 @@
 (defsystem lila
   :name "lila"
-  :version "2"
+  :version "3"
   :maintainer "codr7"
   :author "codr7"
+  :description "Lisp language toolkit"
   :licence "MIT"
-  :description "Lisp language devkit"
   :serial t
   :components ((:file "src/lila")
                (:file "src/util")
@@ -31,6 +31,7 @@
                (:file "src/ops/do")
                (:file "src/ops/emit")
                (:file "src/ops/get")
+               (:file "src/ops/pop")
                (:file "src/ops/push")
                (:file "src/ops/splat")
                (:file "src/ops/var")

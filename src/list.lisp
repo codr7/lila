@@ -4,10 +4,9 @@
 (define-type list (any))
 
 (defmethod emit-val ((lst list) &key (pos *pos*))
-  (declare (ignore pos))
   (if (pair? lst)
-      `(cons ,(emit-val (first lst)) ,(emit-val (rest lst)))
-      `(list ,@(mapcar (lambda (v) (emit-val v)) lst))))
+      `(cons ,(emit-val (first lst) :pos pos) ,(emit-val (rest lst) :pos pos))
+      `(list ,@(mapcar (lambda (v) (emit-val v :pos pos)) lst))))
 
 (defmethod get-type ((v list))
   (if (pair? v)

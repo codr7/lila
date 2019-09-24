@@ -30,7 +30,7 @@
   (with-slots (pos id val) op
     (cons `(setf ,(lisp-id id)
                  ,(if (slot-boundp op 'val)
-                      `(emit-val val :pos pos)
+                      (emit-val val :pos pos)
                       `(pop-val)))
           out)))
 
