@@ -1,16 +1,6 @@
 (mapcar #'sb-mop:method-lambda-list 
         (sb-mop:generic-function-methods (symbol-function 'COMPILE-OP)))
 
-const REPS 1000000
-
-REPS.clock {
-  var a:b:c:d:e:f:g 1:2:3:4:5:6:7
-  a:b:c:d:e:f:g
-  pop
-}
-
-$.dump
-
 * convert stack to bare array
 ** rename print-object to dump-stack
 *** use in repl
