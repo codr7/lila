@@ -1,13 +1,11 @@
 (mapcar #'sb-mop:method-lambda-list 
         (sb-mop:generic-function-methods (symbol-function 'COMPILE-OP)))
 
-* add dot call support
-** 35.+ 7
-** pass lhs as first arg
-* add drop macro/op
+* add pop macro/op
 ** use in fib_rec
 * --
-* add math lib with neg/abs(number) funs
+* add arg types to lib funs
+* add neg/abs(num) funs
 ** map to (- ...) and (abs ...)
 * fib_rec
 ** add fun op
