@@ -5,6 +5,7 @@
 
 (defmacro let-lisp-macro (id (&rest args) &body body)
   (setf id (make-id (string-downcase (symbol-name id))))
+  
   (let ((lid (lisp-id id)))
     `(progn
        (defmethod ,lid (,@args)
