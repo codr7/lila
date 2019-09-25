@@ -12,9 +12,9 @@
      nil))
 
 (defun lila-compile (ops)
-  (with-env ((clone *env*))
+  (with-env ((clone-env))
     (let ((code (emit-ops (compile-ops ops))) vars)
-      (dohash (id v (items *env*))
+      (do-env (id v)
         (when (undef? v)
           (push (lisp-id id) vars)))
       (when vars

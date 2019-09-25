@@ -1,33 +1,31 @@
 (in-package lila)
 
-(defclass env ()
-  ((items :initform (make-hash-table) :reader items)))
+(defun make-env ()
+  (make-hash-table))
+
+(defvar *env* (make-env))
 
 (defmacro with-env ((&optional env) &body body)
   `(let ((*env* (or ,env (make-env))))
      ,@body))
 
-(defun make-env ()
-  (make-instance 'env))
+(defmacro do-env ((k v) &body body)
+  `(dohash (,k ,v *env*)
+     ,@body))
 
-(defvar *env* (make-env))
-
-(defmethod clone ((src env))
-  (let* ((dst-env (make-env))
-         (dst-items (items dst-env)))
-    (dohash (k v (items src))
-      (setf (gethash k dst-items) v))
-    dst-env))
+(defmethod clone-env ()
+  (let ((dst (make-env)))
+    (dohash (k v *env*)
+      (setf (gethash k dst) v))
+    dst))
 
 (defun let-val (id val &key (pos *pos*))
-  (with-slots (items) *env*
-    (when (gethash id items)
-      (esys pos "Dup binding: ~a" id))
-    (setf (gethash id items) val)))
+  (when (gethash id *env*)
+    (esys pos "Dup binding: ~a" id))
+  (setf (gethash id *env*) val))
 
 (defun get-val (id &key default (pos *pos*))
-  (with-slots (items) *env*
-    (let ((v (gethash id items)))
-      (unless (or v default)
-        (esys pos "Unknown id: ~a" (symbol-name id)))
-      (or v default))))
+  (let ((v (gethash id *env*)))
+    (unless (or v default)
+      (esys pos "Unknown id: ~a" (symbol-name id)))
+    (or v default)))
