@@ -11,6 +11,8 @@
 ** add abs(num) -> (abs ...)
 ** add < fun
 *** add (compare-vals) method
+*** :lt :eq :gt
+*** implement for int/sym
 * fib_rec
 ** add fun op
 *** extract
