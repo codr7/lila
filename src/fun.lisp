@@ -10,18 +10,9 @@
   (let* ((lid (lisp-id id))
          (arg0 (pop args))
          (arg-types (mapcar (lambda (a)
-                              (let ((type-id (if (pair? a)
-                                                 (symf "~a-type"
-                                                       (string-downcase
-                                                        (symbol-name (rest a))))
-                                                 'any-type)))
-                              (list (gensym) type-id)))
+                              (list (gensym) (get-arg-type a)))
                             args))
-         (arg-ids (mapcar (lambda (a)
-                            (if (pair? a)
-                                (first a)
-                                a))
-                          args)))
+         (arg-ids (mapcar #'get-arg-id args)))
     `(progn
        (defmethod ,lid (,@arg-types ,arg0 ,@arg-ids)
          ,@body)
@@ -47,7 +38,7 @@
           (push (get-type v) types)
           (push v vals)))
 
-      (apply imp (append types (cons pos vals))))))
+      (apply imp (append (nreverse types) (cons pos (nreverse vals)))))))
 
 (defmethod print-object ((f fun) out)
   (format out "~a:Fun" (symbol-name (id f))))

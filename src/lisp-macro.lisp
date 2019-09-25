@@ -6,14 +6,19 @@
 (defmacro let-lisp-macro (id (&rest args) &body body)
   (setf id (make-id (string-downcase (symbol-name id))))
   
-  (let ((lid (lisp-id id)))
+  (let ((lid (lisp-id id))
+        (arg0 (pop args))
+        (arg-types (mapcar (lambda (a)
+                             (list (gensym) (get-arg-type a)))
+                           args))
+        (arg-ids (mapcar #'get-arg-id args)))
     `(progn
-       (defmethod ,lid (,@args)
+       (defmethod ,lid (,@arg-types ,arg0 ,@arg-ids)
          ,@body)
        
        (let-id (make-instance 'lisp-macro
                               :id ',id 
-                              :nargs ,(- (length args) 1)
+                              :nargs ,(length args)
                               :imp (symbol-function ',lid))))))
 
 (define-type lisp-macro (macro))
@@ -24,8 +29,16 @@
       (esys pos "Not enough arguments: ~a" m))
     
     (multiple-value-bind (args in) (split in nargs)
-      (values in (cons (make-emit-op pos imp (cons pos (mapcar #'first args)))
-                       out)))))
+      (let (types vals)
+        (dolist (v (mapcar #'first args))
+          (push (get-type v) types)
+          (push v vals))
+
+        (values in (cons (make-emit-op pos
+                                       imp
+                                       (append (nreverse types)
+                                               (cons pos (nreverse vals))))
+                         out))))))
 
 (defmethod get-type ((-- lisp-macro)) lisp-macro-type)
 
