@@ -20,7 +20,8 @@
 * add macro refs
 ** &bar
 ** generate (lambda (x y) (foo x y))
-* add ordered map
+* add ordered set
+** new-set {'foo 'bar}
 ** new-map {'foo 1 'bar 2}
 ** new-id-map {foo 1 bar 2}
 * add quote support
