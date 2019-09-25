@@ -13,17 +13,7 @@
          (multiple-value-bind (args in) (split in nargs)
            (values in (cons (make-call-op pos v)
                             (compile-vals args :out out :reverse? nil))))))
-      ((eq vt lisp-macro-type)
-       (with-slots (nargs) v
-         (when (< (length in) nargs)
-           (esys pos "Not enough arguments: ~a" v))
-
-         (multiple-value-bind (args in) (split in nargs)
-           (values in (cons (make-emit-op pos
-                                          (imp v)
-                                          (cons pos (mapcar #'first args)))
-                            out)))))
-      ((eq vt macro-type)
+      ((subtype? vt macro-type)
        (expand v in out :pos pos))
       (t
        (values in (cons (make-push-op pos v) out))))))

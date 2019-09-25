@@ -12,7 +12,7 @@
   (with-slots (body ops) op
     (when body
       (setf ops
-            (with-env ((clone *env*))
+            (with-env ((clone-env))
               (compile-ops (compile-vals body))))))
   (values in (cons op out)))
 

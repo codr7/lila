@@ -5,6 +5,9 @@
    (opt? :initform nil :initarg :opt? :reader opt?)
    (opt-type :initform nil :reader opt-type)))
 
+(defun subtype? (child parent)
+  (subtypep (type-of child) (type-of parent)))
+
 (defmacro define-type (id (&rest parents))
   (let* ((ids (string-downcase (symbol-name id)))
          (type-id (symf "~a-type" ids))

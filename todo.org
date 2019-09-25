@@ -13,6 +13,13 @@
 ** add < fun
 * add list literals
 ** (...)
+* add lambdas
+** fun with nil id & lambda imp
+* add fun refs
+** &foo
+* add macro refs
+** &bar
+** generate (lambda (x y) (foo x y))
 * add quote support
 ** trigger on ' in reader
 ** call (quote val)
