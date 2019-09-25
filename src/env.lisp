@@ -13,7 +13,7 @@
   `(dohash (,k ,v *env*)
      ,@body))
 
-(defmethod clone-env ()
+(defun clone-env ()
   (let ((dst (make-env)))
     (dohash (k v *env*)
       (setf (gethash k dst) v))
