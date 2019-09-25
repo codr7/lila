@@ -1,12 +1,11 @@
-(mapcar #'sb-mop:method-lambda-list 
-        (sb-mop:generic-function-methods (symbol-function 'COMPILE-OP)))
-
 * convert stack to bare array
 ** rename print-object to dump-stack
 *** use in repl
 ** grep items/*stack*
 * --
 * add arg types to lib funs
+** add support for short type names
+*** extract get-type-id from define-type
 * add neg/abs(num) funs
 ** map to (- ...) and (abs ...)
 * fib_rec
