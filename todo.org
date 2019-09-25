@@ -1,3 +1,11 @@
+(add-method (ensure-generic-function 'foo)
+            (make-instance 'standard-method
+                            :qualifiers '()
+                            :lambda-list '(object)
+                            :specializers (list (find-class 't))
+                            :function (lambda (&rest args)
+                                        (format t "Method called: ~a~%" args))))
+
 * add arg types to lib funs
 ** add support for short type names
 *** extract get-type-id from define-type
@@ -5,9 +13,8 @@
 ** map to (- ...) and (abs ...)
 * fib_rec
 ** add fun op
-*** add support for fun arg types
-*** let as foo[X Y] & add to list foo
-**** use lisp-class as arg type in defmethod
+*** extract
+*** push fun if nil id
 ** add if macro
 *** add if op
 ** add < fun
@@ -20,6 +27,10 @@
 * add macro refs
 ** &bar
 ** generate (lambda (x y) (foo x y))
+* add Time type
+** use local-time
+** add now/today funs
+** add *time-format*
 * add ordered set
 ** new-set {'foo 'bar}
 ** new-map {'foo 1 'bar 2}

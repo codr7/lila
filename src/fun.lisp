@@ -41,7 +41,8 @@
       (apply imp (append (nreverse types) (cons pos (nreverse vals)))))))
 
 (defmethod print-object ((f fun) out)
-  (format out "~a:Fun" (symbol-name (id f))))
+  (with-slots (id) f
+    (format out "~a:Fun" (if id (symbol-name (id)) #\_))))
 
 
 
