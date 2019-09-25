@@ -1,39 +1,34 @@
 (in-package lila)
 
-(defclass stack ()
-  ((items :initform (make-array 1 :fill-pointer 0) :reader items)))
+(defun make-stack ()
+  (make-array 1 :fill-pointer 0))
+
+(defvar *stack* (make-stack))
 
 (defmacro with-stack ((&optional stack) &body body)
   `(let ((*stack* (or ,stack (make-stack))))
      ,@body))
 
-(defun make-stack ()
-  (make-instance 'stack))
-
-(defvar *stack* (make-stack))
-
-(defmacro do-stack ((var in) &body body)
-  `(do ((i 0 (1+ i))) ((= i (length ,in)))
-     (let ((,var (aref ,in i)))
+(defmacro do-stack ((var) &body body)
+  `(do ((i 0 (1+ i))) ((= i (length *stack*)))
+     (let ((,var (aref *stack* i)))
        ,@body)))
 
 (defun push-val (val)
-  (with-slots (items) *stack*
-    (vector-push-extend val items)))
+  (vector-push-extend val *stack*))
 
 (defun pop-val (&key (pos *pos*))
-  (with-slots (items) *stack*
-    (when (zerop (fill-pointer items))
-      (esys pos "Stack is empty"))
-    (vector-pop items)))
+  (when (zerop (fill-pointer *stack*))
+    (esys pos "Stack is empty"))
+  (vector-pop *stack*))
 
-(defmethod print-object ((s stack) out)
+(defun dump-stack (out)
   (let (sep)
-    (do-stack (v (items s))
+    (do-stack (v)
       (if sep
           (write-char #\Space out)
           (setf sep t))
-      (print-object v out))))
+      (dump-val v out))))
 
 (defclass $ ()
   ())

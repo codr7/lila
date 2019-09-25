@@ -26,7 +26,8 @@
     (cons (make-const-op pos id val) out))
 
   (let-fun dump (pos val)
-    (dump-val val *stdout*))
+    (dump-val val *stdout*)
+    (terpri *stdout*))
 
   (let-macro pop (pos out)
     (cons (make-pop-op pos) out))

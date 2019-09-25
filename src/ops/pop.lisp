@@ -8,7 +8,7 @@
 
 (defmethod emit-op ((op pop-op) out)
   (with-slots (pos n) op
-    (cons `(decf (fill-pointer (items *stack*)) ,n) out)))
+    (cons `(decf (fill-pointer *stack*) ,n) out)))
 
 (defmethod print-object ((op pop-op) out)
   (format out "POP(~a)" (n op)))

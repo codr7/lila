@@ -30,7 +30,7 @@ empty input clears stack.
   1
   2 3
 
-1 2 3
+$ 1 2 3
 ```
 
 ### status
@@ -49,7 +49,7 @@ Forms are evaluated left to right, curlies may be used to alter evaluation order
 ```
   {* 6 {+ 3 4}}
   
-... 42
+$ ... 42
 ```
 
 Expressions may be split using `;`, remaining forms are parsed as a sub-expression.
@@ -57,7 +57,7 @@ Expressions may be split using `;`, remaining forms are parsed as a sub-expressi
 ```
   {* 6; + 3 4}
   
-... 42
+$ ... 42
 ```
 
 Dot notation may be used to place operations between arguments, the receiver is passed as initial argument to the operation.
@@ -65,12 +65,12 @@ Dot notation may be used to place operations between arguments, the receiver is 
 ```
   + 35 7
 
-... 42
+$ ... 42
 ```
 ```
   35.+ 7
 
-... 42
+$ ... 42
 ```
 
 ### license

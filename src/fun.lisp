@@ -38,7 +38,7 @@
 
 (defmethod call ((f fun) &key (pos *pos*))
   (with-slots (nargs imp) f
-    (when (< (length (items *stack*)) nargs)
+    (when (< (length *stack*) nargs)
       (esys pos "Not enough arguments: ~a" f))
     
     (let (types vals)

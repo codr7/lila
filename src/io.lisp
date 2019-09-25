@@ -28,5 +28,4 @@
       (lila-compile (compile-vals (read-vals in))))))
 
 (defmethod dump-val (v out)
-  (print-object v out)
-  (terpri out))
+  (print-object v out))
