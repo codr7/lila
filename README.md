@@ -58,7 +58,7 @@ Expressions may be split using `;`, remaining forms are parsed as a sub-expressi
 ... 42
 ```
 
-Dot notation may be used to place operations between arguments, the receiver is passed as initial argument to the operation.
+By default, [lila](https://github.com/codr7/lila) expects operations before arguments. Dot notation may be used to place operations between arguments, the receiver is passed as initial argument to the operation.
 
 ```
   + 35 7
