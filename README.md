@@ -41,8 +41,16 @@ $ dist/pair
 912
 ```
 
-### syntax
-Forms are evaluated left to right, curlies may be used to alter evaluation order by transforming expressions into values.
+### basics
+Forms are evaluated left to right. [lila](https://github.com/codr7/lila) treats macro and function names as calls, `&` may be used to get a reference. Both are generic with fixed arity, and will consume as many forms when called.
+
+```
+  + 1 2 + 3 4
+
+... 3 7
+```
+
+Curlies may be used to alter evaluation order.
 
 ```
   {* 6 {+ 3 4}}
@@ -58,7 +66,7 @@ Expressions may be split using `;`, remaining forms are parsed as a sub-expressi
 ... 42
 ```
 
-By default, [lila](https://github.com/codr7/lila) expects operations before arguments. Dot notation may be used to place operations between arguments, the receiver is passed as initial argument to the operation.
+By default, [lila](https://github.com/codr7/lila) expects operations before arguments. Dot notation may be used to place operations between arguments, the receiver is passed as initial argument.
 
 ```
   + 35 7
@@ -69,6 +77,14 @@ By default, [lila](https://github.com/codr7/lila) expects operations before argu
   35.+ 7
 
 ... 42
+```
+
+`_` represents missing values, its type is `None`. Suffixing any type except `None` with `?` gives a sum type that also matches `_`.
+
+```
+  Int?
+
+... Int?
 ```
 
 ### license
