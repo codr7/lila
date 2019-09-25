@@ -6,6 +6,10 @@
                             :function (lambda (&rest args)
                                         (format t "Method called: ~a~%" args))))
 
+* rename splat op to unzip
+** assume pair
+** grep/remove splat-val
+** bench
 * math
 ** add neg(num) -> (- ...)
 ** add abs(num) -> (abs ...)
