@@ -25,7 +25,6 @@
                              (funcall imp))
                          (ignore ()
                            :report "Ignore condition.")))
-                   (write-string "$ " *stdout*)
                    (dump-stack *stdout*)
                    (terpri *stdout*))
                  (write-string in buf))

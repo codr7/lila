@@ -1,6 +1,6 @@
 (defsystem lila
   :name "lila"
-  :version "3"
+  :version "4"
   :maintainer "codr7"
   :author "codr7"
   :description "Lisp language toolkit"
