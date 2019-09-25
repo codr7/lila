@@ -8,18 +8,20 @@
 (defun is-a? (child parent)
   (subtypep (type-of child) (type-of parent)))
 
+(defmacro get-type-id (s)
+  `(symf "~a-type" (string-downcase (symbol-name ,s))))
+
 (defmacro define-type (id (&rest parents))
   (let* ((ids (string-downcase (symbol-name id)))
-         (type-id (symf "~a-type" ids))
-         (opt-type-id (symf "~a-opt-type" ids))
-         forms)    
+         (type-id (get-type-id id))
+         (opt-type-id (get-type-id (symf "~a-opt" ids)))
+         forms)
     (push `(defvar ,type-id
              (make-instance ',type-id :id ,(make-id (caps! ids))))
           forms)
 
     (setf parents (mapcar (lambda (p)
-                            (symf "~a-type"
-                                  (string-downcase (symbol-name p))))
+                            (get-type-id p))
                           (or parents '(lila))))
     
     (unless (eq type-id 'none-type)

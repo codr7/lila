@@ -6,18 +6,17 @@
                             :function (lambda (&rest args)
                                         (format t "Method called: ~a~%" args))))
 
-* add arg types to lib funs
-** add support for short type names
-*** extract get-type-id from define-type
-* add neg/abs(num) funs
-** map to (- ...) and (abs ...)
+* math
+** add neg(num) -> (- ...)
+** add abs(num) -> (abs ...)
+** add < fun
+*** add (compare-vals) method
 * fib_rec
 ** add fun op
 *** extract
 *** push fun if nil id
 ** add if macro
 *** add if op
-** add < fun
 * add types to readme
 ** add type-of/is-a? funs
 * add list literals
