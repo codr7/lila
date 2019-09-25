@@ -4,7 +4,7 @@
 [lila](https://github.com/codr7/lila) is a toolkit for building programming languages on top of [Common Lisp](http://www.lispworks.com/documentation/HyperSpec/Front/), and a language implemented using it.
 
 ```
-fun fib(n:Int) (Int) {
+fun fib(n:Int) {
   if {n.< 2} n {
     {fib; n.- 1}.+ {fib; n.- 2}
   }
