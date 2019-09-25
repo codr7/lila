@@ -77,7 +77,7 @@ Curlies allow controlling evaluation order.
 ... 42
 ```
 
-In simple cases such as previous example, `;` may be used to reduce nesting. The resulting code is the same.
+In simple cases such as previous example, `;` may be used to reduce nesting.
 
 ```
   {* 6; + 3 4}
