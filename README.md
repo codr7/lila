@@ -77,7 +77,7 @@ Curlies allow controlling evaluation order.
 ... 42
 ```
 
-Expressions may be split using `;`, remaining forms are parsed separately.
+In simple cases such as previous example, `;` may be used to reduce nesting. The resulting code is the same.
 
 ```
   {* 6; + 3 4}
