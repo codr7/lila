@@ -25,10 +25,9 @@ lila
 Press Return on empty row to evaluate,
 empty input clears stack.
 
-  1
-  2 3
+  + 35 7
 
-1 2 3
+42
 ```
 
 ### status
@@ -50,7 +49,27 @@ Forms are evaluated left to right. [lila](https://github.com/codr7/lila) treats 
 ... 3 7
 ```
 
-Curlies may be used to alter evaluation order.
+The parameter stack is first class, `$` represents the last value.
+
+```
+  35 7
+
+... 35 7
+
+  + $ $
+
+... 42
+```
+
+`pop` may be used to skip the last value on the stack.
+
+```
+  1 2 3 pop
+
+... 1 2
+```
+
+Curlies allow controlling evaluation order.
 
 ```
   {* 6 {+ 3 4}}
@@ -58,7 +77,7 @@ Curlies may be used to alter evaluation order.
 ... 42
 ```
 
-Expressions may be split using `;`, remaining forms are parsed as a sub-expression.
+Expressions may be split using `;`, remaining forms are parsed separately.
 
 ```
   {* 6; + 3 4}
@@ -66,7 +85,7 @@ Expressions may be split using `;`, remaining forms are parsed as a sub-expressi
 ... 42
 ```
 
-Dot notation may be used to specify the called macro/function infix.
+Dot notation allows specifying the called macro/function infix.
 
 ```
   + 35 7

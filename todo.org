@@ -18,6 +18,8 @@
 ** add if macro
 *** add if op
 ** add < fun
+* add types to readme
+** add type-of/is-a? funs
 * add list literals
 ** (...)
 * add lambdas

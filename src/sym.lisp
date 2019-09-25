@@ -13,7 +13,7 @@
          (multiple-value-bind (args in) (split in nargs)
            (values in (cons (make-call-op pos v)
                             (compile-vals args :out out :reverse? nil))))))
-      ((subtype? vt macro-type)
+      ((is-a? vt macro-type)
        (expand v in out :pos pos))
       (t
        (values in (cons (make-push-op pos v) out))))))
