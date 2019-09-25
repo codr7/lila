@@ -79,7 +79,7 @@ Dot notation may be used to specify the called macro/function infix.
 ... 42
 ```
 
-`_` represents missing values, its type is `None`. Suffixing any type except `None` with `?` gives a sum type that also matches `_`.
+`_` represents missing values, its type is `None`. Suffixing any type except `None` with `?` gives a sum type that also matches missing values.
 
 ```
   Int?
