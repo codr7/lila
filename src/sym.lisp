@@ -2,6 +2,13 @@
 
 (define-type sym (any))
 
+(defmethod compare-vals ((x symbol) (y symbol))
+  (let ((xn (symbol-name x)) (yn (symbol-name y)))
+    (cond
+      ((string< xn yn) :lt)
+      ((string= xn yn) :eq)
+      (t :gt))))
+
 (defmethod compile-val ((id symbol) in out &key (pos *pos*))
   (let* ((v (get-val id :pos pos :default _))
          (vt (get-type v)))

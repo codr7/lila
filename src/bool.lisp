@@ -15,6 +15,9 @@
 (defmethod get-type ((-- true))
   true-type)
 
+(defmethod print-object ((-- true) out)
+  (write-string "true" out))
+
 (defmethod to-bool (--)
   t)
 
@@ -29,5 +32,12 @@
 (defmethod get-type ((-- false))
   false-type)
 
+(defmethod print-object ((-- false) out)
+  (write-string "false" out))
+
 (defmethod to-bool ((-- false))
   nil)
+
+
+(defun make-bool (v)
+  (if v true false))

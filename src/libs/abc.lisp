@@ -18,6 +18,12 @@
   (let-type sym-type)
   (let-type true-type)
 
+  (let-fun < (pos x y)
+    (push-val (make-bool (eq (compare-vals x y) :lt))))
+
+  (let-fun > (pos x y)
+    (push-val (make-bool (eq (compare-vals x y) :gt))))
+
   (let-lisp-macro clock (pos reps expr)
     `(push-val (clock ,(emit-val reps :pos pos)
                  ,@(emit-vals (body expr)))))
@@ -28,6 +34,9 @@
   (let-fun dump (pos val)
     (dump-val val *stdout*)
     (terpri *stdout*))
+
+  (let-fun is (pos x y)
+    (push-val (make-bool (eq x y))))
 
   (let-macro pop (pos out)
     (cons (make-pop-op pos) out))

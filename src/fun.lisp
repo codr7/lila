@@ -33,16 +33,16 @@
       (esys pos "Not enough arguments: ~a" f))
     
     (let (types vals)
-      (dotimes (i nargs)
+      (dotimes (-- nargs)
         (let ((v (pop-val)))
           (push (get-type v) types)
           (push v vals)))
 
-      (apply imp (append (nreverse types) (cons pos (nreverse vals)))))))
+      (apply imp `(,@types ,pos ,@vals)))))
 
 (defmethod print-object ((f fun) out)
   (with-slots (id) f
-    (format out "~a:Fun" (if id (symbol-name (id)) #\_))))
+    (format out "~a:Fun" (if id (symbol-name id) #\_))))
 
 
 

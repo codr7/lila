@@ -36,8 +36,8 @@
           (push (get-type v) types)
           (push v vals))
 
-        (values in (apply imp (append (nreverse types)
-                                      (cons pos (cons out (nreverse vals))))))))))
+        (let ((args `(,@(nreverse types) ,pos ,out ,@(nreverse vals))))
+          (values in (apply imp args)))))))
 
 (defmethod get-type ((-- macro)) macro-type)
 

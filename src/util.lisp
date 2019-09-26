@@ -49,6 +49,6 @@
 (defun symf (spec &rest args)
   (intern (string-upcase (apply #'format nil spec args))))
 
-(defun wspace-char-p (c)
+(defun whitespace? (c)
   (when (or (char= c #\space) (char= c #\tab) (char= c #\newline))
     c))

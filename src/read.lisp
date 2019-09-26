@@ -2,12 +2,12 @@
 
 (defvar *val-pos*)
 
-(defun skip-wspace (in)
+(defun skip-whitespace (in)
   (tagbody
    skip
      (let ((c (read-char in nil)))
        (when c
-         (when (wspace-char-p c)
+         (when (whitespace? c)
            (case c
              (#\newline
               (incf (row *pos*))
@@ -23,7 +23,7 @@
               next
                 (let ((c (read-char in nil)))
                   (when c
-                    (unless (or (wspace-char-p c)
+                    (unless (or (whitespace? c)
                                 (char= c #\{)
                                 (char= c #\})
                                 (char= c #\:)
@@ -51,7 +51,7 @@
     out))
 
 (defun read-val (in out)
-  (skip-wspace in)
+  (skip-whitespace in)
   
   (let* ((*val-pos* (clone *pos*))
          (c (peek-char nil in nil))
@@ -103,7 +103,7 @@
   (incf (col *pos*))
   
   (labels ((read-body (out)
-             (skip-wspace in)
+             (skip-whitespace in)
              
              (with-slots (body) out
                (let ((c (read-char in nil)))

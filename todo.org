@@ -6,16 +6,12 @@
                             :function (lambda (&rest args)
                                         (format t "Method called: ~a~%" args))))
 
-** add < fun
-*** add (compare-vals) method
-*** :lt :eq :gt
-*** implement for int/sym
+* add if macro
+** add if op
 * fib_rec
 ** add fun op
 *** extract
 *** push fun if nil id
-** add if macro
-*** add if op
 * add types to readme
 ** add type-of/is-a? funs
 * add support for unnamed args

@@ -34,11 +34,8 @@
           (push (get-type v) types)
           (push v vals))
 
-        (values in (cons (make-emit-op pos
-                                       imp
-                                       (append (nreverse types)
-                                               (cons pos (nreverse vals))))
-                         out))))))
+        (let ((args `(,@(nreverse types) ,pos ,@(nreverse vals))))
+          (values in (cons (make-emit-op pos imp args) out)))))))
 
 (defmethod get-type ((-- lisp-macro)) lisp-macro-type)
 
