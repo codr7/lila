@@ -44,8 +44,8 @@
   (let-fun is (pos x y)
     (push-val (make-bool (eq x y))))
 
-  (let-macro pop (pos out)
-    (cons (make-pop-op pos) out))
+  (let-lisp-macro pop (pos)
+    `(decf (fill-pointer *stack*)))
 
   (let-macro var (pos out id val)
     (cons (make-var-op pos id :val val) out)))
