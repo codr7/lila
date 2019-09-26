@@ -6,13 +6,6 @@
                             :function (lambda (&rest args)
                                         (format t "Method called: ~a~%" args))))
 
-* rename splat op to unzip
-** assume pair
-** grep/remove splat-val
-** bench
-* math
-** add neg(num) -> (- ...)
-** add abs(num) -> (abs ...)
 ** add < fun
 *** add (compare-vals) method
 *** :lt :eq :gt
@@ -25,6 +18,9 @@
 *** add if op
 * add types to readme
 ** add type-of/is-a? funs
+* add support for unnamed args
+** leave value on stack
+** don't include in lisp method arg list
 * add list literals
 ** (...)
 * add lambdas

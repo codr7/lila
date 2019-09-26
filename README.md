@@ -88,13 +88,11 @@ In simple cases such as previous example, `;` may be used to reduce nesting.
 Dot notation allows specifying the called macro/function infix.
 
 ```
-  + 35 7
-
-... 42
-```
-```
-  35.+ 7
-
+  42.neg
+  
+... -42
+  $.abs
+  
 ... 42
 ```
 
