@@ -5,12 +5,9 @@
                             :specializers (list (find-class 't))
                             :function (lambda (&rest args)
                                         (format t "Method called: ~a~%" args))))
-* add-lisp-method
-** use in let-fun/macro/lisp-macro
-** return (values gen imp)
 * fix fun ids
-** bind method as foo[X Y]
-** bind separate generic fun instance foo
+** bind method fun as foo[X Y]
+** bind separate generic fun as foo if not found
 * fib_rec
 ** add fun op
 *** push fun if nil id

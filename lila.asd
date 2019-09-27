@@ -31,7 +31,6 @@
                (:file "src/ops/do")
                (:file "src/ops/emit")
                (:file "src/ops/get")
-               (:file "src/ops/pop")
                (:file "src/ops/push")
                (:file "src/ops/splat")
                (:file "src/ops/var")
