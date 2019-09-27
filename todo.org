@@ -1,16 +1,7 @@
-(add-method (ensure-generic-function 'foo)
-            (make-instance 'standard-method
-                            :qualifiers '()
-                            :lambda-list '(object)
-                            :specializers (list (find-class 't))
-                            :function (lambda (&rest args)
-                                        (format t "Method called: ~a~%" args))))
-* fix fun ids
-** bind method fun as foo[X Y]
-** bind separate generic fun as foo if not found
 * fib_rec
 ** add fun op
-*** push fun if nil id
+*** push fun on stack if nil id
+*** compile/call defmethod form
 * --
 * add types to readme
 ** add type-of/is-a funs
