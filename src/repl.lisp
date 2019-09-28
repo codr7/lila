@@ -5,8 +5,7 @@
            (apply #'format *stdout* spec args)
            (finish-output *stdout*)))
     (fmt "lila v~a~%~%" lila-version)
-    (fmt "Press Return on empty row to evaluate,~%")
-    (fmt "empty input clears stack.~%~%")
+    (fmt "Press Return on empty row to evaluate.~%~%")
     (let ((buf (make-string-output-stream)))
       (tagbody
        next
@@ -16,17 +15,13 @@
              (if (string= in "")
                  (progn
                    (setf in (get-output-stream-string buf))
-                   (if (string= in "")
-                       (setf (fill-pointer *stack*) 0)
-                       (restart-case
-                           (let* ((*pos* (new-pos))
-                                  (vals (read-vals (make-string-input-stream in)))
-                                  (imp (lila-compile (compile-vals vals))))
-                             (funcall imp))
-                         (ignore ()
-                           :report "Ignore condition.")))
-                   (dump-stack *stdout*)
-                   (terpri *stdout*))
+                   (restart-case
+                       (let* ((*pos* (new-pos))
+                              (vals (read-vals (make-string-input-stream in)))
+                              (imp (lila-compile vals)))
+                         (fmt "~a~%" (funcall imp)))
+                     (ignore ()
+                       :report "Ignore condition.")))
                  (write-string in buf))
              (go next)))))))
 

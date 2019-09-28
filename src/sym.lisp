@@ -9,25 +9,19 @@
       ((string= xn yn) :eq)
       (t :gt))))
 
-(defmethod compile-val ((id symbol) in out &key (pos *pos*))
+(defmethod emit-val ((id symbol) &key in out (pos *pos*))
   (let* ((v (get-val id :pos pos :default _))
          (vt (get-type v)))
     (cond
       ((or (eq v _) (undef? v))
-       (values in (cons (make-get-op pos id) out)))
+       (values (cons (lisp-id id) out) in))
       ((eq vt fun-type)
        (with-slots (nargs) v
-         (multiple-value-bind (args in) (split in nargs)
-           (values in (cons (make-call-op pos v)
-                            (compile-vals args :out out :reverse? nil))))))
+         (multiple-value-bind (args in2) (split in nargs)
+           (values (cons `(call ,v (list ,@(emit-vals args)) :pos ,pos) out) in2))))
       ((is-a? vt macro-type)
        (expand v in out :pos pos))
       (t
-       (values in (cons (make-push-op pos v) out))))))
-
-(defmethod emit-val ((id symbol) &key (pos *pos*))
-  (let ((v (get-val id :pos pos :default _)))
-    (if (or (eq v _) (undef? v)) (lisp-id id) (emit-val v :pos pos))))
+       (values (cons v out) in)))))
 
 (defmethod get-type ((-- symbol)) sym-type)
-  

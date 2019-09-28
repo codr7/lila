@@ -1,4 +1,4 @@
-const REPS 100
+const REPS 10
 const N 20
 
 fun fib1(n:Int) {
@@ -7,8 +7,5 @@ fun fib1(n:Int) {
   }
 }
 
-N.fib1
-$.dump
-
-REPS.clock { N.fib1 }
-$.dump
+{N.fib1}.dump
+{REPS.clock {N.fib1}}.dump

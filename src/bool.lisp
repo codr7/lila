@@ -35,8 +35,7 @@
 (defmethod print-object ((-- false) out)
   (write-string "false" out))
 
-(defmethod to-bool ((-- false))
-  nil)
+(defmethod to-bool ((-- false)))
 
 
 (defun make-bool (v)

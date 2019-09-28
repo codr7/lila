@@ -1,7 +1,7 @@
 ![Logo](logo.png)
 
 ### intro
-[lila](https://github.com/codr7/lila) is a toolkit for building programming languages on top of [Common Lisp](http://www.lispworks.com/documentation/HyperSpec/Front/), and a language implemented using it.
+[lila](https://github.com/codr7/lila) is a cleaner, less nested higher-level language in [Common Lisp](http://www.lispworks.com/documentation/HyperSpec/Front/). 
 
 ```
 fun fib(n:Int) {
@@ -12,11 +12,12 @@ fun fib(n:Int) {
 ```
 
 ### setup
-The following shell spell should get you started. Note that [SBCL](http://www.sbcl.org/) and [Quicklisp](https://www.quicklisp.org/beta/) are currently required to build [lila](https://github.com/codr7/lila).
+The following script should be enough to get started. Note that [SBCL](http://www.sbcl.org/) and [Quicklisp](https://www.quicklisp.org/beta/) are required to build [lila](https://github.com/codr7/lila).
 
 ```
 $ git clone https://github.com/codr7/lila.git
 $ cd lila
+$ ln -s "$(pwd)/lila.asd" ~/quicklisp/local-projects
 $ mkdir dist
 $ ./makedist
 $ dist/lila
@@ -31,42 +32,22 @@ empty input clears stack.
 ```
 
 ### status
-The paint is still wet, but what is there works well enough to compile basic [benchmarks](https://github.com/codr7/lila/blob/master/bench/) and generate standalone executables.
+[lila](https://github.com/codr7/lila) currently weighs in at around 700 lines and supports running all examples in this document as well as basic [benchmarks](https://github.com/codr7/lila/blob/master/bench/) and generating standalone executables.
 
 ```
 $ dist/lila -build dist/pair bench/pair.lila
 ...
 $ dist/pair
-912
+76
 ```
 
 ### basics
-Forms are evaluated left to right. [lila](https://github.com/codr7/lila) treats macro and function names as calls, `&` may be used to get a reference. Both are generic with fixed arity, and will consume as many forms when called.
+[lila](https://github.com/codr7/lila) treats bare macro and function names as calls; both are generic with fixed arity, and consume as many forms when called.
 
 ```
   + 1 2 + 3 4
 
 ... 3 7
-```
-
-The parameter stack is first class, `$` represents the last value.
-
-```
-  35 7
-
-... 35 7
-
-  + $ $
-
-... 42
-```
-
-`pop` may be used to skip the last value on the stack.
-
-```
-  1 2 3 pop
-
-... 1 2
 ```
 
 Curlies allow controlling evaluation order.
@@ -77,7 +58,7 @@ Curlies allow controlling evaluation order.
 ... 42
 ```
 
-In simple cases such as previous example, `;` may be used to reduce nesting.
+In simple cases such as previous example, `;` may be used instead to reduce nesting.
 
 ```
   {* 6; + 3 4}
@@ -102,6 +83,22 @@ Dot notation allows specifying the called macro/function infix.
   Int?
 
 ... Int?
+```
+
+### Types
+
+#### Pair
+Pairs allow treating two values as one.
+
+```
+  {
+    var a:b 1:2
+    a.dump
+    b.dump
+  }
+
+1
+2
 ```
 
 ### license

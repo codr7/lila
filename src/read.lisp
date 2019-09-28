@@ -64,10 +64,6 @@
                (read-char in nil)
                (incf (col *pos*))
                _)
-              (#\$
-               (read-char in nil)
-               (incf (col *pos*))
-               $)
               (#\.
                (read-char in nil)
                (incf (col *pos*))

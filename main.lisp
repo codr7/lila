@@ -34,8 +34,7 @@
                  (funcall f)))
              (output-main ()
                (with-env ()
-                 (with-stack ()
-                   (run-files)))))
+                   (run-files))))
       (case mode
         ((:default :repl)
          (run-files)

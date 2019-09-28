@@ -8,14 +8,9 @@
 (defun make-expr (&rest args)
   (apply #'make-instance 'expr args))
 
-(defmethod compile-val ((e expr) in out &key (pos *pos*))
-  (values in (cons (make-do-op pos :body (compile-vals (body e))) out)))
-
-(defmethod emit-val ((e expr) &key (pos *pos*))
+(defmethod emit-val ((e expr) &key in out (pos *pos*))
   (declare (ignore pos))
-  
-  `(progn
-     ,@(emit-vals (body e))))
+  (values (cons (get-form (emit-vals (body e))) out) in))
   
 (defmethod get-type ((-- expr))
   expr-type)

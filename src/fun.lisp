@@ -29,18 +29,17 @@
 (defmethod get-type ((-- fun))
   fun-type)
 
-(defmethod call ((f fun) &key (pos *pos*))
+(defmethod call ((f fun) args &key (pos *pos*))
   (with-slots (nargs imp) f
-    (when (< (length *stack*) nargs)
+    (when (< (length args) nargs)
       (esys pos "Not enough arguments: ~a" f))
     
     (let (types vals)
-      (dotimes (-- nargs)
-        (let ((v (pop-val)))
-          (push (get-type v) types)
-          (push v vals)))
+      (dolist (v args)
+        (push (get-type v) types)
+        (push v vals))
 
-      (apply imp `(,@types ,pos ,@vals)))))
+      (apply imp `(,@(nreverse types) ,pos ,@(nreverse vals))))))
 
 (defmethod print-object ((f fun) out)
   (with-slots (id) f

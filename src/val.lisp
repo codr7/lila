@@ -1,24 +1,30 @@
 (in-package lila)
 
-(defmethod compile-val (val in out &key (pos *pos*))
-  (values in (cons (make-push-op pos val) out)))
+(defmethod emit-val (val &key in out (pos *pos*))
+  (declare (ignore pos))
+  (values (cons val out) in))
 
-(defun compile-vals (in &key out (reverse? t))
+(defun emit-vals (in &key out (reverse? t))
   (labels ((rec (in out)
              (if in
                  (let ((v (first in)))
-                   (multiple-value-bind (in out)
-                       (compile-val (first v) (rest in) out :pos (rest v))
-                     (rec in out)))
+                   (multiple-value-bind (out2 in2)
+                       (emit-val (first v) :in (rest in) :out out :pos (rest v))
+                     (rec in2 out2)))
                  (if reverse? (nreverse out) out))))
-    (rec in (if reverse? (reverse out) out))))
+    (let ((prev-env *env*))
+      (with-env ((clone-env))
+        (let ((code (rec in (if reverse? (reverse out) out)))
+              vars)
+          (do-env (id v)
+            (when (and (undef? v) (eq (get-val id :env prev-env :default _) _))
+              (push (lisp-id id) vars)))
+          
+          (if vars
+              `((let (,@vars) ,@code))
+              code))))))
 
-(defmethod emit-val (val &key (pos *pos*))
-  (declare (ignore pos))
-  val)
-
-(defun emit-vals (in &key out)
-  (emit-ops (compile-ops (compile-vals in)) :out out))
-
-(defmethod splat-val (val)
-  (push-val val))
+(defun get-form (in)
+  (if (rest in)
+      `(progn ,@in)
+      (first in)))

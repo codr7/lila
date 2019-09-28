@@ -11,22 +11,16 @@
      #+CMU extensions:*command-line-words*
      nil))
 
-(defun lila-compile (ops)
-  (with-env ((clone-env))
-    (let ((code (emit-ops (compile-ops ops))) vars)
-      (do-env (id v)
-        (when (undef? v)
-          (push (lisp-id id) vars)))
-      (when vars
-        (setf code `((let (,@vars) ,@code))))
-      (format t "~a~%" code)
-      (compile nil `(lambda ()
-                      ,@code)))))
+(defun lila-compile (vals)
+  (let ((code (emit-vals vals)) vars)
+    ;(format t "~a~%" code)
+    (compile nil `(lambda ()
+                    ,@code))))
 
 (defun lila-load (filename)
   (with-open-file (in filename)
     (let ((*pos* (new-pos :file filename)))
-      (lila-compile (compile-vals (read-vals in))))))
+      (lila-compile (read-vals in)))))
 
 (defmethod dump-val (v out)
   (print-object v out))

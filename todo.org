@@ -1,21 +1,25 @@
-var ms REPS.clock { N.fib1 }
-ms.dump
-
-* move op compile logic to emit-op
-** expand var op to lisp calls
-*** remove splat op
-* remove ops
-** remove stack.lisp
-** use emit-val & lisp stack
-** bench
+* move op compile logic to emit-val
+** move clone-env/generation of let form for vars to emit-vals
+*** replaces clone-env in expr emit & fun body
+** fix pair bench
+** skip p in var-emit?
+** improve codegen
+*** add (get-form in)
+*** don't add progn if only one form
 ** update readme
-* add support for foo[...] in read-id
-* return fun from macro
+** commit
+* --
 * add types to readme
 ** add type-of/is-a funs
 * add sum types
 ** Foo|Bar|Baz
 *** use sb-mop:add-direct-subclass
+* add separate fun instance foo[...] 
+** add support for [...] in read-id
+** use find-method to get imp
+* return fun from macro if _ id
+** gensym id
+
 * add value dispatch
 ** use eql-specifier with gensym unless arg is sym or pair & first is sym
 ** fun fib1(0) {0}
