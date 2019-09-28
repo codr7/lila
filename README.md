@@ -97,5 +97,15 @@ Pairs allow treating two values as one.
 2
 ```
 
+### Performance
+`-debug`, `-safety` and/or `-speed` may be specified on the command line.
+
+```
+$ dist/lila bench/pair.lila
+72
+$ dist/lila -safety 0 bench/pair.lila
+0
+```
+
 ### license
 [MIT](https://github.com/codr7/lila/blob/master/LICENSE.txt)

@@ -1,6 +1,6 @@
 (defsystem lila
   :name "lila"
-  :version "8"
+  :version "9"
   :maintainer "codr7"
   :author "codr7"
   :description "a cleaner, less nested higher-level language in Common Lisp"
@@ -30,6 +30,7 @@
                (:file "src/list")
 
                (:file "src/read")
+               (:file "src/compile")
                (:file "src/io")
                (:file "src/repl")
 

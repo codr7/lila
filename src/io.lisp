@@ -11,12 +11,6 @@
      #+CMU extensions:*command-line-words*
      nil))
 
-(defun lila-compile (vals)
-  (let ((code (emit-vals vals)) vars)
-    ;(format t "~a~%" code)
-    (compile nil `(lambda ()
-                    ,@code))))
-
 (defun lila-load (filename)
   (with-open-file (in filename)
     (let ((*pos* (new-pos :file filename)))
