@@ -26,7 +26,7 @@ lila
 Press Return on empty row to evaluate,
 empty input clears stack.
 
-  + 35 7
+  * 6 7
 
 42
 ```
@@ -45,9 +45,9 @@ $ dist/pair
 [lila](https://github.com/codr7/lila) treats bare macro and function names as calls; both are generic with fixed arity, and consume as many forms when called.
 
 ```
-  + 1 2 + 3 4
+  * 6 7
 
-... 3 7
+42
 ```
 
 Curlies allow controlling evaluation order.
@@ -55,7 +55,7 @@ Curlies allow controlling evaluation order.
 ```
   {* 6 {+ 3 4}}
   
-... 42
+42
 ```
 
 In simple cases such as previous example, `;` may be used instead to reduce nesting.
@@ -63,7 +63,7 @@ In simple cases such as previous example, `;` may be used instead to reduce nest
 ```
   {* 6; + 3 4}
   
-... 42
+42
 ```
 
 Dot notation allows specifying the called macro/function infix.
@@ -71,10 +71,7 @@ Dot notation allows specifying the called macro/function infix.
 ```
   42.neg
   
-... -42
-  $.abs
-  
-... 42
+-42
 ```
 
 `_` represents missing values, its type is `None`. Suffixing any type except `None` with `?` gives a sum type that also matches missing values.
@@ -82,7 +79,7 @@ Dot notation allows specifying the called macro/function infix.
 ```
   Int?
 
-... Int?
+Int?
 ```
 
 ### Types
