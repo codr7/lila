@@ -1,5 +1,10 @@
 * add types to readme
 ** add type-of/is-a funs
+* add recall macro
+** optional fun arg
+*** call self if arg is _
+** emit (return (call f ...))
+* add fib_tail bench
 * add sum types
 ** Foo|Bar|Baz
 *** use sb-mop:add-direct-subclass
@@ -17,11 +22,6 @@
 * add macro refs
 ** &bar
 ** generate (lambda (x y) (foo x y))
-* add recall macro
-** optional fun arg
-*** call self if arg is _
-** emit (return (call f ...))
-* add fib_tail bench
 * ---
 * add Time type
 ** use local-time
