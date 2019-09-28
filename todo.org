@@ -1,14 +1,3 @@
-* move op compile logic to emit-val
-** move clone-env/generation of let form for vars to emit-vals
-*** replaces clone-env in expr emit & fun body
-** fix pair bench
-** skip p in var-emit?
-** improve codegen
-*** add (get-form in)
-*** don't add progn if only one form
-** update readme
-** commit
-* --
 * add types to readme
 ** add type-of/is-a funs
 * add sum types
