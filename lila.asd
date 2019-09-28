@@ -30,6 +30,7 @@
                (:file "src/ops/const")
                (:file "src/ops/do")
                (:file "src/ops/emit")
+               (:file "src/ops/fun")
                (:file "src/ops/get")
                (:file "src/ops/push")
                (:file "src/ops/splat")

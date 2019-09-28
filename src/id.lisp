@@ -1,8 +1,9 @@
 (in-package lila)
 
-(defmacro lisp-id (id)
-  `(or (get ,id :lisp-id)
-       (setf (get ,id :lisp-id) (gensym (symbol-name ,id)))))
+(defun lisp-id (id)
+  (or (get id :lisp-id)
+      (setf (get id :lisp-id)
+            (intern (symbol-name (gensym (symbol-name id)))))))
 
 (defun make-id (id)
   (intern id :keyword))

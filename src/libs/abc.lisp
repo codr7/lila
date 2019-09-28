@@ -35,9 +35,14 @@
     (dump-val val *stdout*)
     (terpri *stdout*))
 
+  (let-macro fun (pos out id args expr)
+    (cons (make-fun-op pos id args expr) out))
+
   (let-lisp-macro if (pos cond x y)
     `(push-val
-      (if (to-bool ,(emit-val cond :pos pos))
+      (if (to-bool (progn
+                     ,(emit-val cond :pos pos)
+                     (pop-val)))
           ,(unless (eq x _) (emit-val x :pos pos))
           ,(unless (eq y _) (emit-val y :pos pos)))))
 

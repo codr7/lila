@@ -17,9 +17,9 @@
   (or (pair? v) (> (length v) 0)))
 
 (defmethod splat-val ((lst list))
-  (if (pair? lst)
-      (progn
-        (push-val (first lst))
-        (push-val (rest lst)))
-      (dolist (v lst)
-        (push-val v))))
+  (cond
+    ((pair? lst)
+     (push-val (first lst))
+     (push-val (rest lst)))
+    (t (dolist (v lst)
+         (push-val v)))))

@@ -13,7 +13,7 @@
   (let* ((v (get-val id :pos pos :default _))
          (vt (get-type v)))
     (cond
-      ((eq v _)
+      ((or (eq v _) (undef? v))
        (values in (cons (make-get-op pos id) out)))
       ((eq vt fun-type)
        (with-slots (nargs) v
@@ -27,7 +27,7 @@
 
 (defmethod emit-val ((id symbol) &key (pos *pos*))
   (let ((v (get-val id :pos pos :default _)))
-    (if (eq v _) `(get-val ',id :pos ,pos) (emit-val v :pos pos))))
+    (if (or (eq v _) (undef? v)) (lisp-id id) (emit-val v :pos pos))))
 
 (defmethod get-type ((-- symbol)) sym-type)
   

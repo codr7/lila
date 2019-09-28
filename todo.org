@@ -1,22 +1,35 @@
-* fib_rec
-** add fun op
-*** push fun on stack if nil id
-*** compile/call defmethod form
-* --
+var ms REPS.clock { N.fib1 }
+ms.dump
+
+* move op compile logic to emit-op
+** expand var op to lisp calls
+*** remove splat op
+* remove ops
+** remove stack.lisp
+** use emit-val & lisp stack
+** bench
+** update readme
+* add support for foo[...] in read-id
+* return fun from macro
 * add types to readme
 ** add type-of/is-a funs
-* add support for unnamed args
-** leave values on stack
-** don't include in lisp method arg list
-* add list literals
-** (...)
-* add lambdas
-** fun with nil id & lambda imp
+* add sum types
+** Foo|Bar|Baz
+*** use sb-mop:add-direct-subclass
+* add value dispatch
+** use eql-specifier with gensym unless arg is sym or pair & first is sym
+** fun fib1(0) {0}
 * add fun refs
 ** &foo
 * add macro refs
 ** &bar
 ** generate (lambda (x y) (foo x y))
+* add recall macro
+** optional fun arg
+*** call self if arg is _
+** emit (return (call f ...))
+* add fib_tail bench
+* ---
 * add Time type
 ** use local-time
 ** add now/today funs
@@ -40,10 +53,6 @@
 ** trigger in read-id
 ** single form
 ** do-lisp (+ 1 2)
-* add recall op
-** optional fun arg
-*** call self if arg is _
-** (return ((lisp-id f) pos ...))
 * add -compile switch
 ** dump lisp code
 +* add do-lila reader macro

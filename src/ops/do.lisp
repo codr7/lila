@@ -13,7 +13,7 @@
     (when body
       (setf ops
             (with-env ((clone-env))
-              (compile-ops (compile-vals body))))))
+              (compile-ops body)))))
   (values in (cons op out)))
 
 (defmethod emit-op ((op do-op) out)

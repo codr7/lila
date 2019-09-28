@@ -1,4 +1,4 @@
-const REPS 1000000
+const REPS 100
 const N 20
 
 fun fib1(n:Int) {
@@ -7,5 +7,8 @@ fun fib1(n:Int) {
   }
 }
 
-REPS.clock N.fib1
+N.fib1
+$.dump
+
+REPS.clock { N.fib1 }
 $.dump

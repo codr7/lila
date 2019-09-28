@@ -24,9 +24,12 @@
                 (let ((c (read-char in nil)))
                   (when c
                     (unless (or (whitespace? c)
+                                (char= c #\()
+                                (char= c #\))
                                 (char= c #\{)
                                 (char= c #\})
                                 (char= c #\:)
+                                (char= c #\;)
                                 (char= c #\.))
                       (incf (col *pos*))
                         (write-char c out)
@@ -76,6 +79,7 @@
                    (unless ok?
                      (esys *pos* "Missing call")))
                  (first target)))
+              (#\( (read-list in))
               (#\{ (read-expr in))
               (otherwise
                (if (digit-char-p c)
@@ -130,6 +134,29 @@
     (let ((out (make-expr)))
       (read-body out)
       out)))
+
+(defun read-list (in)
+  (unless (char= (read-char in nil) #\()
+    (esys *pos* "Invalid list start"))
+
+  (incf (col *pos*))
+
+  (labels ((rec (out)
+             (let ((c (read-char in nil)))
+               (unless c
+                 (esys *pos* "Missing list end"))
+         
+               (if (char= c #\))
+                   (progn
+                     (incf (col *pos*))
+                     (nreverse (mapcar #'first out)))
+                   (progn
+                     (unread-char c in)
+                     (multiple-value-bind (out2 ok?) (read-val in out)
+                       (unless ok?
+                         (esys *pos* "Missing list end"))
+                       (rec out2)))))))
+    (rec nil)))
 
 (defun read-vals (in &key out)
   (setf out (reverse out))

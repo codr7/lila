@@ -19,6 +19,7 @@
           (push (lisp-id id) vars)))
       (when vars
         (setf code `((let (,@vars) ,@code))))
+      (format t "~a~%" code)
       (compile nil `(lambda ()
                       ,@code)))))
 
