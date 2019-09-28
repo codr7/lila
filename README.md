@@ -23,8 +23,7 @@ $ ./makedist
 $ dist/lila
 lila
 
-Press Return on empty row to evaluate,
-empty input clears stack.
+Press Return on empty row to evaluate.
 
   * 6 7
 
