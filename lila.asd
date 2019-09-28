@@ -32,7 +32,6 @@
                (:file "src/read")
                (:file "src/io")
                (:file "src/repl")
-               (:file "src/test")
 
                (:file "src/libs/abc")
                (:file "src/libs/math")))
