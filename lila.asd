@@ -3,7 +3,7 @@
   :version "8"
   :maintainer "codr7"
   :author "codr7"
-  :description "Lisp language toolkit"
+  :description "a cleaner, less nested higher-level language in Common Lisp"
   :licence "MIT"
   :serial t
   :components ((:file "src/lila")
