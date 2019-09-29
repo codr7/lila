@@ -1,7 +1,13 @@
 * add list lib with push/pop/len funs
 * add sum types
 ** Foo|Bar|Baz
-*** use sb-mop:add-direct-subclass
+*** use derive-class
+* add assignment
+** foo = 42
+** check that binding exists at emit
+** expand to (setf)
+* add fib_iter bench
+* --
 * add lambda support
 ** gensym id if _
 ** return fun from macro   
