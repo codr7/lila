@@ -1,6 +1,6 @@
 (in-package lila)
 
-(defvar *speed* 4)
+(defvar *speed* 0)
 
 (defvar *debug-levels*
   #(3 2 1 0 2 1 0 1 0 0))

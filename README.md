@@ -157,7 +157,7 @@ debugger invoked on a SB-PCL::NO-APPLICABLE-METHOD-ERROR in thread
 ```
 
 ### performance
-Optimization level may be set by passing `-speed` on the command line. The accepted range is `0`-`9`, with `9` being the fastest; and the default is `4`.
+Optimization level may be set by passing `-speed` on the command line. The accepted range is `0`-`9`, with `9` being the fastest and `0` default.
 
 ```
 $ dist/lila bench/pair.lila
