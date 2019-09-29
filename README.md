@@ -137,7 +137,7 @@ Arguments get type `Any` by default, which means they don't allow missing values
 
 ```
   {
-    fun foo(x) {x}
+    fun foo(x) {42}
     foo _
   }
 
@@ -147,10 +147,11 @@ debugger invoked on a SB-PCL::NO-APPLICABLE-METHOD-ERROR in thread
 
 ```
   {
-    fun foo(x:Any?) {x}
+    fun foo(x:Any?) {42}
     foo _
   }
-_
+  
+42
 ```
 
 ### performance
