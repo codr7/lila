@@ -129,13 +129,13 @@ Pairs allow treating two values as one.
 ```
 
 ### performance
-`-debug`, `-safety` and/or `-speed` may be specified on the command line.
+`-speed` may be specified on the command line; it accepts values from `0`, which is the default, to `3`.
 
 ```
 $ dist/lila bench/pair.lila
 72
-$ dist/lila -safety 0 bench/pair.lila
-0
+$ dist/lila -speed 3 bench/pair.lila
+4
 ```
 
 ### license

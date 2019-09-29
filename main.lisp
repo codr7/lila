@@ -20,10 +20,6 @@
                       (setf output-filename (pop in)))
                      ((string= a "-repl")
                       (setf mode :repl))
-                     ((string= a "-debug")
-                      (setf *debug* (parse-integer (pop in))))
-                     ((string= a "-safety")
-                      (setf *safety* (parse-integer (pop in))))
                      ((string= a "-speed")
                       (setf *speed* (parse-integer (pop in))))
                      (t
