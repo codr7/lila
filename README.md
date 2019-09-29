@@ -81,9 +81,9 @@ Dot notation allows specifying the called macro/function infix.
 Int?
 ```
 
-### Types
+### types
 
-#### Pair
+#### pair
 Pairs allow treating two values as one.
 
 ```
@@ -97,7 +97,7 @@ Pairs allow treating two values as one.
 2
 ```
 
-### Performance
+### performance
 `-debug`, `-safety` and/or `-speed` may be specified on the command line.
 
 ```
