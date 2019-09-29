@@ -23,7 +23,10 @@
     (setf parents (mapcar (lambda (p)
                             (get-type-id p))
                           (or parents '(lila))))
-    
+
+    (unless (eq type-id 'none-type)
+      (push opt-type-id parents))
+        
     (push `(defclass ,type-id (,@parents)
              ())
           forms)
