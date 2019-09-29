@@ -8,6 +8,25 @@
 * add value dispatch
 ** use eql-specifier with gensym unless arg is sym or pair & first is sym
 ** fun fib(0) {0}
+* add Str type
+** add reader support
+* add -emit-lisp/asm commandline args
+* add quote support
+** trigger on ' in reader
+** call (quote val)
+*** stored as (cons 'quote val)
+** add quote type
+** adapt list methods to handle quotes
+
+* add tests
+** add check macro
+* add lisp read-macro
+** add do-lisp op
+** add read macros
+** trigger in read-id
+** single form
+** do-lisp (+ 1 2)
+** dump lisp code
 * ---
 * add fun refs
 ** &foo
@@ -35,27 +54,12 @@
 ** new-set {'foo 'bar}
 ** new-map {'foo 1 'bar 2}
 ** new-id-map {foo 1 bar 2}
-* add quote support
-** trigger on ' in reader
-** call (quote val)
-*** stored as (cons 'quote val)
-** add quote type
-** adapt list methods to handle quotes
-* add check macro
-** check {= foo 42}
-* add test/suite.lila
-* add lisp read-macro
-** add do-lisp op
-** add read macros
-** trigger in read-id
-** single form
-** do-lisp (+ 1 2)
-* add -compile switch
-** dump lisp code
-+* add do-lila reader macro
+* add do-lila reader macro
 ** read vals until next char is #\)
 * ---
-* add lila-thread plugin
-** plugin.lisp/(link)
+* add lila-crypt plugin
+** libsodium
+** plugin.lisp
+* add threads
 ** use sbcl threads
 ** add thread/chan types
