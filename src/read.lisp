@@ -91,10 +91,10 @@
                   (setf out out2)
                   (unless ok?
                     (esys *val-pos* "Invalid pair"))
-                  (setf v (cons v (first (pop out))))))
+                  (let ((rv (first (pop out))))
+                    (setf v (cons v (if (eq rv *empty-list*) nil rv))))))
               (unread-char c in)))
         
-        (when (eq v :empty-list) (setf v nil))
         (values (cons (cons v *val-pos*) out) t))
       (values out nil))))
 
@@ -154,7 +154,7 @@
                     (unless ok?
                       (esys *pos* "Missing list end"))
                     (rec out2)))))))
-    (or (rec nil) :empty-list)))
+    (or (rec nil) *empty-list*)))
 
 (defun read-vals (in &key out)
   (setf out (reverse out))

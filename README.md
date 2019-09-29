@@ -148,7 +148,15 @@ Pairs allow treating two values as one.
 1:2
 ```
 
-The easiest way to deconstruct a pair is to bind its parts to separate names.
+Pairs are closely related to lists, zipping any value with the empty list evaluates to a one element list.
+
+```
+42:()
+  
+(42)
+```
+
+Paired values may be extracted using bindings.
 
 ```
   {

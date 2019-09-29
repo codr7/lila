@@ -1,10 +1,4 @@
-* handle empty list in repl
-** ()
-** sym
-** add empty-list struct
-** add *empty-list*
-** add list lib with zip/unzip/push/pop/len
-** add make-list/to-list for converting
+* add list lib with push/pop/len funs
 * add sum types
 ** Foo|Bar|Baz
 *** use sb-mop:add-direct-subclass

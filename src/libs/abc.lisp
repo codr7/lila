@@ -49,12 +49,14 @@
     (terpri *stdout*))
 
   (let-macro fun (pos out (id sym) (args list) (body expr))
+    (setf args (to-list args))
+    
     (when (eq (get-val id :default _) _)
       (let-id (make-instance 'fun
                              :id id 
                              :nargs (length args)
                              :imp (ensure-generic-function (lisp-id id)))))
-
+    
     (with-env ((clone-env))
       (dolist (a args)
         (let-val (make-id (symbol-name (get-arg-id a)))

@@ -9,8 +9,8 @@
     ((= x y) :eq)
     (t :gt)))
 
-(defmethod get-type ((val integer))
+(defmethod get-type ((-- integer))
   int-type)
 
-(defmethod to-bool ((val integer))
-  (> val 0))     
+(defmethod to-bool ((v integer))
+  (not (zerop v 0)))     
