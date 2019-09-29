@@ -14,7 +14,7 @@
 (defmacro define-type (id (&rest parents))
   (let* ((ids (string-downcase (symbol-name id)))
          (type-id (get-type-id id))
-         (opt-type-id (get-type-id (symf "~a-opt" ids)))
+         (opt-type-id (get-type-id (symf "~a?" ids)))
          forms)
     (push `(defvar ,type-id
              (make-instance ',type-id :id ,(make-id (caps! ids))))
@@ -23,9 +23,6 @@
     (setf parents (mapcar (lambda (p)
                             (get-type-id p))
                           (or parents '(lila))))
-    
-    (unless (eq type-id 'none-type)
-      (push opt-type-id parents))
     
     (push `(defclass ,type-id (,@parents)
              ())
@@ -44,8 +41,8 @@
 (defmethod initialize-instance :after ((obj lila-type) &key)
   (with-slots (id opt-type) obj
     (unless (or (eq (id obj) (make-id "None")) (opt? obj))
-      (let ((opt-ids (format nil "~a?" (string-downcase (symbol-name (id obj)))))
-            (opt-id (symf "~a-opt-type" (string-downcase (symbol-name (id obj))))))
+      (let* ((opt-ids (format nil "~a?" (string-downcase (symbol-name (id obj)))))
+             (opt-id (get-type-id (intern opt-ids))))
         (setf opt-type (make-instance opt-id
                                       :id (make-id (caps! opt-ids))
                                       :opt? t))))))

@@ -1,5 +1,3 @@
-* rename x-opt-type to x?-type
-** grep opt
 * add recall macro
 ** optional fun arg
 *** call self if arg is _

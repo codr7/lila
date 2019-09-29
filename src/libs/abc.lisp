@@ -31,7 +31,7 @@
     (let-val id val :pos pos)
     out)
   
-  (let-fun dump (pos val)
+  (let-fun dump (pos (val any?))
     (dump-val val *stdout*)
     (terpri *stdout*))
 
@@ -66,10 +66,10 @@
   (let-fun is (pos x y)
     (make-bool (eq x y)))
 
-  (let-fun is-a (pos child parent)
+  (let-fun is-a (pos (child meta) (parent meta))
     (make-bool (is-a child parent)))
 
-  (let-fun type-of (pos (v any-opt))
+  (let-fun type-of (pos (v any?))
     (get-type v))
   
   (let-macro var (pos out id val)
