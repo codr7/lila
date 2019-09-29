@@ -1,3 +1,5 @@
+* rename x-opt-type to x?-type
+** grep opt
 * replace add-direct-superclass with redefine/bind of none-type
 ** inherit all previous superclasses and the new one
 * add recall macro
