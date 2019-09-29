@@ -1,6 +1,5 @@
 * add recall macro
-** optional fun arg
-*** call self if arg is _
+*** call this-fun if arg is _
 ** emit (return (call f ...))
 * add fib_tail bench
 * add true/false constants in abc lib

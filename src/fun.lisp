@@ -1,5 +1,7 @@
 (in-package lila)
 
+(defvar *this-fun* _)
+
 (defclass fun ()
   ((id :initarg :id :reader id)
    (nargs :initarg :nargs :reader nargs)
@@ -39,11 +41,16 @@
         (push (get-type v) types)
         (push v vals))
 
-      (apply imp `(,@(nreverse types) ,pos ,@(nreverse vals))))))
+      (let ((*this-fun* f))
+        (apply imp `(,@(nreverse types) ,pos ,@(nreverse vals)))))))
 
 (defmethod print-object ((f fun) out)
   (with-slots (id) f
     (format out "~a:Fun" (if id (symbol-name id) #\_))))
+
+(defmethod dump-val ((f generic-function) out)
+  (with-slots (id) f
+    (format out "~a:Fun" (if id (symbol-name f) #\_))))
 
 
 

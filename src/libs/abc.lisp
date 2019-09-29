@@ -69,6 +69,9 @@
   (let-fun is-a (pos (child meta) (parent meta))
     (make-bool (is-a child parent)))
 
+  (let-macro this-fun (pos out)
+    (cons '*this-fun* out))
+
   (let-fun type-of (pos (v any?))
     (get-type v))
   

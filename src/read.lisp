@@ -93,6 +93,8 @@
                     (esys *val-pos* "Invalid pair"))
                   (setf v (cons v (first (pop out))))))
               (unread-char c in)))
+        
+        (when (eq v :empty-list) (setf v nil))
         (values (cons (cons v *val-pos*) out) t))
       (values out nil))))
 
@@ -142,17 +144,17 @@
                (unless c
                  (esys *pos* "Missing list end"))
          
-               (if (char= c #\))
-                   (progn
-                     (incf (col *pos*))
-                     (nreverse (mapcar #'first out)))
-                   (progn
-                     (unread-char c in)
-                     (multiple-value-bind (out2 ok?) (read-val in out)
-                       (unless ok?
-                         (esys *pos* "Missing list end"))
-                       (rec out2)))))))
-    (rec nil)))
+               (cond
+                 ((char= c #\))
+                  (incf (col *pos*))
+                  (nreverse (mapcar #'first out)))
+                 (t
+                  (unread-char c in)
+                  (multiple-value-bind (out2 ok?) (read-val in out)
+                    (unless ok?
+                      (esys *pos* "Missing list end"))
+                    (rec out2)))))))
+    (or (rec nil) :empty-list)))
 
 (defun read-vals (in &key out)
   (setf out (reverse out))
