@@ -25,6 +25,14 @@
 ** &bar
 ** generate (lambda (x y) (foo x y))
 * ---
+* add packages
+** package foo (exports)
+** create package if not exists
+*** use cl/lila
+** export lisp-ids
+** add import foo (ids)
+** special case dot access for packages
+*** emit as package:xxx
 * add Time type
 ** use local-time
 ** add now/today funs
