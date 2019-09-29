@@ -33,7 +33,7 @@ Press Return on empty row to evaluate.
 ```
 
 ### status
-[lila](https://github.com/codr7/lila) currently weighs in at around 700 lines and supports running all examples in this document as well as basic [benchmarks](https://github.com/codr7/lila/blob/master/bench/) and generating standalone executables.
+[lila](https://github.com/codr7/lila) currently weighs in at around 700 lines and supports everything in this document as well as basic [benchmarks](https://github.com/codr7/lila/blob/master/bench/) and generating standalone executables.
 
 ```
 $ dist/lila -build dist/pair bench/pair.lila
