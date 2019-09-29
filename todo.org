@@ -1,7 +1,11 @@
+(reinitialize-instance (find-class none-type)
+                       :direct-superclasses `(,(find-class 'foo?-type)))
+
 * rename x-opt-type to x?-type
 ** grep opt
-* replace add-direct-superclass with redefine/bind of none-type
-** inherit all previous superclasses and the new one
+* fix none-type
+** drop add-direct-superclass 
+** reinitialize-instance?
 * add recall macro
 ** optional fun arg
 *** call self if arg is _
