@@ -33,7 +33,7 @@ Press Return on empty row to evaluate.
 ```
 
 ### status
-The current implementation weighs in below 1 kloc and supports everything in this document as well as basic [benchmarks](https://github.com/codr7/lila/blob/master/bench/).
+The current implementation weighs in below 1 kloc and supports everything described in this document.  
 
 ```
 $ dist/lila -build dist/pair bench/pair.lila

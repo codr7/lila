@@ -1,3 +1,5 @@
+* add tests
+** add check macro
 * add list lib with push/pop/len funs
 * add sum types
 ** Foo|Bar|Baz
@@ -28,8 +30,6 @@
 ** add quote type
 ** adapt list methods to handle quotes
 
-* add tests
-** add check macro
 * add lisp read-macro
 ** add do-lisp op
 ** add read macros
