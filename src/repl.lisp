@@ -18,8 +18,9 @@
                    (restart-case
                        (let* ((*pos* (new-pos))
                               (vals (read-vals (make-string-input-stream in)))
-                              (imp (lila-compile vals)))
-                         (fmt "~a~%" (funcall imp)))
+                              (imp (lila-compile vals))
+                              (result (funcall imp)))
+                         (fmt "~a~%" (if (null result) _ result)))
                      (ignore ()
                        :report "Ignore condition.")))
                  (write-string in buf))
