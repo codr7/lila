@@ -73,14 +73,6 @@ Dot notation allows specifying the called macro/function infix.
 -42
 ```
 
-`_` represents missing values, its type is `None`. Suffixing any type except `None` with `?` gives a sum type that also matches missing values.
-
-```
-  Int?
-
-Int?
-```
-
 ### types
 
 #### meta
@@ -101,7 +93,7 @@ Meta
 None
 ```
 
-Suffixing any type except `None` with `?` evaluates to a type that matches the specified type or `None`.
+Suffixing any type except `None` with `?` evaluates to a sum type that matches the specified type and `None`.
 
 ```
   is-a None Int
