@@ -3,6 +3,7 @@
 *** call self if arg is _
 ** emit (return (call f ...))
 * add fib_tail bench
+* add true/false constants in abc lib
 * add sum types
 ** Foo|Bar|Baz
 *** use sb-mop:add-direct-subclass
