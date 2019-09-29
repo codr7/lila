@@ -66,6 +66,12 @@
   (let-fun is (pos x y)
     (make-bool (eq x y)))
 
+  (let-fun is-a (pos child parent)
+    (make-bool (is-a child parent)))
+
+  (let-fun type-of (pos (v any-opt))
+    (get-type v))
+  
   (let-macro var (pos out id val)
     (let ((p (gensym)) (x (gensym)) (y (gensym)))
       (labels ((let-vals (id var)

@@ -83,6 +83,37 @@ Int?
 
 ### types
 
+#### meta
+`Meta` is the type of all types, including itself.
+
+```
+  type-of Meta
+
+Meta
+```
+
+#### none
+`None` represents missing values and has exactly one instance named `_`.
+
+```
+  type-of _
+
+None
+```
+
+Suffixing any type except `None` with `?` evaluates to a type that matches the specified type or `None`.
+
+```
+  is-a None Int
+
+false
+```
+```
+  is-a None Int?
+
+true
+```
+
 #### pair
 Pairs allow treating two values as one.
 

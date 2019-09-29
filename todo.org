@@ -1,5 +1,5 @@
-* add types to readme
-** add type-of/is-a funs
+* replace add-direct-superclass with redefine/bind of none-type
+** inherit all previous superclasses and the new one
 * add recall macro
 ** optional fun arg
 *** call self if arg is _

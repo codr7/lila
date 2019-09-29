@@ -19,7 +19,7 @@
        (with-slots (nargs) v
          (multiple-value-bind (args in2) (split in nargs)
            (values (cons `(call ,v (list ,@(emit-vals args)) :pos ,pos) out) in2))))
-      ((is-a? vt macro-type)
+      ((is-a vt macro-type)
        (expand v in out :pos pos))
       (t
        (values (cons v out) in)))))

@@ -5,7 +5,7 @@
    (opt? :initform nil :initarg :opt? :reader opt?)
    (opt-type :initform nil :reader opt-type)))
 
-(defun is-a? (child parent)
+(defun is-a (child parent)
   (subtypep (type-of child) (type-of parent)))
 
 (defmacro get-type-id (s)
