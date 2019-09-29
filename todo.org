@@ -28,6 +28,7 @@
 * add packages
 ** package foo (exports)
 ** create package if not exists
+** auto in-package
 *** use cl/lila
 ** export lisp-ids
 ** add import foo (ids)
