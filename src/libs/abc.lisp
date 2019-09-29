@@ -18,15 +18,26 @@
   (let-type sym-type)
   (let-type true-type)
 
+  (let-val (make-id "true") true)
+  (let-val (make-id "false") false)
+  
   (let-fun < (pos x y)
     (make-bool (eq (compare-vals x y) :lt)))
 
   (let-fun > (pos x y)
     (make-bool (eq (compare-vals x y) :gt)))
 
-  (let-macro clock (pos out reps expr)
+  (let-macro and (pos out x y)
+    (cons `(and ,(first (emit-val x :pos pos))
+                ,(first (emit-val y :pos pos)))
+          out))
+
+  (let-fun bool (pos (val any?))
+    (to-bool val))
+
+  (let-macro clock (pos out reps (body expr))
     (cons `(clock ,(first (emit-val reps :pos pos))
-             ,@(emit-vals (body expr)))
+             ,@(emit-vals (vals body)))
           out))
               
   (let-macro const (pos out id val)
@@ -37,7 +48,7 @@
     (dump-val val *stdout*)
     (terpri *stdout*))
 
-  (let-macro fun (pos out id args expr)
+  (let-macro fun (pos out (id sym) (args list) (body expr))
     (when (eq (get-val id :default _) _)
       (let-id (make-instance 'fun
                              :id id 
@@ -57,7 +68,7 @@
                            args)))
         (let ((*let-fun-id* (lisp-id id)))
           (cons `(let-fun ,id ,(cons 'pos fargs)
-                   ,@(emit-vals (body expr)))
+                   ,@(emit-vals (vals body)))
                 out)))))
 
   (let-macro if (pos out cond x y)
@@ -71,6 +82,14 @@
 
   (let-fun is-a (pos (child meta) (parent meta))
     (make-bool (is-a child parent)))
+
+  (let-macro not (pos out val)
+    (cons `(make-bool (not (to-bool ,(first (emit-val val :pos pos))))) out))
+  
+  (let-macro or (pos out x y)
+    (cons `(or ,(first (emit-val x :pos pos))
+                ,(first (emit-val y :pos pos)))
+          out))
 
   (let-macro recall (pos out (f Fun?) args)
     (cons `(return-from

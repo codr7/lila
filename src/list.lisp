@@ -19,7 +19,7 @@
       list-type))
 
 (defmethod to-bool ((v list))
-  (or (pair? v) (> (length v) 0)))
+  (or (pair? v) (not (zerop (length v)))))
 
 (defmethod dump-val ((v list) out)
   (cond

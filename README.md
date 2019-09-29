@@ -108,6 +108,34 @@ false
 true
 ```
 
+#### bool
+Booleans can be `true` or `false`.
+
+All values have boolean representations; many are unconditionally `true`, `0` and empty lists being two notable exceptions.
+
+```
+  0.bool
+
+false
+```
+```
+  42.bool
+
+true
+```
+
+Logical operators are binary, short-circuiting and return the last evaluated argument.
+
+```
+  true.and 42
+
+42
+
+  42.or false
+
+42
+```
+
 #### pair
 Pairs allow treating two values as one.
 

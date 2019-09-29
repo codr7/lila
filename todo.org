@@ -1,4 +1,3 @@
-* add true/false constants in abc lib
 * add sum types
 ** Foo|Bar|Baz
 *** use sb-mop:add-direct-subclass
@@ -10,6 +9,10 @@
 ** fun fib(0) {0}
 * add Str type
 ** add reader support
+** add Str interpolation
+*** %{...}
+*** parse as expr
+*** emit code to generate str
 * add -emit-lisp/asm commandline args
 * add quote support
 ** trigger on ' in reader

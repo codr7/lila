@@ -107,7 +107,7 @@
   (labels ((read-body (out)
              (skip-whitespace in)
              
-             (with-slots (body) out
+             (with-slots (vals) out
                (let ((c (read-char in nil)))
                  (if c
                      (case c
@@ -115,18 +115,18 @@
                         (incf (col *pos*))
 
                         (let ((next-out (make-expr)))
-                          (push (cons next-out *val-pos*) body)
-                          (setf body (nreverse body))
+                          (push (cons next-out *val-pos*) vals)
+                          (setf vals (nreverse vals))
                           (read-body next-out)))
                        (#\}
                         (incf (col *pos*))
-                        (setf body (nreverse body)))
+                        (setf vals (nreverse vals)))
                        (otherwise
                         (unread-char c in)
-                        (multiple-value-bind (body2 ok?) (read-val in body)
+                        (multiple-value-bind (vals2 ok?) (read-val in vals)
                           (unless ok?
                             (esys *pos* "Missing expr end"))
-                          (setf body body2)
+                          (setf vals vals2)
                           (read-body out))))
                      (esys *pos* "Missing expr end"))))))
     (let ((out (make-expr)))
