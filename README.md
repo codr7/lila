@@ -120,6 +120,30 @@ Pairs allow treating two values as one.
 2
 ```
 
+#### fun
+Functions are generic with fixed arity.
+
+Function arguments are defined as having type `Any` by default, which means they don't match missing values.
+
+```
+  fun foo(x) {x}
+  foo _
+
+debugger invoked on a SB-PCL::NO-APPLICABLE-METHOD-ERROR in thread
+#<THREAD "main thread" RUNNING {10005084C3}>:
+  There is no applicable method for the generic function
+    #<STANDARD-GENERIC-FUNCTION COMMON-LISP-USER::|foo419| (1)>
+  when called with arguments
+    (None test1.lila:2:1 _).
+```
+
+```
+  fun bar(x:Any?) {x}
+  bar _
+  
+_
+```
+
 ### performance
 `-speed` may be specified on the command line; it accepts values from `0`, which is the default, to `3`.
 

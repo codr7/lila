@@ -32,8 +32,7 @@
           forms)
 
     (unless (eq type-id 'none-type)
-      (push `(sb-mop:add-direct-subclass (find-class ',opt-type-id)
-                                         (find-class 'none-type))
+      (push `(derive-class (find-class 'none-type) (find-class ',opt-type-id))
             forms)
       (push `(defclass ,opt-type-id (lila-type)
                ())

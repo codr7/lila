@@ -15,6 +15,12 @@
        (floor (- (get-internal-run-time) ,start)
               (floor internal-time-units-per-second 1000)))))
 
+(defmacro derive-class (child parent)
+  `(sb-mop:ensure-class
+    (class-name ,child)
+    :direct-superclasses (cons ,parent (sb-mop:class-direct-superclasses ,child))
+    :direct-slots (sb-mop:class-direct-slots ,child)))
+
 (defmacro dohash ((key val tbl) &body body)
   (let ((i (gensym)) (ok? (gensym)))
     `(with-hash-table-iterator (,i ,tbl)
