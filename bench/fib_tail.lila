@@ -1,0 +1,24 @@
+const REPS 10000
+const N 20
+
+fun fib1(n:Int a:Int b:Int) {
+  if {n.> 1} {
+    fib1 {n.- 1} b {a.+ b}
+  } {
+    if n b a
+  }
+}
+
+{N.fib1 0 1}.dump
+{REPS.clock {N.fib1 0 1}}.dump
+
+fun fib2(n:Int a:Int b:Int) {
+  if {n.> 1} {
+    recall _ ({n.- 1} b {a.+ b})
+  } {
+    if n b a
+  }
+}
+
+{N.fib2 0 1}.dump
+{REPS.clock {N.fib2 0 1}}.dump

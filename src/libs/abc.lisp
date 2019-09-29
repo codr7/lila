@@ -1,5 +1,7 @@
 (in-package lila)
 
+(defvar *let-fun-id* _)
+
 (defun init-abc ()
   (let-id none-type)
   (let-type any-type)
@@ -53,9 +55,10 @@
                                  (cons (lisp-id (first a)) (rest a))
                                  (lisp-id a)))
                            args)))
-        (cons `(let-fun ,id ,(cons 'pos fargs)
-                 ,@(emit-vals (body expr)))
-              out))))
+        (let ((*let-fun-id* (lisp-id id)))
+          (cons `(let-fun ,id ,(cons 'pos fargs)
+                   ,@(emit-vals (body expr)))
+                out)))))
 
   (let-macro if (pos out cond x y)
     (cons `(if (to-bool ,(first (emit-val cond :pos pos)))
@@ -68,6 +71,14 @@
 
   (let-fun is-a (pos (child meta) (parent meta))
     (make-bool (is-a child parent)))
+
+  (let-macro recall (pos out (f Fun?) args)
+    (cons `(return-from
+            ,*let-fun-id*
+             (call ,(if (eq f _) '*this-fun* f)
+                   ,(first (emit-val args :pos pos))
+                   :pos ,pos))
+          out))
 
   (let-macro this-fun (pos out)
     (cons '*this-fun* out))

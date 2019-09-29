@@ -1,11 +1,11 @@
 const REPS 10
 const N 20
 
-fun fib1(n:Int) {
+fun fib(n:Int) {
   if {n.< 2} n {
-    {fib1; n.- 1}.+ {fib1; n.- 2}
+    {fib; n.- 1}.+ {fib; n.- 2}
   }
 }
 
-{N.fib1}.dump
-{REPS.clock {N.fib1}}.dump
+{N.fib}.dump
+{REPS.clock {N.fib}}.dump
