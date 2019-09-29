@@ -111,36 +111,45 @@ Pairs allow treating two values as one.
 
 ```
   {
-    var a:b 1:2
-    a.dump
-    b.dump
+    var foo 1:2
+    foo
   }
 
-1
-2
+1:2
+```
+
+The easiest way to deconstruct a pair is to bind its parts to separate names.
+
+```
+  {
+    var foo {1:2}
+    var a:b foo
+    b:a
+  }
+
+2:1
 ```
 
 #### fun
 Functions are generic with fixed arity.
 
-Function arguments are defined as having type `Any` by default, which means they don't match missing values.
+Arguments get type `Any` by default, which means they don't allow missing values.
 
 ```
-  fun foo(x) {x}
-  foo _
+  {
+    fun foo(x) {x}
+    foo _
+  }
 
 debugger invoked on a SB-PCL::NO-APPLICABLE-METHOD-ERROR in thread
-#<THREAD "main thread" RUNNING {10005084C3}>:
-  There is no applicable method for the generic function
-    #<STANDARD-GENERIC-FUNCTION COMMON-LISP-USER::|foo419| (1)>
-  when called with arguments
-    (None test1.lila:2:1 _).
+#<THREAD "main thread" RUNNING {10005084C3}>
 ```
 
 ```
-  fun bar(x:Any?) {x}
-  bar _
-  
+  {
+    fun foo(x:Any?) {x}
+    foo _
+  }
 _
 ```
 

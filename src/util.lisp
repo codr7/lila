@@ -18,7 +18,7 @@
 (defmacro derive-class (child parent)
   `(sb-mop:ensure-class
     (class-name ,child)
-    :direct-superclasses (cons ,parent (sb-mop:class-direct-superclasses ,child))
+    :direct-superclasses (adjoin ,parent (sb-mop:class-direct-superclasses ,child))
     :direct-slots (sb-mop:class-direct-slots ,child)))
 
 (defmacro dohash ((key val tbl) &body body)
