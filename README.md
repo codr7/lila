@@ -12,7 +12,7 @@ fun fib(n:Int) {
 ```
 
 ### setup
-The following script should be enough to get started. Note that [SBCL](http://www.sbcl.org/) and [Quicklisp](https://www.quicklisp.org/beta/) are required to build [lila](https://github.com/codr7/lila).
+The following command sequence will take you from zero to REPL. Note that [SBCL](http://www.sbcl.org/) and [Quicklisp](https://www.quicklisp.org/beta/) are required to build [lila](https://github.com/codr7/lila).
 
 ```
 $ git clone https://github.com/codr7/lila.git
