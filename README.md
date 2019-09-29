@@ -145,12 +145,12 @@ _
 ```
 
 ### performance
-`-speed` may be specified on the command line; it accepts values from `0`, which is the default, to `3`.
+Optimization level may be set by passing `-speed` on the command line. The accepted range is `0`-`9`, with `9` being the fastest; and the default is `4`.
 
 ```
 $ dist/lila bench/pair.lila
 72
-$ dist/lila -speed 3 bench/pair.lila
+$ dist/lila -speed 9 bench/pair.lila
 4
 ```
 
