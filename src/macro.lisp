@@ -18,11 +18,12 @@
     `(progn
        (defmethod ,lid (,@arg-types ,arg0 ,arg1 ,@arg-ids)
          ,@body)
-       
-       (let-id (make-instance 'macro
-                              :id ',id 
-                              :nargs ,(length args)
-                              :imp (symbol-function ',lid))))))
+
+       (when (eq (get-val ',id :default _) _)
+         (let-id (make-instance 'macro
+                                :id ',id 
+                                :nargs ,(length args)
+                                :imp (symbol-function ',lid)))))))
 
 (define-type macro (any))
 

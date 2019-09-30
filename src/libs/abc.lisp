@@ -35,6 +35,17 @@
   (let-fun bool (pos (val any?))
     (to-bool val))
 
+  (let-macro check (pos out (op none) (body expr))
+    (cons `(to-bool ,(first (emit-val body :pos pos))) out))
+
+  (let-macro check (pos out (op sym) (args list))
+    (cons `(call ,(get-val op :pos pos)
+                 (list ,@(mapcar (lambda (v)
+                                   (first (emit-val v :pos pos)))
+                                 args))
+                 :pos ,pos)
+          out))
+
   (let-macro clock (pos out reps (body expr))
     (cons `(clock ,(first (emit-val reps :pos pos))
              ,@(emit-vals (vals body)))

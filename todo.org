@@ -1,5 +1,3 @@
-* add tests
-** add check macro
 * add list lib with push/pop/len funs
 * add sum types
 ** Foo|Bar|Baz

@@ -3,13 +3,7 @@
 (defvar *stdin* *standard-input*)
 (defvar *stdout* *standard-output*)
 
-(define-symbol-macro *argv*
-    (or 
-     #+CLISP *args*
-     #+SBCL sb-ext:*posix-argv*  
-     #+LISPWORKS system:*line-arguments-list*
-     #+CMU extensions:*command-line-words*
-     nil))
+(define-symbol-macro *argv* sb-ext:*posix-argv*)
 
 (defun lila-load (filename)
   (with-open-file (in filename)

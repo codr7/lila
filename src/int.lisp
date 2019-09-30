@@ -13,4 +13,4 @@
   int-type)
 
 (defmethod to-bool ((v integer))
-  (not (zerop v 0)))     
+  (not (zerop v)))     

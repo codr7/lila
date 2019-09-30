@@ -1,0 +1,11 @@
+check is({35.+ 7} 42)
+
+{
+  fun fib(n:Int) {
+    if {n.< 2} n {
+      {fib; n.- 1}.+ {fib; n.- 2}
+    }
+  }
+
+  check is({fib 10} 55)
+}
