@@ -38,7 +38,7 @@
   (let-macro check (pos out (op none) (body expr))
     (let ((body (first (emit-val body :pos pos))))
       (cons `(unless (to-bool ,body)
-               (esys ,pos "Test failed: ~a" ',body))
+               (esys ,pos "Check failed: ~a" ',body))
             out)))
 
   (let-macro check (pos out (op sym) (args list))
@@ -47,7 +47,7 @@
                                                     (first (emit-val v :pos pos)))
                                                   args))
                                   :pos ,pos))
-             (esys ,pos "Test failed: ~a~a"
+             (esys ,pos "Check failed: ~a~a"
                    ,(symbol-name op)
                    ,(with-output-to-string
                      (out)
