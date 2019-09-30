@@ -36,21 +36,31 @@
     (to-bool val))
 
   (let-macro check (pos out (op none) (body expr))
-    (cons `(to-bool ,(first (emit-val body :pos pos))) out))
+    (let ((body (first (emit-val body :pos pos))))
+      (cons `(unless (to-bool ,body)
+               (esys ,pos "Test failed: ~a" ',body))
+            out)))
 
   (let-macro check (pos out (op sym) (args list))
-    (cons `(call ,(get-val op :pos pos)
-                 (list ,@(mapcar (lambda (v)
-                                   (first (emit-val v :pos pos)))
-                                 args))
-                 :pos ,pos)
+    (cons `(unless (to-bool (call ,(get-val op :pos pos)
+                                  (list ,@(mapcar (lambda (v)
+                                                    (first (emit-val v :pos pos)))
+                                                  args))
+                                  :pos ,pos))
+             (esys ,pos "Test failed: ~a~a"
+                   ,(symbol-name op)
+                   ,(with-output-to-string
+                     (out)
+                     (dolist (v args)
+                       (write-char #\Space out)
+                       (dump-val v out)))))
           out))
 
   (let-macro clock (pos out reps (body expr))
     (cons `(clock ,(first (emit-val reps :pos pos))
              ,@(emit-vals (vals body)))
           out))
-              
+  
   (let-macro const (pos out id val)
     (let-val id val :pos pos)
     out)
@@ -101,7 +111,7 @@
   
   (let-macro or (pos out x y)
     (cons `(or ,(first (emit-val x :pos pos))
-                ,(first (emit-val y :pos pos)))
+               ,(first (emit-val y :pos pos)))
           out))
 
   (let-macro recall (pos out (f Fun?) args)
@@ -140,4 +150,4 @@
 (defmacro with-lila (&body body)
   `(with-env ()
      (init-abc)
-       ,@body))
+     ,@body))
