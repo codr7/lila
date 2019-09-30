@@ -21,13 +21,20 @@
                 out)
           in))
 
+(defmethod equal-vals ((x list) (y list))
+  (labels ((rec (x y)
+             (cond
+               ((and x y)
+                (when (equal-vals (first x) (first y))
+                    (equal-vals (rest x) (rest y))))
+               (t
+                (not (or x y))))))
+    (rec x y)))
+
 (defmethod get-type ((v list))
   (if (pair? v)
       pair-type
       list-type))
-
-(defmethod to-list ((v list))
-  v)
 
 (defclass empty-list ()
   ())
@@ -43,4 +50,9 @@
 (defmethod to-bool ((v empty-list))
   t)
 
-(defmethod to-list ((v empty-list)))
+(defun to-list (in)
+  (unless (eq in *empty-list*)
+    in))
+
+(defun make-lila-list (in)
+  (or in *empty-list*))

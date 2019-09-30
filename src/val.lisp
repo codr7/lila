@@ -24,6 +24,9 @@
               `((let (,@vars) ,@code))
               code))))))
 
+(defmethod equal-vals (x y)
+  (eql x y))
+
 (defun get-form (in)
   (if (rest in)
       `(progn ,@in)

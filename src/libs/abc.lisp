@@ -35,6 +35,9 @@
   (let-fun bool (pos (val any?))
     (to-bool val))
 
+  (let-fun equal (pos x y)
+    (make-bool (equal-vals x y)))
+
   (let-macro check (pos out (op none) (body expr))
     (let ((body (first (emit-val body :pos pos))))
       (cons `(unless (to-bool ,body)
@@ -42,18 +45,17 @@
             out)))
 
   (let-macro check (pos out (op sym) (args list))
-    (cons `(unless (to-bool (call ,(get-val op :pos pos)
-                                  (list ,@(mapcar (lambda (v)
-                                                    (first (emit-val v :pos pos)))
-                                                  args))
-                                  :pos ,pos))
-             (esys ,pos "Check failed: ~a~a"
-                   ,(symbol-name op)
-                   ,(with-output-to-string
-                     (out)
-                     (dolist (v args)
-                       (write-char #\Space out)
-                       (dump-val v out)))))
+    (setf args (mapcar (lambda (v)
+                         (first (emit-val v :pos pos)))
+                       args))
+    (cons `(unless (to-bool (call ,(get-val op :pos pos) (list ,@args) :pos ,pos))
+             (let ((args (list ,@args)))
+               (esys ,pos "Check failed: ~a~a"
+                     ,(symbol-name op)
+                     (with-output-to-string (out)
+                       (dolist (v args)
+                         (write-char #\Space out)
+                         (print-object v out))))))
           out))
 
   (let-macro clock (pos out reps (body expr))
@@ -101,7 +103,7 @@
           out))
 
   (let-fun is (pos x y)
-    (make-bool (eq x y)))
+    (make-bool (eql x y)))
 
   (let-fun is-a (pos (child meta) (parent meta))
     (make-bool (is-a child parent)))
@@ -129,23 +131,24 @@
     (get-type v))
   
   (let-macro var (pos out id val)
-    (let ((p (gensym)) (x (gensym)) (y (gensym)))
+    (let ((p (gensym)) (v (gensym)))
       (labels ((let-vals (id var)
-                 (if (pair? id)
-                     `(let ((,x (first ,var))
-                            (,y (rest ,var)))
-                        ,(let-vals (first id) x)
-                        ,(let-vals (rest id) y))
-                     (progn
-                       (let-val id (make-undef) :pos pos)
-                       `(setf ,(lisp-id id) ,var)))))
-        (if (pair? id)
-            (cons `(let ((,p ,(first (emit-val val :pos pos))))
-                     ,(let-vals id p))
-                  out)
-            (progn
-              (let-val id (make-undef) :pos pos)
-              (cons `(setf ,(lisp-id id) ,(first (emit-val val :pos pos))) out)))))))
+                 (cond
+                   ((listp id)
+                    `(let ((,v (pop ,p)))
+                       ,(let-vals (first id) v)
+                       ,(let-vals (rest id) p)))
+                   (t
+                    (let-val id (make-undef) :pos pos)
+                    `(setf ,(lisp-id id) ,var)))))
+        (cond
+          ((listp id)
+           (cons `(let ((,p ,(first (emit-val val :pos pos))))
+                    ,(let-vals id p))
+                 out))
+          (t
+           (let-val id (make-undef) :pos pos)
+           (cons `(setf ,(lisp-id id) ,(first (emit-val val :pos pos))) out)))))))
 
 (defmacro with-lila (&body body)
   `(with-env ()

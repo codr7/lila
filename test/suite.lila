@@ -9,3 +9,17 @@ check is({35.+ 7} 42)
 
   check is({fib 10} 55)
 }
+
+{
+  var a:b:c 1:2:3
+  check is(a 1)
+  check is(b 2)
+  check is(c 3)
+}
+
+{
+  var a:b:c (1 2 3)
+  check is(a 1)
+  check is(b 2)
+  check equal(c (3))
+}
