@@ -17,8 +17,18 @@
        (values (cons (lisp-id id) out) in))
       ((eq vt fun-type)
        (with-slots (nargs) v
-         (multiple-value-bind (args in2) (split in nargs)
-           (values (cons `(call ,v (list ,@(emit-vals args)) :pos ,pos) out) in2))))
+         (multiple-value-bind (args in) (split in nargs)
+           (values
+            (cons `(call ,v (list ,@(mapcan (lambda (a)
+                                              (multiple-value-bind (out in2)
+                                                  (emit-val (first a)
+                                                            :in in
+                                                            :pos (rest a))
+                                                (setf in in2)
+                                                out))
+                                            args)) :pos ,pos)
+                         out)
+                   in))))
       ((is-a vt macro-type)
        (expand v in out :pos pos))
       (t

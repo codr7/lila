@@ -53,7 +53,7 @@
            (unread-char c in))))
     out))
 
-(defun read-val (in out)
+(defun read-val (in)
   (skip-whitespace in)
   
   (let* ((*val-pos* (clone-pos))
@@ -64,39 +64,32 @@
                (read-char in nil)
                (incf (col *pos*))
                _)
-              (#\.
-               (read-char in nil)
-               (incf (col *pos*))
-               (let ((target (pop out)))
-                 (unless target
-                   (esys *pos* "Missing target"))
-                 (multiple-value-bind (out2 ok?) (read-val in out)
-                   (setf out out2)
-                   (unless ok?
-                     (esys *pos* "Missing call")))
-                 (first target)))
               (#\( (read-list in))
               (#\{ (read-expr in))
               (otherwise
                (if (digit-char-p c)
                    (read-num in)
                    (read-id in))))))
-    (if v
+    (when v
       (let ((c (read-char in nil)))
         (when c
-          (if (char= c #\:)
-              (progn
-                (incf (col *pos*))
-                (multiple-value-bind (out2 ok?) (read-val in out)
-                  (setf out out2)
-                  (unless ok?
-                    (esys *val-pos* "Invalid pair"))
-                  (let ((rv (first (pop out))))
-                    (setf v (cons v (to-list rv))))))
-              (unread-char c in)))
-        
-        (values (cons (cons v *val-pos*) out) t))
-      (values out nil))))
+          (cond
+            ((char= c #\:)
+             (incf (col *pos*))
+             (let ((rv (read-val in)))
+               (unless rv
+                 (esys *val-pos* "Invalid pair"))
+               (setf v (cons v (to-list (first rv))))))
+            ((char= c #\.)
+             (incf (col *pos*))
+             (let ((rv (read-val in)))
+                 (unless rv
+                   (esys *pos* "Missing action"))
+                 (setf v (make-dot v (first rv)))))
+            (t
+             (unread-char c in)))))
+      
+      (cons v *val-pos*))))
 
 (defun read-expr (in)
   (unless (char= (read-char in nil) #\{)
@@ -114,19 +107,19 @@
                        (#\;
                         (incf (col *pos*))
 
-                        (let ((next-out (make-expr)))
-                          (push (cons next-out *val-pos*) vals)
+                        (let ((out2 (make-expr)))
+                          (push (cons out2 *val-pos*) vals)
                           (setf vals (nreverse vals))
-                          (read-body next-out)))
+                          (read-body out2)))
                        (#\}
                         (incf (col *pos*))
                         (setf vals (nreverse vals)))
                        (otherwise
                         (unread-char c in)
-                        (multiple-value-bind (vals2 ok?) (read-val in vals)
-                          (unless ok?
+                        (let ((v (read-val in)))
+                          (unless v
                             (esys *pos* "Missing expr end"))
-                          (setf vals vals2)
+                          (push v vals)
                           (read-body out))))
                      (esys *pos* "Missing expr end"))))))
     (let ((out (make-expr)))
@@ -150,19 +143,18 @@
                   (nreverse (mapcar #'first out)))
                  (t
                   (unread-char c in)
-                  (multiple-value-bind (out2 ok?) (read-val in out)
-                    (unless ok?
+                  (let ((v (read-val in)))
+                    (unless v
                       (esys *pos* "Missing list end"))
-                    (rec out2)))))))
+                    (rec (cons v out))))))))
     (make-lila-list (rec nil))))
 
 (defun read-vals (in &key out)
   (setf out (reverse out))
   (tagbody
    next
-     (multiple-value-bind (out2 ok?) (read-val in out)
-       (setf out out2)
-
-       (when ok?
+     (let ((v (read-val in)))
+       (when v
+         (push v out)
          (go next))))
   (nreverse out))

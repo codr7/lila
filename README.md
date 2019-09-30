@@ -68,7 +68,7 @@ In simple cases such as previous example, `;` may be used instead to reduce nest
 Dot notation allows specifying the called macro/function infix.
 
 ```
-  42.neg
+  21.neg.* 2
   
 -42
 ```
