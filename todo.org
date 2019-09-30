@@ -27,7 +27,6 @@
 *** stored as (cons 'quote val)
 ** add quote type
 ** adapt list methods to handle quotes
-
 * add lisp read-macro
 ** add do-lisp op
 ** add read macros
@@ -36,6 +35,8 @@
 ** do-lisp (+ 1 2)
 ** dump lisp code
 * ---
+* add include macro
+** inline on emit
 * add fun refs
 ** &foo
 * add macro refs
