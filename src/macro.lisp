@@ -19,11 +19,15 @@
        (defmethod ,lid (,@arg-types ,arg0 ,arg1 ,@arg-ids)
          ,@body)
 
-       (when (eq (get-val ',id :default _) _)
-         (let-id (make-instance 'macro
-                                :id ',id 
-                                :nargs ,(length args)
-                                :imp (symbol-function ',lid)))))))
+       (let ((v (get-val ',id :default _)))
+         (cond
+           ((eq v _)
+            (let-id (make-instance 'macro
+                                   :id ',id 
+                                   :nargs ,(length args)
+                                   :imp (symbol-function ',lid))))
+           ((not (eq (get-type v) macro-type))
+            (esys *pos* "Can't rebind as macro: ~a" v)))))))
 
 (define-type macro (any))
 

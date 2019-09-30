@@ -20,11 +20,15 @@
        (defmethod ,lid (,@arg-types ,arg0 ,@arg-ids)
          ,@body)
 
-       (when (eq (get-val ',id :default _) _)
-         (let-id (make-instance 'fun
-                                :id ',id 
-                                :nargs ,(length args)
-                                :imp (fdefinition ',lid)))))))
+       (let ((v (get-val ',id :default _)))
+         (cond
+           ((eq v _)
+            (let-id (make-instance 'fun
+                                   :id ',id 
+                                   :nargs ,(length args)
+                                   :imp (fdefinition ',lid))))
+           ((not (eq (get-type v) fun-type))
+            (esys *pos* "Can't rebind as function: ~a" v)))))))
 
 (define-type fun (any))
 

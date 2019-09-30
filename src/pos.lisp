@@ -10,9 +10,10 @@
 (defun new-pos (&rest args)
   (apply #'make-instance 'pos args))
 
-(defmethod clone ((p pos))
-  (with-slots (file row col) p
-    (make-instance 'pos :file file :row row :col col)))
+(defun clone-pos (&optional (pos *pos*))
+  (when pos
+    (with-slots (file row col) pos
+      (make-instance 'pos :file file :row row :col col))))
 
 (defmethod print-object ((p pos) out)
   (with-slots (file row col) p

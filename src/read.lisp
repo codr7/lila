@@ -56,7 +56,7 @@
 (defun read-val (in out)
   (skip-whitespace in)
   
-  (let* ((*val-pos* (clone *pos*))
+  (let* ((*val-pos* (clone-pos))
          (c (peek-char nil in nil))
          (v (case c
               ((nil #\; #\}))

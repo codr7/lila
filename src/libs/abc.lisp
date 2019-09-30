@@ -74,11 +74,16 @@
   (let-macro fun (pos out (id sym) (args list) (body expr))
     (setf args (to-list args))
     
-    (when (eq (get-val id :default _) _)
-      (let-id (make-instance 'fun
-                             :id id 
-                             :nargs (length args)
-                             :imp (ensure-generic-function (lisp-id id)))))
+    (let ((v (get-val id :default _)))
+      (cond
+        ((eq v _)
+         (let-id (make-instance 'fun
+                                :id id 
+                                :nargs (length args)
+                                :imp (ensure-generic-function (lisp-id id)))))
+        ((not (eq (get-type v) fun-type))
+         (esys *pos* "Can't rebind as function: ~a" id))))
+
     
     (with-env ((clone-env))
       (dolist (a args)

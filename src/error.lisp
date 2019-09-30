@@ -9,13 +9,16 @@
 
 (defun esys (pos spec &rest args)
   (let ((msg (apply #'format nil spec args)))
-    (with-slots (file row col) pos
-      (if file
-          (setf msg (format nil
-                            "System error in ~a at row ~a, col ~a: ~a"
-                            file row col msg))
-          (setf msg (format nil
-                            "System error at row ~a, col ~a: ~a"
-                            row col msg)))
-    (error 'esys :pos (clone pos) :msg msg))))
+    (if pos
+        (with-slots (file row col) pos
+          (if file
+              (setf msg (format nil
+                                "System error in ~a at row ~a, col ~a: ~a"
+                                file row col msg))
+              (setf msg (format nil
+                                "System error at row ~a, col ~a: ~a"
+                                row col msg))))
+        (setf msg (format nil "System error: ~a" msg)))
+    
+    (error 'esys :pos (clone-pos pos) :msg msg)))
     
