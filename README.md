@@ -12,7 +12,7 @@ fun fib(n:Int) {
 ```
 
 ### setup
-The following command sequence will take you from zero to REPL.
+The following command sequence should take you from zero to REPL.
 
 Note that [SBCL](http://www.sbcl.org/) and [Quicklisp](https://www.quicklisp.org/beta/) are required to build [lila](https://github.com/codr7/lila).
 
@@ -33,7 +33,7 @@ Press Return on empty row to evaluate.
 ```
 
 ### status
-The current implementation weighs in below 1 kloc and supports everything described in this document.  
+The current implementation weighs in below 1 kloc and supports everything described in this document.
 
 ```
 $ dist/lila -build dist/test test/suite.lila
@@ -41,7 +41,7 @@ $ dist/test
 ```
 
 ### basics
-[lila](https://github.com/codr7/lila) treats bare macro and function names as calls; both are generic with fixed arity, and consume as many forms when called.
+Functions and macros are generic with fixed arity. Bare names evaluate to calls and consume the same number of forms as arguments.
 
 ```
   * 6 7
@@ -49,7 +49,7 @@ $ dist/test
 42
 ```
 
-Curlies allow controlling evaluation order.
+Curlies allow grouping forms and controlling evaluation order.
 
 ```
   {* 6 {+ 3 4}}
@@ -139,7 +139,7 @@ All values have boolean representations; many are unconditionally `true`, `0` an
 false
 ```
 ```
-  42.bool
+  (1 2 3).bool
 
 true
 ```
@@ -168,7 +168,7 @@ Pairs allow treating two values as one.
 1:2
 ```
 
-Pairs are closely related to lists, zipping any value with the empty list evaluates to a one element list.
+Pairs are closely related to lists, zipping any value with the empty list evaluates to a single-element list.
 
 ```
 42:()
@@ -176,7 +176,7 @@ Pairs are closely related to lists, zipping any value with the empty list evalua
 (42)
 ```
 
-Paired values may be extracted using bindings.
+Parts may be extracted using deconstructing bindings.
 
 ```
   {
@@ -191,7 +191,7 @@ Paired values may be extracted using bindings.
 #### fun
 Functions are generic with fixed arity.
 
-Arguments get type `Any` by default, which means they don't allow missing values.
+Arguments have type `Any` by default, which means that missing values are not allowed.
 
 ```
   {
