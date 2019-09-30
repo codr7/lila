@@ -16,7 +16,7 @@
 ** fun fib(0) {0}
 * add Str type
 ** add reader support
-** add Str interpolation
+** add interpolation
 *** %{...}
 *** parse as expr
 *** emit code to generate str

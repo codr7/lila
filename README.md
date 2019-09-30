@@ -73,6 +73,28 @@ Dot notation allows specifying the called macro/function infix.
 -42
 ```
 
+`is` returns `true` when both arguments share the same identity.
+
+```
+  42.is 42
+
+true
+```
+For reference types, such as lists in this example; identity means address.
+
+```
+  (42).is (42)
+
+false
+```
+`equals` may be used to compare values.
+
+```
+  (42).equals (42)
+
+true
+```
+
 ### types
 
 #### meta

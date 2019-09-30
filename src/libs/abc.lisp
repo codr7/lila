@@ -35,7 +35,7 @@
   (let-fun bool (pos (val any?))
     (to-bool val))
 
-  (let-fun equal (pos x y)
+  (let-fun equals (pos x y)
     (make-bool (equal-vals x y)))
 
   (let-macro check (pos out (op none) (body expr))
@@ -108,8 +108,8 @@
   (let-fun is-a (pos (child meta) (parent meta))
     (make-bool (is-a child parent)))
 
-  (let-macro not (pos out val)
-    (cons `(make-bool (not (to-bool ,(first (emit-val val :pos pos))))) out))
+  (let-fun not (pos val)
+    (make-bool (not (to-bool val))))
   
   (let-macro or (pos out x y)
     (cons `(or ,(first (emit-val x :pos pos))
