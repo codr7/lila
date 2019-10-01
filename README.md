@@ -1,5 +1,3 @@
-<a href="https://liberapay.com/codr7/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
-
 ![Logo](logo.png)
 
 ### intro
@@ -239,3 +237,5 @@ $ dist/lila -speed 9 bench/pair.lila
 
 ### license
 [MIT](https://github.com/codr7/lila/blob/master/LICENSE.txt)
+
+<a href="https://liberapay.com/codr7/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>
