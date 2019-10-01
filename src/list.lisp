@@ -1,7 +1,7 @@
 (in-package lila)
 
-(define-type list (any))
-(define-type pair (list))
+(define-type pair (any))
+(define-type list (pair))
 
 (defmethod dump-val ((v list) out)
   (cond
