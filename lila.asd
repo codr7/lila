@@ -1,6 +1,6 @@
 (defsystem lila
   :name "lila"
-  :version "22"
+  :version "23"
   :maintainer "codr7"
   :author "codr7"
   :description "a cleaner, less nested and more declarative language based on Common Lisp"
@@ -29,6 +29,7 @@
                (:file "src/expr")
                (:file "src/int")
                (:file "src/list")
+               (:file "src/str")
                (:file "src/sum")
 
                (:file "src/read")
@@ -37,5 +38,6 @@
                (:file "src/repl")
 
                (:file "src/libs/abc")
+               (:file "src/libs/io")
                (:file "src/libs/math")))
 

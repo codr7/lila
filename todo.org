@@ -11,13 +11,13 @@
 * add value dispatch
 ** use eql-specifier with gensym unless arg is sym or pair & first is sym
 ** fun fib(0) {0}
-* add Str type
-** add reader support
-** add interpolation
+* add Str reader
+* add Str lib with len/upper/lower
+* add Str interpolation
 *** %{...}
 *** parse as expr
 *** emit code to generate str
-* add -emit-lisp/asm commandline args
+* add -emit-lisp/asm command args
 * add quote support
 ** trigger on ' in reader
 ** call (quote val)
@@ -42,7 +42,6 @@
 * add separate fun instance foo[...] 
 ** add support for [...] in read-id
 ** use find-method to get imp
-
 * add packages
 ** package foo (exports)
 ** create package if not exists

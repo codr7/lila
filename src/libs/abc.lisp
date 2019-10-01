@@ -16,6 +16,7 @@
   (let-type num-type)
   (let-type list-type)
   (let-type pair-type)
+  (let-type str-type)
   (let-type sym-type)
   (let-type true-type)
 

@@ -45,5 +45,6 @@
          (run-files))))))
 
 (init-abc)
+(init-io)
 (init-math)
 (save (make-pathname :directory '(:relative "dist") :name "lila") #'main)
