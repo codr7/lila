@@ -216,9 +216,9 @@ debugger invoked on a SB-PCL::NO-APPLICABLE-METHOD-ERROR in thread
 Sum types match any member type.
 
 ```
-  Num/Sym
+  Int/Bool
 
-Num/Sym
+Int/Bool
 
   Int.is-a Int/Bool
   
