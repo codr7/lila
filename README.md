@@ -1,5 +1,8 @@
 ![Logo](logo.png)
 
+<script src="https://liberapay.com/codr7/widgets/button.js"></script>
+<noscript><a href="https://liberapay.com/codr7/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a></noscript>
+
 ### intro
 [lila](https://github.com/codr7/lila) is a cleaner, less nested and more declarative language based on [Common Lisp](http://www.lispworks.com/documentation/HyperSpec/Front/). 
 
