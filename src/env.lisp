@@ -19,8 +19,8 @@
       (setf (gethash k dst) v))
     dst))
 
-(defun let-val (id val &key (pos *pos*))
-  (when (gethash id *env*)
+(defun let-val (id val &key force? (pos *pos*))
+  (when (and (gethash id *env*) (not force?))
     (esys pos "Dup binding: ~a" id))
   (setf (gethash id *env*) val))
 

@@ -169,13 +169,13 @@
                (cond
                  ((char= c #\))
                   (incf (col *pos*))
-                  (nreverse (mapcar #'first out)))
+                  (nreverse out))
                  (t
                   (unread-char c in)
                   (let ((v (read-val in)))
                     (unless v
                       (esys *pos* "Missing list end"))
-                    (rec (cons v out))))))))
+                    (rec (cons (first v) out))))))))
     (make-lila-list (rec nil))))
 
 (defun read-vals (in &key out)

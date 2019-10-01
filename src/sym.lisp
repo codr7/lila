@@ -19,19 +19,22 @@
        (with-slots (nargs) v
          (multiple-value-bind (args in) (split in nargs)
            (values
-            (cons `(call ,v (list ,@(mapcan (lambda (a)
-                                              (multiple-value-bind (out in2)
-                                                  (emit-val (first a)
-                                                            :in in
-                                                            :pos (rest a))
-                                                (setf in in2)
-                                                out))
-                                            args)) :pos ,pos)
+            (cons `(call ,v
+                         (list
+                          ,@(mapcan (lambda (a)
+                                             (multiple-value-bind (out in2)
+                                                 (emit-val (first a)
+                                                           :in in
+                                                           :pos (rest a))
+                                               (setf in in2)
+                                               out))
+                                           args))
+                         :pos ,pos)
                          out)
                    in))))
       ((is-a vt macro-type)
        (expand v in out :pos pos))
       (t
-       (values (cons v out) in)))))
+       (values (cons (first (emit-val v :pos pos)) out) in)))))
 
 (defmethod get-type ((-- symbol)) sym-type)

@@ -1,9 +1,8 @@
 (in-package lila)
 
-(defvar *stdin* *standard-input*)
-(defvar *stdout* *standard-output*)
-
-(define-symbol-macro *argv* sb-ext:*posix-argv*)
+(define-symbol-macro *args* (get-val (make-id "ARGS")))
+(define-symbol-macro *stdin* (get-val (make-id "stdin")))
+(define-symbol-macro *stdout* (get-val (make-id "stdout")))
 
 (defun lila-load (filename)
   (with-open-file (in filename)

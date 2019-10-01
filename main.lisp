@@ -8,7 +8,9 @@
                             :purify t
                             :executable t))
 
-(defun main ()  
+(defun main ()
+  (init-io-vars)
+  
   (let ((mode :default)
         files output-filename)
     (labels ((parse-args (in)
@@ -27,7 +29,7 @@
                       (when (eq mode :default)
                         (setf mode :run)))))
                  (parse-args in))))
-      (parse-args (rest *argv*)))
+      (parse-args (rest *args*)))
     
     (labels ((run-files ()
                (dolist (f files)
