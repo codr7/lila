@@ -1,6 +1,6 @@
 (in-package lila)
 
-(define-type str (any))
+(define-type "Str" (any))
 
 (defmethod dump-val ((v string) out)
   (write-char #\" out)

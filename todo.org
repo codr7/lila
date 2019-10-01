@@ -1,3 +1,9 @@
+* add new-out-str fun
+* add (drain (out-str)) fun
+* add print-val
+** default to dump-val
+** add print fn
+* --
 * add list lib with push/pop/len funs
 * add assignment
 ** foo = 42

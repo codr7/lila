@@ -30,7 +30,7 @@
            ((not (eq (get-type v) fun-type))
             (esys *pos* "Can't rebind as function: ~a" v)))))))
 
-(define-type fun (any))
+(define-type "Fun" (any))
 
 (defmethod get-type ((-- fun))
   fun-type)

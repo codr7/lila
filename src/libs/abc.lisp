@@ -69,10 +69,6 @@
     (let-val id val :pos pos)
     out)
   
-  (let-fun dump (pos (val any?))
-    (dump-val val *stdout*)
-    (terpri *stdout*))
-
   (let-macro fun (pos out (id sym) (args list) (body expr))
     (setf args (to-list args))
     

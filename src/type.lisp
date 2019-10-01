@@ -8,18 +8,12 @@
 (defun is-a (child parent)
   (subtypep (type-of child) (type-of parent)))
 
-(defmacro get-type-id (s)
-  `(symf "~a-type" (string-downcase (symbol-name ,s))))
-
 (defmacro define-type (id (&rest parents))
-  (let* ((ids (string-downcase (symbol-name id)))
-         (type-id (get-type-id id))
-         (opt-type-id (get-type-id (symf "~a?" ids)))
+  (let* ((type-id (get-type-id id))
+         (opt-type-id (get-type-id (symf "~a?" id)))
          forms)
     (push `(defvar ,type-id
-             (make-instance ',type-id :id ,(if (keywordp id)
-                                               id
-                                               (make-id (caps! ids)))))
+             (make-instance ',type-id :id ,(make-id id)))
           forms)
 
     (setf parents (mapcar (lambda (p)
@@ -64,7 +58,7 @@
 
 (defvar _ (make-instance '_))
 
-(define-type none ())
+(define-type "None" ())
 
 (defmethod get-type ((-- _))
   none-type)
@@ -72,8 +66,8 @@
 (defmethod print-object ((-- _) out)
   (write-char #\_ out))
 
-(define-type any ())
-(define-type meta (any))
+(define-type "Any" ())
+(define-type "Meta" (any))
 
 (defmethod get-type ((val lila-type))
   meta-type)

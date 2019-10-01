@@ -1,7 +1,7 @@
 (in-package lila)
 
-(define-type num (any))
-(define-type int (num))
+(define-type "Num" (any))
+(define-type "Int" (num))
 
 (defmethod compare-vals ((x number) (y number))
   (cond

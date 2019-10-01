@@ -29,7 +29,7 @@
            ((not (eq (get-type v) macro-type))
             (esys *pos* "Can't rebind as macro: ~a" v)))))))
 
-(define-type macro (any))
+(define-type "Macro" (any))
 
 (defmethod expand ((m macro) in out &key (pos *pos*))
   (with-slots (nargs imp) m

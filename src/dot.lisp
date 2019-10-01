@@ -1,6 +1,6 @@
 (in-package lila)
 
-(define-type dot ())
+(define-type "Dot" ())
 
 (defclass dot ()
   ((left :initarg :left :reader left)

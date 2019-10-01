@@ -1,6 +1,6 @@
 (in-package lila)
 
-(define-type sym (any))
+(define-type "Sym" (any))
 
 (defmethod compare-vals ((x symbol) (y symbol))
   (let ((xn (symbol-name x)) (yn (symbol-name y)))

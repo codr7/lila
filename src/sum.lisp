@@ -6,7 +6,7 @@
 (defun make-sum (members)
   (make-instance 'sum :members members))
 
-(define-type sum ())
+(define-type "Sum" ())
 
 (defmethod get-type ((-- sum)) sum-type)
 
@@ -18,10 +18,9 @@
                          (write-char #\/ out)
                          (setf sep t))             
                      (write-string (symbol-name m) out)))))
-         (id (make-id name))
-         (tid (get-type-id id)))
+         (tid (get-type-id name)))
     `(progn
-       (define-type ,id ())
+       (define-type ,name ())
        
        (let ((sc (find-class ',tid)))
          ,@(mapcar (lambda (m)

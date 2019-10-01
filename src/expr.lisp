@@ -3,7 +3,7 @@
 (defclass expr ()
   ((vals :initform nil :initarg :vals :reader vals)))
 
-(define-type expr (any))
+(define-type "Expr" (any))
 
 (defun make-expr (&rest args)
   (apply #'make-instance 'expr args))
