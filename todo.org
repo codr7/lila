@@ -1,7 +1,4 @@
 * add list lib with push/pop/len funs
-* add sum types
-** Foo|Bar|Baz
-*** use derive-class
 * add assignment
 ** foo = 42
 ** check that binding exists at emit

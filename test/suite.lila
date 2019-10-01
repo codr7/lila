@@ -2,6 +2,13 @@ check is(42 42)
 check not({(42).is(42)})
 check equals((42) (42))
 
+check is({type-of 42} Int)
+check is({type-of Int} Meta)
+
+check is-a(Int Num)
+check is-a(Int Int/Sym)
+check is-a(Sym Int/Sym)
+
 check is({35.+ 7} 42)
 check is(42.neg.abs 42)
 

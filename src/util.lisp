@@ -53,7 +53,7 @@
         (values in tail))))
 
 (defun symf (spec &rest args)
-  (intern (string-upcase (apply #'format nil spec args))))
+  (intern (string-upcase (apply #'format nil spec args)) 'lila))
 
 (defun whitespace? (c)
   (when (or (char= c #\space) (char= c #\tab) (char= c #\newline))

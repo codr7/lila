@@ -57,7 +57,7 @@ Curlies allow grouping forms and controlling evaluation order.
 42
 ```
 
-In simple cases such as previous example, `;` may be used instead to reduce nesting.
+In simple cases such as previous example, `;` may be used to reduce nesting.
 
 ```
   {* 6; + 3 4}
@@ -101,7 +101,7 @@ true
 `Meta` is the type of all types, including itself.
 
 ```
-  type-of Meta
+  Meta.type-of
 
 Meta
 ```
@@ -110,7 +110,7 @@ Meta
 `None` represents missing values and has exactly one instance named `_`.
 
 ```
-  type-of _
+  _.type-of
 
 None
 ```
@@ -118,12 +118,12 @@ None
 Suffixing any type except `None` with `?` evaluates to a sum type that matches the specified type and `None`.
 
 ```
-  is-a None Int
+  None.is-a Int
 
 false
 ```
 ```
-  is-a None Int?
+  None.is-a Int?
 
 true
 ```
@@ -191,12 +191,12 @@ Parts may be extracted using deconstructing bindings.
 #### fun
 Functions are generic with fixed arity.
 
-Arguments have type `Any` by default, which means that missing values are not allowed.
+Arguments have type `Any` by default, which doesn't allow missing values.
 
 ```
   {
     fun foo(x) {42}
-    foo _
+    _.foo
   }
 
 debugger invoked on a SB-PCL::NO-APPLICABLE-METHOD-ERROR in thread
@@ -206,10 +206,23 @@ debugger invoked on a SB-PCL::NO-APPLICABLE-METHOD-ERROR in thread
 ```
   {
     fun foo(x:Any?) {42}
-    foo _
+    _.foo
   }
   
 42
+```
+
+#### sum types
+Sum types match any member type.
+
+```
+  Num/Sym
+
+Num/Sym
+
+  Int.is-a Int/Bool
+  
+true
 ```
 
 ### performance

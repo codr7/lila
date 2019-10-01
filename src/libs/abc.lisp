@@ -13,6 +13,7 @@
   (let-type fun-type)
   (let-type int-type)
   (let-type macro-type)
+  (let-type num-type)
   (let-type list-type)
   (let-type pair-type)
   (let-type sym-type)

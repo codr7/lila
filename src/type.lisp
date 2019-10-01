@@ -17,7 +17,9 @@
          (opt-type-id (get-type-id (symf "~a?" ids)))
          forms)
     (push `(defvar ,type-id
-             (make-instance ',type-id :id ,(make-id (caps! ids))))
+             (make-instance ',type-id :id ,(if (keywordp id)
+                                               id
+                                               (make-id (caps! ids)))))
           forms)
 
     (setf parents (mapcar (lambda (p)

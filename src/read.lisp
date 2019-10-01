@@ -17,24 +17,30 @@
            (go skip))
          (unread-char c in)))))    
 
+(defun separator? (c)
+  (or (whitespace? c)
+      (char= c #\()
+      (char= c #\))
+      (char= c #\{)
+      (char= c #\})
+      (char= c #\:)
+      (char= c #\;)
+      (char= c #\.)))
+
 (defun read-id (in)
-  (let ((s (with-output-to-string (out)
+  (let* ((i 0)
+         (s (with-output-to-string (out)
              (tagbody
               next
                 (let ((c (read-char in nil)))
                   (when c
-                    (unless (or (whitespace? c)
-                                (char= c #\()
-                                (char= c #\))
-                                (char= c #\{)
-                                (char= c #\})
-                                (char= c #\:)
-                                (char= c #\;)
-                                (char= c #\.))
+                    (unless (or (separator? c)
+                                (and (char= c #\/) (not (zerop i))))
                       (incf (col *pos*))
-                        (write-char c out)
-                        (go next))
-                      (unread-char c in)))))))
+                      (incf i)
+                      (write-char c out)
+                      (go next))
+                    (unread-char c in)))))))
     (when (zerop (length s))
       (esys *val-pos* "Invalid input"))
 
@@ -52,6 +58,26 @@
              (go next))
            (unread-char c in))))
     out))
+
+(defun read-sum (in first)
+  (labels ((rec (out)
+             (let ((c (read-char in nil)))
+               (cond
+                 ((or (null c) (whitespace? c))
+                  (nreverse out))
+                 ((separator? c)
+                  (unread-char c in)
+                  (nreverse out))
+                 ((char= c #\/)
+                  (incf (col *pos*))
+                  (rec out))
+                 (t
+                  (unread-char c in)
+                  (let ((v (read-val in)))
+                    (if v
+                        (rec (cons (first v) out))
+                        (nreverse out))))))))
+    (make-sum (rec (list first)))))
 
 (defun read-val (in)
   (skip-whitespace in)
@@ -86,6 +112,9 @@
                  (unless rv
                    (esys *pos* "Missing action"))
                  (setf v (make-dot v (first rv)))))
+            ((char= c #\/)
+             (incf (col *pos*))
+             (setf v (read-sum in v)))
             (t
              (unread-char c in)))))
       
