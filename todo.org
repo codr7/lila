@@ -1,8 +1,8 @@
-* add new-out-str fun
-* add (drain (out-str)) fun
-* add print-val
-** default to dump-val
-** add print fn
+* add new-str-out fun
+* add (get-str (str-io)) fun
+* add out arg to print/dump funs
+** OUT.dump foo
+** update test/bench/readme
 * --
 * add list lib with push/pop/len funs
 * add assignment

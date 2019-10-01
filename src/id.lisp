@@ -17,11 +17,17 @@
              (symbol-name s))
             ((stringp s)
              (with-output-to-string (out)
-               (dotimes (i (length s))
-                 (let ((c (char s i)))
-                   (when (and (upper-case-p c) (not (zerop i)))
-                     (write-char #\- out))
-                   (write-char c out)))))
-            (t (esys nil "Invalid id: ~a" (type-of s)))))
+               (let ((prev-upper? t))
+                 (dotimes (i (length s))
+                   (let ((c (char s i)))
+                     (cond
+                       ((upper-case-p c)
+                        (when (not prev-upper?)
+                          (write-char #\- out))
+                        (setf prev-upper? t))
+                       (t
+                        (setf prev-upper? nil)))
+                     (write-char c out))))))
+            (t (esys *pos* "Invalid id: ~a" (type-of s)))))
   
    (intern (format nil "~a-TYPE" (string-upcase s)) 'lila))
