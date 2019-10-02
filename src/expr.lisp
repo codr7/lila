@@ -10,7 +10,7 @@
 
 (defmethod emit-val ((e expr) &key in out (pos *pos*))
   (declare (ignore pos))
-  (values (cons (get-form (emit-vals (vals e))) out) in))
+  (values (cons (get-form (emit-body (vals e))) out) in))
   
 (defmethod get-type ((-- expr))
   expr-type)

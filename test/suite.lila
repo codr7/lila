@@ -13,6 +13,11 @@ check is({35.+ 7} 42)
 check is(42.neg.abs 42)
 
 {
+  fun foo() {1 return 2 3}
+  check is(foo 2)
+}
+
+{
   fun fib(n:Int) {
     if {n.< 2} n {
       {fib; n.- 1}.+ {fib; n.- 2}

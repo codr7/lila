@@ -32,5 +32,5 @@
 
   (let-macro with-str-out (pos out (var sym) (body expr))
     (cons `(with-output-to-string (,(lisp-id var))
-             ,@(emit-vals (vals body)))
+             ,@(emit-body (vals body)))
           out)))

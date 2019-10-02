@@ -37,8 +37,8 @@
   (let-fun bool (pos (val any?))
     (to-bool val))
 
-  (let-fun equals (pos x y)
-    (make-bool (equal-vals x y)))
+  (let-macro call (pos out (f fun) (args list))
+    (cons `(call ,f ,(first (emit-val args :pos pos)) :pos ,pos) out))
 
   (let-macro check (pos out (op none) (body expr))
     (let ((body (first (emit-val body :pos pos))))
@@ -62,13 +62,16 @@
 
   (let-macro clock (pos out reps (body expr))
     (cons `(clock ,(first (emit-val reps :pos pos))
-             ,@(emit-vals (vals body)))
+             ,@(emit-body (vals body)))
           out))
   
   (let-macro const (pos out id val)
     (let-val id val :pos pos)
     out)
-  
+
+  (let-fun equals (pos x y)
+    (make-bool (equal-vals x y)))
+
   (let-macro fun (pos out (id sym) (args list) (body expr))
     (setf args (to-list args))
     
@@ -96,7 +99,7 @@
                            args)))
         (let ((*let-fun-id* (lisp-id id)))
           (cons `(let-fun ,id ,(cons 'pos fargs)
-                   ,@(emit-vals (vals body)))
+                   ,@(emit-body (vals body)))
                 out)))))
 
   (let-macro if (pos out cond x y)
@@ -119,13 +122,8 @@
                ,(first (emit-val y :pos pos)))
           out))
 
-  (let-macro recall (pos out (f Fun?) args)
-    (cons `(return-from
-            ,*let-fun-id*
-             (call ,(if (eq f _) '*this-fun* f)
-                   ,(first (emit-val args :pos pos))
-                   :pos ,pos))
-          out))
+  (let-macro return (pos out val)
+    (cons `(return-from ,*let-fun-id* ,(first (emit-val val :pos pos))) out))
 
   (let-macro this-fun (pos out)
     (cons '*this-fun* out))
