@@ -21,7 +21,7 @@
                       (setf mode :build)
                       (setf output-filename (pop in)))
                      ((string= a "-debug")
-                      (setf *debug* t))
+                      (setf *debug* (not *debug*)))
                      ((string= a "-repl")
                       (setf mode :repl))
                      ((string= a "-speed")
