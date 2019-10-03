@@ -1,8 +1,10 @@
 * add quote support
 ** trigger on ' in reader
-** call quote-val defun
-** keyword if sym unless keywordp
-** otherwise (quote)
+** add quote type
+*** special case of list
+** emit keyword if sym unless keywordp
+*** otherwise backquote
+* --
 * finish assignment
 ** define setter if id ends with =
 *** add type args
