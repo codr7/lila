@@ -50,8 +50,8 @@
   (let-fun bool (pos (val any?))
     (to-bool val))
 
-  (let-macro call (pos out (f fun) (args list))
-    (cons `(call ,f ,(first (emit-val args :pos pos)) :pos ,pos) out))
+  (let-fun call (pos (f fun) (args list))
+    (call f (to-list args) :pos pos))
 
   (let-macro check (pos out (op none) (body expr))
     (let ((body (first (emit-val body :pos pos))))

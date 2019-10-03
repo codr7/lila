@@ -41,13 +41,17 @@
 
 (defvar *empty-list* (make-instance 'empty-list))
 
-(defmethod dump-val ((v empty-list) out)
+(defmethod dump-val ((-- empty-list) out)
   (write-string "()" out))
 
-(defmethod get-type ((v empty-list))
+(defmethod emit-val ((-- empty-list) &key in out (pos *pos*))
+  (declare (ignore pos))
+  (values (cons 'nil out) in))
+
+(defmethod get-type ((-- empty-list))
   list-type)
 
-(defmethod to-bool ((v empty-list))
+(defmethod to-bool ((-- empty-list))
   t)
 
 (defun to-list (in)

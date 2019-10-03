@@ -37,4 +37,7 @@
       (t
        (values (cons (first (emit-val v :pos pos)) out) in)))))
 
-(defmethod get-type ((-- symbol)) sym-type)
+(defmethod get-type ((s symbol))
+  (if (eq s 'nil)
+      list-type
+      sym-type))
