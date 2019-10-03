@@ -117,7 +117,7 @@
              (setf v (read-sum in v)))
             (t
              (unread-char c in)))))
-      
+
       (cons v *val-pos*))))
 
 (defun read-expr (in)

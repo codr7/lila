@@ -24,6 +24,14 @@
   (let-val (make-id "false") false)
 
   (let-macro = (pos out place val)
+    (when (symbolp place)
+      (let ((v (get-val place :default *missing*)))
+        (cond
+          ((eq v *missing*)
+           (esys pos "Unknown id: ~a" place))
+          ((not (undef? v))
+           (esys pos "Can't rebind const: ~a" place)))))
+              
     (cons `(setf ,(first (emit-val place :pos pos))
                  ,(first (emit-val val :pos pos)))
     out))

@@ -101,18 +101,54 @@ true
 Values may be bound to names using `var`.
 
 ```
-  var foo 7
-  foo
-
-7
-```
-
-Bound values may be changed using `=`, which is a regular macro. Assignments evaluate to the new value, `35` in the following example.
-
-```
-  + {foo.= 35} 7
+  {
+    var foo 42
+    foo
+  }
 
 42
+```
+
+Bound values may be changed using `=`, which is a regular macro. Assignments evaluate to the new value, `3` in the following example.
+
+```
+  {
+    var foo 1
+    + {foo.= 3} 5
+  }
+  
+8
+```
+
+Changing non-existing bindings triggers compile time errors.
+
+```
+  foo.= 42
+
+System error at row 1, col 0: Unknown id: foo
+```
+
+#### constants
+Constant bindings are evaluated at compile time and inlined on reference.
+
+```
+  {
+    const FOO 42
+    FOO
+  }
+
+42
+```
+
+Changing constant bindings triggers compile time errors.
+
+```
+  {
+    const FOO 1
+    FOO.= 3
+  }
+
+System error at row 3, col 2: Can't rebind const: FOO
 ```
 
 ### types
@@ -219,8 +255,7 @@ Arguments have type `Any` by default, which doesn't allow missing values.
     _.foo
   }
 
-debugger invoked on a SB-PCL::NO-APPLICABLE-METHOD-ERROR in thread
-#<THREAD "main thread" RUNNING {10005084C3}>
+debugger invoked on a SB-PCL::NO-APPLICABLE-METHOD-ERROR
 ```
 
 ```

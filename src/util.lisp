@@ -1,5 +1,7 @@
 (in-package lila)
 
+(defvar *missing* (gensym))
+
 (defun caps! (s)
   (setf (char s 0) (char-upcase (char s 0)))
   s)

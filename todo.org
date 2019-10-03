@@ -1,5 +1,4 @@
 * finish assignment
-** check that binding exists on macro expansion
 ** define setter if id ends with =
 *** add type args
 *** fun foo=(...)
