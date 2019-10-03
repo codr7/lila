@@ -1,7 +1,7 @@
 ![Logo](logo.png)
 
 ### intro
-[lila](https://github.com/codr7/lila) is a cleaner, less nested, more declarative and more static language based on [Common Lisp](http://www.lispworks.com/documentation/HyperSpec/Front/). 
+[lila](https://github.com/codr7/lila) is a less nested, less dynamic and more declarative language based on [Common Lisp](http://www.lispworks.com/documentation/HyperSpec/Front/). 
 
 ```
 fun fib(n:Int) {
