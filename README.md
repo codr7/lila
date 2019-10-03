@@ -247,7 +247,7 @@ Parts may be extracted using deconstructing bindings.
 #### Fun
 Functions are generic with fixed arity.
 
-Arguments have type `Any` by default, which doesn't allow missing values.
+Arguments have type `Any` by default, which doesn't allow missing values. Calling missing functions triggers compile time errors.
 
 ```
   {
@@ -257,6 +257,8 @@ Arguments have type `Any` by default, which doesn't allow missing values.
 
 debugger invoked on a SB-PCL::NO-APPLICABLE-METHOD-ERROR
 ```
+
+When allowing missing values is exactly what you want, specifying the argument type is all it takes.
 
 ```
   {
