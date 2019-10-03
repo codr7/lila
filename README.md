@@ -40,8 +40,8 @@ $ dist/lila -build dist/test test/suite.lila
 $ dist/test
 ```
 
-### basics
-Functions and macros are generic with fixed arity. Bare names evaluate to calls and consume the same number of forms as arguments.
+### syntax
+Functions and macros are generic with fixed arity. Bare names evaluate to calls and consume the same number of forms as specified arguments.
 
 ```
   * 6 7
@@ -65,13 +65,15 @@ In simple cases such as previous example, `;` may be used to reduce nesting.
 42
 ```
 
-Dot notation allows specifying the called macro/function infix.
+Dot notation allows putting the called macro/function infix.
 
 ```
   21.neg.* 2
   
 -42
 ```
+
+### identity/equality
 
 `is` returns `true` when both arguments share the same identity.
 
@@ -80,7 +82,7 @@ Dot notation allows specifying the called macro/function infix.
 
 true
 ```
-For reference types, such as lists in this example; identity means address.
+For reference types, such as lists; identity means address.
 
 ```
   (42).is (42)
@@ -95,9 +97,27 @@ false
 true
 ```
 
+### bindings
+Values may be bound to names using `var`.
+
+```
+  var foo 7
+  foo
+
+7
+```
+
+Bound values may be changed using `=`, which is a regular macro. Assignments evaluate to the new value, `35` in the following example.
+
+```
+  + {foo.= 35} 7
+
+42
+```
+
 ### types
 
-#### meta
+#### Meta
 `Meta` is the type of all types, including itself.
 
 ```
@@ -106,7 +126,7 @@ true
 Meta
 ```
 
-#### none
+#### None
 `None` represents missing values and has exactly one instance named `_`.
 
 ```
@@ -128,7 +148,7 @@ false
 true
 ```
 
-#### bool
+#### Bool
 Booleans can be `true` or `false`.
 
 All values have boolean representations; many are unconditionally `true`, `0` and empty lists being two notable exceptions.
@@ -156,7 +176,7 @@ Logical operators are binary, short-circuiting and return the last evaluated arg
 42
 ```
 
-#### pair
+#### Pair
 Pairs allow treating two values as one.
 
 ```
@@ -188,7 +208,7 @@ Parts may be extracted using deconstructing bindings.
 2:1
 ```
 
-#### fun
+#### Fun
 Functions are generic with fixed arity.
 
 Arguments have type `Any` by default, which doesn't allow missing values.
@@ -210,6 +230,17 @@ debugger invoked on a SB-PCL::NO-APPLICABLE-METHOD-ERROR in thread
   }
   
 42
+```
+
+By default, functions return the value of the last evaluated form. Return may be used to exit early with optional result.
+
+```
+  {
+    fun foo() {1 return 2 3}
+    foo
+  }
+  
+2
 ```
 
 #### sum types

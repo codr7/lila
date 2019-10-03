@@ -1,10 +1,13 @@
 (in-package lila)
 
+(defvar *debug* nil)
 (defvar *speed* 0)
 
 (defun lila-compile (vals)
   (let ((code (emit-body vals)))
-    ;(format t "~a~%" code)
+    (when *debug*
+      (format t "~a~%" code))
+    
     (compile nil `(lambda ()
                     (declare (optimize (debug 3)
                                        (speed ,(floor *speed* 3))

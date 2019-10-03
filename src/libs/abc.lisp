@@ -22,7 +22,12 @@
 
   (let-val (make-id "true") true)
   (let-val (make-id "false") false)
-  
+
+  (let-macro = (pos out place val)
+    (cons `(setf ,(first (emit-val place :pos pos))
+                 ,(first (emit-val val :pos pos)))
+    out))
+
   (let-fun < (pos x y)
     (make-bool (eq (compare-vals x y) :lt)))
 
