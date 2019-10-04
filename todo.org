@@ -1,7 +1,3 @@
-* add value dispatch
-** use eql-specifier with gensym unless arg is sym or pair & first is sym
-** fun fib(0) {0}
-* --
 * add quote support
 ** trigger on ' in reader
 ** add quote type
