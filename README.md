@@ -307,6 +307,6 @@ $ dist/lila -speed 9 bench/pair.lila
 [MIT](https://github.com/codr7/lila/blob/master/LICENSE.txt)
 
 ### support
-Please consider donating if you would like to help [lila](https://github.com/codr7/lila) evolve and improve, each contribution allows me to spend more time and energy on the project.
+Please consider donating if you would like to help the project evolve and improve.
 
 <a href="https://liberapay.com/codr7/donate"><img alt="Donate using Liberapay" src="https://liberapay.com/assets/widgets/donate.svg"></a>

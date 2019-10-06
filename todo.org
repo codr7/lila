@@ -1,4 +1,4 @@
-* add quote support
+ add quote support
 ** trigger on ' in reader
 ** add quote type
 *** special case of list
